@@ -75,6 +75,8 @@ const LoginPage = () => {
     <>
       <div className="login">
         <Navbar />
+        {email}
+        {password}
         <div className="container-login">
           <div className="left-form-login">
             <h1 className="header-text">LoginPage</h1>

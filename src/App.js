@@ -1,7 +1,14 @@
 import "./App.css";
 import qoreContext from "./qoreContext";
 
-import { LoginPage, RegsiterPage, UserProfile, HomePage } from "./pages/index";
+import {
+  LoginPage,
+  RegsiterPage,
+  UserProfile,
+  HomePage,
+  TestPage,
+  TestResult,
+} from "./pages/index";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 function App() {
@@ -18,6 +25,8 @@ function App() {
             <Route exact path="/login" component={LoginPage} />
             <Route path="/register" component={RegsiterPage} />
             <Route path="/profile/:id" component={UserProfile} />
+            <Route path="/test" component={TestPage} />
+            <Route path="/result" component={TestResult} />
           </Switch>
         </Router>
       </div>

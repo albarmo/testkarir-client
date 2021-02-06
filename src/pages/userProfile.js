@@ -12,7 +12,7 @@ const UserProfile = () => {
   // id asli dari use params ketika di push router
   const { data: profileData, status, error } = qoreContext
     .view("allMembers")
-    .useGetRow("fb38a22a-8f74-4114-a88d-71bb3e7f621c");
+    .useGetRow("52462423-356c-4749-8f1d-d752a620960f");
 
   console.log(status, "<< status");
   console.log(profileData, "<< status");

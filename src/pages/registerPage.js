@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import qoreContext from "../qoreContext";
 import "./style/register.css";
+import Swal from "sweetalert2";
 
 import Navbar from "../components/navbar";
 
@@ -19,27 +20,60 @@ const RegisterPage = () => {
     .view("allMembers")
     .useInsertRow();
 
-  const register = () => {
-    insertRow({
+  async function register() {
+    if (password !== confirmPassword) {
+      console.log("Confrim passord salah");
+      Swal.fire({
+        icon: "warning",
+        text: "Retype password wrong!",
+      });
+    }
+    await insertRow({
       role: role,
       email: email,
       username: username,
       domicile: domicile,
       password: password,
+      passwordShow: confirmPassword,
       birthDate: birthDate,
       status: true,
     });
-    console.log(status, "<<< status");
-    if (error) {
-      console.log(error);
+    if (status == "error") {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Email adrealy used!",
+      });
     }
-  };
+  }
+  if (status == "success") {
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Success Created Account",
+      showConfirmButton: false,
+      timer: 4000,
+    });
+    history.push("/login");
+  }
+  console.log(status, "<<< status");
 
   function registerHandler() {
     if (password !== confirmPassword) {
       console.log("Confrim passord salah");
+      Swal.fire({
+        icon: "warning",
+        text: "Retype password wrong!",
+      });
     } else {
       register();
+      if (status == "error") {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Email adrealy used!",
+        });
+      }
     }
   }
 
@@ -108,12 +142,12 @@ const RegisterPage = () => {
               </option>
             </select>
 
-            <label for="password" className="label-register">
+            <label for="text" className="label-register">
               Password
             </label>
             <input
               className="input-register"
-              placeholder="Domisili tempat tinggal"
+              placeholder="Password"
               type="password"
               name="password"
               onChange={(e) => setPassword(e.target.value)}
@@ -124,12 +158,12 @@ const RegisterPage = () => {
             </label>
             <input
               className="input-register"
-              placeholder="Domisili tempat tinggal"
-              type="confirmPassword"
+              placeholder="Confrim Password"
+              type="password"
               name="confrimPassword"
               onChange={(e) => setConfrimPassword(e.target.value)}
             />
-            <div className="button-submit" onClick={() => registerHandler()}>
+            <div className="button-submit" onClick={() => register()}>
               SUBMIT
             </div>
             <div className="text-link">

@@ -17,6 +17,9 @@ const HomePage = () => {
       <p className="button-submit" onClick={() => history.push("/register")}>
         Go To Register
       </p>
+      <p className="button-submit" onClick={() => history.push("/test/1")}>
+        Go To Profile
+      </p>
       <p className="button-submit" onClick={() => history.push("/profile/1")}>
         Go To Profile
       </p>
