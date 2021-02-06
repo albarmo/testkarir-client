@@ -1,4 +1,3 @@
-import { QoreClient } from "@feedloop/qore-client";
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { RegsiterPage } from ".";
@@ -27,24 +26,15 @@ const LoginPage = () => {
     e.preventDefault();
     setEmail(e.target.value);
   }
-
   function passwordHandler(e) {
     e.preventDefault();
     setPassword(e.target.value);
     //
   }
-
   function goToRegister() {
     history.push("/register");
   }
-  // authentification user login give token
-  // const client = new QoreClient({
-  //   ...config,
-  //   getToken: () => cookies.get("token"),
-  // });
-  // const token = await client.authenticate(email, password);
-  // console.log(token, "<<< ada ga tokenya");
-  // cookies.set("token", token);
+
   function login(e) {
     e.preventDefault();
     let userCheck = authData.filter(function (user) {
@@ -53,8 +43,9 @@ const LoginPage = () => {
     if (userCheck.length > 0) {
       console.log(`user ada! email => ${userCheck[0].email}`);
       console.log(`user ada! email => ${userCheck[0].password}`);
-      if (userCheck[0].password == password) {
+      if (userCheck[0].passwordShow == password) {
         console.log("GENERATE TOKEN");
+        history.push(`/profile/${userCheck[0].id}`);
       }
     } else if (userCheck.length == 0) {
       let userCheckByUsername = authData.filter(function (user) {
@@ -62,8 +53,9 @@ const LoginPage = () => {
       });
       if (userCheckByUsername.length >= 1) {
         console.log("user ada! username =>", userCheckByUsername[0].username);
-        if (userCheckByUsername[0].password == password) {
+        if (userCheckByUsername[0].passwordShow == password) {
           console.log("GENERATE TOKEN");
+          history.push(`/profile/${userCheckByUsername[0].id}`);
         }
       } else {
         console.log("user tidak ada");
@@ -71,12 +63,26 @@ const LoginPage = () => {
     }
   }
 
+  // const Client = qoreContext.useClient();
+  // const handleLogout = () => {
+  //   // cokies.remove("token");
+  // };
+  // const handleLogin = async (email, password) => {
+  //   const token = await Client.authenticate(email, password);
+  //   // cookies.set("token", token);
+  //   console.log(token, "tokennn");
+  // };
+
+  // qoreContext.js
+  // give qore client a way to access user token
+
   return (
     <>
       <div className="login">
         <Navbar />
+        {/* {JSON.stringify(allMembers)}
         {email}
-        {password}
+        {password} */}
         <div className="container-login">
           <div className="left-form-login">
             <h1 className="header-text">LoginPage</h1>

@@ -6,5 +6,10 @@ import schema from "./qore.schema.json";
 const client = new QoreClient(config);
 client.init(schema);
 
+// const client = new QoreClient({
+//   config: config,
+//   getToken: () => cookies.get("token"),
+// });
+
 const qoreContext = createQoreContext(client);
 export default qoreContext;
