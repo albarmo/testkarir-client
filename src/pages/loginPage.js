@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { RegsiterPage } from ".";
 import qoreContext from "../qoreContext";
 import Navbar from "../components/navbar";
+import Swal from "sweetalert2";
 
 import "./style/login.css";
 
@@ -14,13 +15,10 @@ const LoginPage = () => {
 
   // CORE SDK
   // get user example and test
-  const { data: allMembers, status, error } = qoreContext
-    .view("allMembers")
-    .useListRow({ limit: 100, order: "asc" }, { pollInterval: 500 });
-
   const { data: authData, statusAuth, errorAuth } = qoreContext
-    .view("allMembers")
+    .view("allMember")
     .useListRow({ order: "asc" });
+
   // component function
   function emailHandler(e) {
     e.preventDefault();
@@ -46,6 +44,11 @@ const LoginPage = () => {
       if (userCheck[0].passwordShow == password) {
         console.log("GENERATE TOKEN");
         history.push(`/profile/${userCheck[0].id}`);
+      } else if (userCheck[0].passwordShow != password) {
+        Swal.fire({
+          icon: "warning",
+          text: "email or password wrong!",
+        });
       }
     } else if (userCheck.length == 0) {
       let userCheckByUsername = authData.filter(function (user) {
@@ -56,6 +59,11 @@ const LoginPage = () => {
         if (userCheckByUsername[0].passwordShow == password) {
           console.log("GENERATE TOKEN");
           history.push(`/profile/${userCheckByUsername[0].id}`);
+        } else if (userCheckByUsername[0].passwordShow != password) {
+          Swal.fire({
+            icon: "warning",
+            text: "email or password wrong!",
+          });
         }
       } else {
         console.log("user tidak ada");
@@ -80,9 +88,6 @@ const LoginPage = () => {
     <>
       <div className="login">
         <Navbar />
-        {/* {JSON.stringify(allMembers)}
-        {email}
-        {password} */}
         <div className="container-login">
           <div className="left-form-login">
             <h1 className="header-text">LoginPage</h1>

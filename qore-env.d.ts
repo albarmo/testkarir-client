@@ -6,258 +6,67 @@ import { QoreSchema } from "@feedloop/qore-client";
 declare module "@feedloop/qore-client" {
   type MemberTableRow = {
     id: string;
-    role: { id: string; displayField: string };
     email: string;
+    role: { id: string; displayField: string };
+    status: "active" | "suspend";
     username: string;
-    domicile: string;
     password: string;
+    userRole: "kontributor" | "peserta";
     birthDate: Date;
-    status: boolean;
+    domicile: string;
+    passwordShow: string;
   };
 
-  type ToDoTableRow = {
-    id: string;
-    task: string;
-    description: string;
-    done: boolean;
-    points: number;
-    deadline: Date;
-    difficulty: "Easy" | "Medium" | "Hard";
-    role: { id: string; displayField: string };
-    attachment: string;
-    timeAllocation: string;
+  type AllMemberViewRow = {
+    read: {
+      id: string;
+      email: string;
+      role: { id: string; displayField: string };
+      status: "active" | "suspend";
+      username: string;
+      password: string;
+      userRole: "kontributor" | "peserta";
+      birthDate: Date;
+      domicile: string;
+      passwordShow: string;
+    };
+    write: {
+      email: string;
+      status: "active" | "suspend";
+      username: string;
+      password: string;
+      userRole: "kontributor" | "peserta";
+      birthDate: Date;
+      domicile: string;
+      passwordShow: string;
+    };
+    params: {};
+    actions: {};
   };
 
   type AuthDataViewRow = {
     read: {
       id: string;
+      email: string;
       role: { id: string; displayField: string };
-      email: string;
+      status: "active" | "suspend";
       username: string;
       password: string;
-    };
-    write: {
-      email: string;
-      username: string;
-      password: string;
-    };
-    params: {
-      email?: string;
-      username?: string;
-    };
-    actions: {};
-  };
-
-  type AlltaskViewRow = {
-    read: {
-      id: string;
-      task: string;
-      description: string;
-      done: boolean;
-      points: number;
-      deadline: Date;
-    };
-    write: {
-      task: string;
-      description: string;
-      done: boolean;
-      points: number;
-      deadline: Date;
-    };
-    params: {};
-    actions: {};
-  };
-
-  type AllMembersViewRow = {
-    read: {
-      id: string;
-      role: { id: string; displayField: string };
-      email: string;
-      username: string;
-      domicile: string;
-      birthDate: Date;
-      password: string;
-      status: boolean;
+      passwordShow: string;
     };
     write: {
       email: string;
+      status: "active" | "suspend";
       username: string;
-      domicile: string;
-      birthDate: Date;
       password: string;
-      status: boolean;
+      passwordShow: string;
     };
     params: {};
-    actions: {};
-  };
-
-  type NewViewTfIViewRow = {
-    read: {
-      id: string;
-      role: { id: string; displayField: string };
-      email: string;
-      username: string;
-      domicile: string;
-      password: string;
-    };
-    write: {
-      email: string;
-      username: string;
-      domicile: string;
-      password: string;
-    };
-    params: {};
-    actions: {};
-  };
-
-  type DoneViewRow = {
-    read: {
-      id: string;
-      task: string;
-      description: string;
-      done: boolean;
-      points: number;
-      deadline: Date;
-    };
-    write: {
-      task: string;
-      description: string;
-      done: boolean;
-      points: number;
-      deadline: Date;
-    };
-    params: {};
-    actions: {};
-  };
-
-  type ReisTaskViewRow = {
-    read: {
-      id: string;
-      task: string;
-      description: string;
-      done: boolean;
-      points: number;
-      deadline: Date;
-      difficulty: "Easy" | "Medium" | "Hard";
-      role: { id: string; displayField: string };
-      attachment: string;
-      timeAllocation: string;
-    };
-    write: {
-      task: string;
-      description: string;
-      done: boolean;
-      points: number;
-      deadline: Date;
-      difficulty: "Easy" | "Medium" | "Hard";
-      attachment: string;
-    };
-    params: {
-      timeAllocation?: string;
-    };
-    actions: {};
-  };
-
-  type TestViewRow = {
-    read: {
-      id: string;
-      task: string;
-      description: string;
-    };
-    write: {
-      task: string;
-      description: string;
-    };
-    params: {};
-    actions: {};
-  };
-
-  type ToDoViewRow = {
-    read: {
-      id: string;
-      task: string;
-      description: string;
-      done: boolean;
-      points: number;
-      deadline: Date;
-    };
-    write: {
-      task: string;
-      description: string;
-      done: boolean;
-      points: number;
-      deadline: Date;
-    };
-    params: {};
-    actions: {};
-  };
-
-  type ToDoDefaultViewViewRow = {
-    read: {
-      id: string;
-      task: string;
-      description: string;
-      done: boolean;
-      points: number;
-      deadline: Date;
-      difficulty: "Easy" | "Medium" | "Hard";
-      role: { id: string; displayField: string };
-      timeAllocation: string;
-      attachment: string;
-    };
-    write: {
-      task: string;
-      description: string;
-      done: boolean;
-      points: number;
-      deadline: Date;
-      difficulty: "Easy" | "Medium" | "Hard";
-      attachment: string;
-    };
-    params: {
-      "$by.points"?: "desc";
-    };
-    actions: {};
-  };
-
-  type UndoneViewRow = {
-    read: {
-      id: string;
-      task: string;
-      description: string;
-      done: boolean;
-      points: number;
-      deadline: Date;
-      difficulty: "Easy" | "Medium" | "Hard";
-      role: { id: string; displayField: string };
-      attachment: string;
-      timeAllocation: string;
-    };
-    write: {
-      task: string;
-      description: string;
-      done: boolean;
-      points: number;
-      deadline: Date;
-      difficulty: "Easy" | "Medium" | "Hard";
-      attachment: string;
-    };
-    params: {
-      undone?: string;
-    };
     actions: {};
   };
 
   type ProjectSchema = {
+    allMember: AllMemberViewRow;
     authData: AuthDataViewRow;
-    alltask: AlltaskViewRow;
-    allMembers: AllMembersViewRow;
-    newViewTfI: NewViewTfIViewRow;
-    done: DoneViewRow;
-    reisTask: ReisTaskViewRow;
-    test: TestViewRow;
-    toDo: ToDoViewRow;
-    toDoDefaultView: ToDoDefaultViewViewRow;
-    undone: UndoneViewRow;
   };
 }

@@ -17,7 +17,7 @@ const RegisterPage = () => {
   const [confirmPassword, setConfrimPassword] = useState("");
 
   const { insertRow, status, error } = qoreContext
-    .view("allMembers")
+    .view("allMember")
     .useInsertRow();
 
   async function register() {
@@ -29,7 +29,7 @@ const RegisterPage = () => {
       });
     }
     await insertRow({
-      role: role,
+      // role: { ...role, displayField: role },
       email: email,
       username: username,
       domicile: domicile,

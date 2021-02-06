@@ -6,7 +6,12 @@ const HomePage = () => {
   const history = useHistory();
   return (
     <div
-      style={{ display: "flex", alignItems: "center", flexDirection: "column" }}
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        flexDirection: "column",
+      }}
     >
       <Navbar />
       <h1>HOMEPAGE</h1>
@@ -18,9 +23,14 @@ const HomePage = () => {
         Go To Register
       </p>
       <p className="button-submit" onClick={() => history.push("/test/1")}>
-        Go To Profile
+        Go To test
       </p>
-      <p className="button-submit" onClick={() => history.push("/profile/1")}>
+      <p
+        className="button-submit"
+        onClick={() =>
+          history.push("/profile/d4646423-7f26-4511-9496-423fb92efff3")
+        }
+      >
         Go To Profile
       </p>
     </div>
