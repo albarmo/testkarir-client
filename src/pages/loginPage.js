@@ -116,10 +116,10 @@ const LoginPage = () => {
                 required
               />
             </form>
-            <div className="button-submit" onClick={(e) => login(e)}>
+            <div className="button-login" onClick={(e) => login(e)}>
               LOGIN
             </div>
-            <div className="text-link">
+            <div className="text-link-login">
               <p>Belum punya akun?</p>
               <h3
                 style={{ color: "#10BBF1", cursor: "pointer" }}

@@ -1,23 +1,24 @@
 .test {
   top: 0;
   width: 100%;
-  height: 100vh;
+  min-height: 120%;
+  min-height: 180%;
   display: flex;
   align-items: center;
+  justify-self: center;
   flex-direction: column;
   background-color: transparent;
 }
 .quesyHeader {
-  background-color: transparent;
-  width: 100%;
+  width: 80%;
   height: 100%;
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
 }
 
 .form-questHeader {
   background-color: transparent;
-  width: 70%;
+  width: 100%;
   height: 100%;
 }
 .input-quest {
@@ -38,4 +39,97 @@
   color: #0a708f;
   font-weight: bold;
   font-size: 0.8rem;
+}
+
+.button-quesy {
+  margin-top: 5%;
+  width: 30%;
+  height: 43px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+
+  background: linear-gradient(
+      270deg,
+      #00f7f7 -16.06%,
+      rgba(133, 191, 191, 0) 125.18%
+    ),
+    #67bad5;
+  box-shadow: inset 0px -1px 4px rgba(0, 0, 0, 0.09);
+  border-radius: 10px;
+  cursor: pointer;
+  margin-bottom: 10%;
+}
+
+@media only screen and (max-width: 720px) {
+  .test {
+    top: 0;
+    width: 100%;
+    min-height: 120%;
+    min-height: 180%;
+    display: flex;
+    align-items: center;
+    justify-self: center;
+    flex-direction: column;
+    background-color: transparent;
+  }
+  .quesyHeader {
+    background-color: rgb(26, 8, 43);
+    width: 80%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-questHeader {
+    background-color: rgb(99, 2, 2);
+    width: 100%;
+    height: 100%;
+  }
+  .input-quest {
+    width: 100%;
+    height: 55px;
+    font-size: large;
+    font-weight: bold;
+    color: #b0b0b0;
+    padding-left: 1.99%;
+    background: #f7f7f7;
+    border-radius: 10px;
+    border: none;
+    background-color: cadetblue;
+  }
+
+  .label-quest {
+    width: 100%;
+    text-align: left;
+    color: #0a708f;
+    font-weight: bold;
+    font-size: 0.8rem;
+    background-color: chartreuse;
+  }
+
+  .button-quesy {
+    margin-top: 20%;
+    width: 100%;
+    height: 43px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+
+    background: linear-gradient(
+        270deg,
+        #00f7f7 -16.06%,
+        rgba(133, 191, 191, 0) 125.18%
+      ),
+      #67bad5;
+    box-shadow: inset 0px -1px 4px rgba(0, 0, 0, 0.09);
+    border-radius: 10px;
+    cursor: pointer;
+  }
 }

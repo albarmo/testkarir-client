@@ -52,3 +52,76 @@
   background-color: transparent;
   width: 40%;
 }
+
+@media only screen and (max-width: 720px) {
+  .user-profile {
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    background-image: url("../../materials/login.png");
+    background-size: 140%;
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .username-profile {
+    width: 90%;
+    font-weight: bold;
+    font-size: 2rem;
+    color: #117ea0;
+    text-align: left;
+    line-height: 70%;
+    background-color: rgba(221, 221, 221, 0.664);
+    border: none;
+    border-radius: 20px;
+    padding: 10px;
+  }
+  .username-profile p {
+    font-size: 60%;
+    color: black;
+    background-color: transparent;
+    font-weight: bold;
+  }
+
+  .container-profile {
+    width: 95%;
+    height: 3800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 5%;
+  }
+
+  .history-test-container {
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    width: 60%;
+    height: auto;
+    background-color: transparent;
+    background-color: rgba(231, 229, 229, 0.664);
+    border: none;
+    border-radius: 20px;
+    padding: 20px;
+  }
+  .history-header {
+    color: rgb(7, 6, 6);
+    font-size: x-large;
+  }
+
+  .history-card {
+    background-color: transparent;
+    width: 100%;
+    line-height: 10%;
+    text-align: left;
+  }
+
+  .right-card {
+    background-color: transparent;
+    width: 40%;
+  }
+}

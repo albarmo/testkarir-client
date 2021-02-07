@@ -163,10 +163,10 @@ const RegisterPage = () => {
               name="confrimPassword"
               onChange={(e) => setConfrimPassword(e.target.value)}
             />
-            <div className="button-submit" onClick={() => register()}>
+            <div className="button-submit-register" onClick={() => register()}>
               SUBMIT
             </div>
-            <div className="text-link">
+            <div className="text-link-register">
               <p>Sudah punya akun?</p>
               <h3
                 style={{ color: "#10BBF1", cursor: "pointer" }}

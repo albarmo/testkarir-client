@@ -16,17 +16,26 @@ const HomePage = () => {
       <Navbar />
       <h1>HOMEPAGE</h1>
       <p>Development Demo</p>
-      <p className="button-submit" onClick={() => history.push("/login")}>
+      <p
+        className="button-submit-register"
+        onClick={() => history.push("/login")}
+      >
         Go To Login
       </p>
-      <p className="button-submit" onClick={() => history.push("/register")}>
+      <p
+        className="button-submit-register"
+        onClick={() => history.push("/register")}
+      >
         Go To Register
       </p>
-      <p className="button-submit" onClick={() => history.push("/test/1")}>
+      <p
+        className="button-submit-register"
+        onClick={() => history.push("/test/1")}
+      >
         Go To test
       </p>
       <p
-        className="button-submit"
+        className="button-submit-register"
         onClick={() =>
           history.push("/profile/d4646423-7f26-4511-9496-423fb92efff3")
         }

@@ -11,6 +11,9 @@ const TestResult = () => {
   const location = useLocation();
   const history = useHistory();
 
+  const timeElapsed = Date.now();
+  var today = new Date(timeElapsed);
+
   // PDF -------------------------------------------------------------------
   doc.setFont("times", "bold");
   doc.setFontSize(22);
@@ -36,7 +39,7 @@ const TestResult = () => {
                 <p>Nama : Anonim</p>
               )}
             </h5>
-            {Date.now()}
+            {today.toDateString()}
             <h1>
               {location.state.output
                 ? location.state.output.title

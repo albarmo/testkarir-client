@@ -44,7 +44,7 @@ const UserProfile = () => {
                 Tangal Lahir : {profileData.birthDate}
               </p>
             </div>
-            <h3>History Tes</h3>
+            <h3 className="history-header">History Tes</h3>
             <div className="history-test-container">
               <div className="history-card">
                 <h4>Tes Minat 1</h4>

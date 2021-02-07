@@ -65,15 +65,15 @@ const TestPage = () => {
                   onChange={(e) => setActivity(e.target.value)}
                 />
               </form>
+              {!isValid ? (
+                <div className="button-quesy" onClick={() => setIsValid(true)}>
+                  Mulai Tes
+                </div>
+              ) : null}
             </div>
           ) : null}
           {isValid ? <Quest user={dataUser} /> : null}
         </div>
-        {!isValid ? (
-          <div className="button-test" onClick={() => setIsValid(true)}>
-            Mulai Tes
-          </div>
-        ) : null}
       </div>
     </>
   );

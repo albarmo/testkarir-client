@@ -11,11 +11,11 @@ const Navbar = () => {
           src="http://teskarir.com/wp-content/uploads/2020/06/imageedit_17_9008611935-150x150.png"
           alt="tes"
           width="60%"
+          onClick={() => history.push("/")}
         />
       </div>
       <div className="menu">
-        <p onClick={() => history.push("/")}>Home</p>
-        <p onClick={() => history.push("/test")}>Tes</p>
+        <p onClick={() => history.push("/test")}>Tes Karir</p>
         <p onClick={() => history.push("/")}>Belajar Karir</p>
         <p onClick={() => history.push("/")}>Konsultasi Karir</p>
         <p onClick={() => history.push("/")}>Tentang Teskarir</p>
