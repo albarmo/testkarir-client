@@ -13,19 +13,6 @@
   width: 90%;
 }
 
-.answer-form {
-  margin-top: 5%;
-  background-color: transparent;
-  display: flex;
-  justify-content: baseline;
-}
-
-.answer-form-label {
-  background-color: transparent;
-  width: 80%;
-  margin-left: 2%;
-}
-
 .button-test {
   margin-top: 100px;
   width: 20%;
@@ -46,4 +33,58 @@
   box-shadow: inset 0px -1px 4px rgba(0, 0, 0, 0.09);
   border-radius: 10px;
   cursor: pointer;
+}
+
+.grid-container {
+  height: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: repeat(3, 1fr);
+  gap: 1% 1%;
+  grid-template-areas:
+    ". . . ."
+    ". . . ."
+    ". . . .";
+  color: rgb(0, 0, 0);
+}
+
+.col {
+  margin-top: 5%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  width: 10rem;
+  height: 10rem;
+  padding: 5%;
+  opacity: 80%;
+  background-color: #abe9e9;
+  opacity: 40%;
+}
+
+.col p {
+  font-size: medium;
+}
+
+.col:hover {
+  /* margin-left: 3%; */
+  background-color: #0a6969;
+  opacity: 100%;
+  color: rgb(255, 255, 255);
+}
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  [class*="grid-container"] {
+    display: flex;
+    width: 10%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .col {
+    margin-top: 2%;
+  }
 }

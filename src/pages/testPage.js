@@ -10,6 +10,8 @@ const TestPage = () => {
   const [age, setAge] = useState("");
   const [activity, setActivity] = useState("");
 
+  let dataUser = { username, age, activity };
+
   useEffect(() => {
     setIsValid(false);
   }, []);
@@ -19,9 +21,6 @@ const TestPage = () => {
       <div className="test">
         <Navbar />
         <div className="question-container">
-          {username}
-          {age}
-          {activity}
           {!isValid ? (
             <div className="quesyHeader">
               <form className="form-questHeader">
@@ -68,7 +67,7 @@ const TestPage = () => {
               </form>
             </div>
           ) : null}
-          {isValid ? <Quest /> : null}
+          {isValid ? <Quest user={dataUser} /> : null}
         </div>
         {!isValid ? (
           <div className="button-test" onClick={() => setIsValid(true)}>
