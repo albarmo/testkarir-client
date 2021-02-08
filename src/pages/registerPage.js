@@ -28,16 +28,18 @@ const RegisterPage = () => {
         text: "Retype password wrong!",
       });
     }
-    await insertRow({
-      // role: { ...role, displayField: role },
-      email: email,
-      username: username,
-      domicile: domicile,
-      password: password,
-      passwordShow: confirmPassword,
-      birthDate: birthDate,
-      status: true,
-    });
+    else if(password == confirmPassword){
+      await insertRow({
+        // role: { id:'4738, displayField: role },
+        email: email,
+        username: username,
+        domicile: domicile,
+        password: password,
+        passwordShow: confirmPassword,
+        birthDate: birthDate,
+        status: true,
+      });
+    }
     if (status == "error") {
       Swal.fire({
         icon: "error",
@@ -58,29 +60,11 @@ const RegisterPage = () => {
   }
   console.log(status, "<<< status");
 
-  function registerHandler() {
-    if (password !== confirmPassword) {
-      console.log("Confrim passord salah");
-      Swal.fire({
-        icon: "warning",
-        text: "Retype password wrong!",
-      });
-    } else {
-      register();
-      if (status == "error") {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Email adrealy used!",
-        });
-      }
-    }
-  }
-
   return (
     <>
       <div className="register">
         <Navbar />
+        {email}
         <div className="left-form">
           <form className="form-register">
             <h1 className="header-text">Register</h1>
