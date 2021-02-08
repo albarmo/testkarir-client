@@ -7,14 +7,13 @@ import { BiAtom } from "react-icons/bi";
 import { getResult } from "../helpers/getResult";
 
 var sectionAnswer = [];
+var colIdArr = [];
 
 const Quest = (props) => {
-  console.log(props.user);
-
   const history = useHistory();
   const [indexQuestion, setIndexQuestion] = useState(0);
   const [mainAnswer, setMainAnswer] = useState([]);
-  const [output, setOutput] = useState();
+  const [clicked, setClicked] = useState([]);
 
   // --------------------------------------------QORE SDK-------------------------------------------------------------//
   // const { data: freeQuestion, status, error } = qoreContext.view(
@@ -27,7 +26,7 @@ const Quest = (props) => {
       id: 0,
       question:
         "Pilihlah pernyataan-pernyataan yang paling sesuai dan menggambarkan diri anda. Pada setiap bagian, anda bebas memilih berapapun pernyataan tentang diri anda!",
-      answer: [{ id: 0, data: "Ya saya mengerti" }],
+      answer: [{ id: 0, data: "Ya saya mengerti", active: false }],
     },
     {
       id: 1,
@@ -196,6 +195,10 @@ const Quest = (props) => {
     sectionAnswer = [];
   }, []);
 
+  useEffect(() => {
+    colIdArr = [];
+  }, [indexQuestion]);
+
   function generateIcon(icon) {
     var iconGen = Math.floor(Math.random() * icon.length - 1);
   }
@@ -204,6 +207,7 @@ const Quest = (props) => {
     e.preventDefault();
     if (indexQuestion + 1 != dataQuest.length) {
       setIndexQuestion(indexQuestion + 1);
+      colIdArr = [];
       generateIcon(icon);
     } else {
       console.log("Selesai pertanyaan habis");
@@ -217,16 +221,37 @@ const Quest = (props) => {
     }
   }
   // --------------------------------------------FUNCTION PENILAIAN-----------------------------------------------------------------//
-  function userAction(idAnswer) {
-    console.log(idAnswer, "pushed to answerData");
+
+  function boxStatus(colId) {
+    // for (let i = 0; i < dataQuest[indexQuestion].answer.length; i++) {
+    if (colIdArr.includes(colId) == true) {
+      // console.log("udah ke click", colIdArr.includes(colId));
+      // console.log("Ada di index ke-", colIdArr.indexOf(colId));
+      let index = colIdArr.indexOf(colId);
+      if (index > -1) {
+        colIdArr.splice(index, 1);
+      }
+      console.log(colIdArr);
+      // colIdArr = newArr
+    } else if (colIdArr.includes(colId) == false) {
+      colIdArr.push(colId);
+      console.log(colIdArr, "array col id");
+    }
+    // }
+  }
+
+  function userAction(idAnswer, colId) {
+    // console.log(idAnswer, "pushed to answerData");
     sectionAnswer.push(idAnswer);
     setMainAnswer(sectionAnswer);
+    setClicked(colId);
+    boxStatus(colId);
+    // console.log(colIdArr, ">>> col Array");
   }
 
   return (
     <>
       <div className="question">
-        {mainAnswer}
         {dataQuest
           ? dataQuest.map((el) => {
               <>
@@ -241,12 +266,19 @@ const Quest = (props) => {
         <h1>{dataQuest[indexQuestion].question}</h1>
       </div>
       <div class="grid-container">
-        {dataAnswer.map((el, id) => {
+        {dataAnswer.map((el, colId) => {
           return (
-            <div key={id}>
+            <div key={colId}>
               {el.id == 0 ? null : (
-                <div className="col" onClick={() => userAction(`${el.id}`)}>
+                <div
+                  className={`col ${
+                    colIdArr.includes(colId) ? `active ${colId}` : "inactive"
+                  }`}
+                  id={colId}
+                  onClick={() => userAction(`${el.id}`, colId)}
+                >
                   <>
+                    {colId}
                     <BiAtom />
                     <p>{el.data}</p>
                   </>

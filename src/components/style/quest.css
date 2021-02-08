@@ -62,6 +62,24 @@
   opacity: 80%;
   background-color: #abe9e9;
   opacity: 40%;
+  text-decoration: none;
+}
+
+.disabled {
+  margin-top: 5%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  width: 10rem;
+  height: 10rem;
+  padding: 5%;
+  opacity: 80%;
+  background-color: #016d6d;
+  opacity: 40%;
+  text-decoration: none;
 }
 
 .col p {
