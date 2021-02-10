@@ -5,8 +5,15 @@ import Navbar from "../components/navbar";
 import qoreContext from "../qoreContext";
 
 const UserProfile = () => {
+  const history = useHistory();
   const { id } = useParams();
   const [data, setData] = useState();
+
+  const handleLogout = () => {
+    localStorage.clear();
+    console.log("User is logged out, localStorage now is clear");
+    history.push("/");
+  };
 
   // id dummy untuk demo
   // id asli dari use params ketika di push router
@@ -56,6 +63,9 @@ const UserProfile = () => {
             </div>
           </div>
         ) : null}
+        <div className="button-logout" onClick={() => handleLogout()}>
+          Logout
+        </div>
       </div>
     </>
   );

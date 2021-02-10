@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Navbar from "../components/navbar";
 import "./style/homepage.css";
@@ -20,8 +20,16 @@ import { FaFacebookF } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaUserFriends } from "react-icons/fa";
 
+// audio
+import useSound from "use-sound";
+import kuntoAudio from "../audio/kuntoo.mp3";
+import rehatAudio from "../audio/kuntoo.mp3";
+
 const HomePage = () => {
   const history = useHistory();
+  const [play, { stop }] = useSound(kuntoAudio, { volume: 0.5 });
+  const [isHovering, setIsHovering] = React.useState(false);
+
   return (
     <>
       <div className="jumbotron">
@@ -38,12 +46,12 @@ const HomePage = () => {
                 Kami adalah website khusus tes psikologi yang diprakarsai
                 Universitas Udayana kita menyediakan tes psikologi gratis lho
               </p>
-            </div>
-            <div
-              className="button-jumbotron"
-              onClick={() => history.push("/test")}
-            >
-              Coba Gratis
+              <div
+                className="button-jumbotron"
+                onClick={() => history.push("/test")}
+              >
+                Coba Gratis
+              </div>
             </div>
           </div>
           <div className="image-jumbotron">
@@ -53,6 +61,7 @@ const HomePage = () => {
         {/* section 2 - video */}
         <div className="section-video">
           <div
+            className="section-video-text"
             style={{
               display: "flex",
               justifyContent: "center",
@@ -70,16 +79,15 @@ const HomePage = () => {
           <iframe
             width="30%"
             height="28%"
-            src="https://www.youtube.com/embed/Xz7g0-LZEmA?autoplay=1"
+            src="https://www.youtube.com/embed/Xz7g0-LZEmA"
             allowfullscreen
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            autoplay="true"
+            // autoplay="true"
           />
         </div>
         {/* section 3 - about teskarir */}
         <div className="section-company">
-          <span class="tooltiptext">Tooltip text</span>
           <div className="company-text">
             <h2>
               Mulai revolusi dirimu bersama <span>teskarir</span>
@@ -138,10 +146,25 @@ const HomePage = () => {
           </div>
           <div className="result-card-container">
             {/* card-profile-items */}
+
             <div className="card-profile tooltip">
+              {/* audio hover */}
               <span class="tooltiptext">
-                Seorang konvensional itu ............
+                <button
+                  onMouseEnter={() => {
+                    setIsHovering(true);
+                    play();
+                  }}
+                  onMouseLeave={() => {
+                    setIsHovering(false);
+                    stop();
+                  }}
+                >
+                  Seorang konvensional itu ............
+                  <div isHovering={isHovering}>Hover Audio</div>
+                </button>
               </span>
+              {/* audio hover */}
               <p className="card-bg-text">
                 KON
                 <br />
@@ -163,6 +186,7 @@ const HomePage = () => {
               <span class="tooltiptext">
                 Seorang Investigatif itu ............
               </span>
+              {/* audio hover */}
               <p className="card-bg-text">
                 INV
                 <br />
@@ -269,22 +293,37 @@ const HomePage = () => {
         <div className="section-social-media">
           <div className="social-text">
             <div className="social-media container">
-              <h2>Teskarir.com</h2>
+              <h2>@2021 Teskarir.com</h2>
               <div className="social-items">
                 {/* items */}
                 <div className="items">
                   <FaFacebookF />
-                  <h3>facebook</h3>
+                  <a
+                    href="https://www.facebook.com/teskarir/?modal=admin_todo_tour"
+                    style={{ textDecoration: "none", color: "black" }}
+                  >
+                    <h3>facebook</h3>
+                  </a>
                 </div>
                 {/* items */}
                 <div className="items">
                   <FaInstagram />
-                  <h3>@teskarir</h3>
+                  <a
+                    href="https://www.instagram.com/teskarir/"
+                    style={{ textDecoration: "none", color: "black" }}
+                  >
+                    <h3>instagram</h3>
+                  </a>
                 </div>
                 {/* items */}
                 <div className="items">
                   <FaUserFriends />
-                  <h3>Ruang Konsultasi</h3>
+                  <a
+                    href="https://room.meetzippy.com/mz/room/userreg/bdfc425c2a1f4129886b"
+                    style={{ textDecoration: "none", color: "black" }}
+                  >
+                    <h3>Ruang Konsultasi</h3>
+                  </a>
                 </div>
               </div>
             </div>

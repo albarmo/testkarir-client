@@ -10,7 +10,7 @@ const Navbar = () => {
         <img
           src="http://teskarir.com/wp-content/uploads/2020/06/imageedit_17_9008611935-150x150.png"
           alt="tes"
-          width="60%"
+          width="60px"
           onClick={() => history.push("/")}
         />
       </div>
@@ -19,7 +19,9 @@ const Navbar = () => {
         <p onClick={() => history.push("/")}>Belajar Karir</p>
         <p onClick={() => history.push("/")}>Konsultasi Karir</p>
         <p onClick={() => history.push("/")}>Tentang Teskarir</p>
-        <div className="button-navbar">Buat Akun</div>
+        <div className="button-navbar" onClick={() => history.push("/login")}>
+          Login
+        </div>
       </div>
     </div>
   );

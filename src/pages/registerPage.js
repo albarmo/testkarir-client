@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import qoreContext from "../qoreContext";
 import "./style/register.css";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 import Navbar from "../components/navbar";
 
@@ -16,9 +17,18 @@ const RegisterPage = () => {
   const [role, setRole] = useState("");
   const [confirmPassword, setConfrimPassword] = useState("");
 
-  const { insertRow, status, error } = qoreContext
-    .view("allMember")
-    .useInsertRow();
+  // clear all data state on component did mount
+  useEffect(() => {
+    setEmail("");
+    setUsername("");
+    setDomicile("");
+    setBirthDate("");
+    setBirthDate("");
+    setPassword("");
+    setConfrimPassword("");
+    setConfrimPassword("");
+    setPassword("");
+  }, []);
 
   async function register() {
     if (password !== confirmPassword) {
@@ -27,38 +37,42 @@ const RegisterPage = () => {
         icon: "warning",
         text: "Retype password wrong!",
       });
-    }
-    else if(password == confirmPassword){
-      await insertRow({
-        // role: { id:'4738, displayField: role },
-        email: email,
-        username: username,
-        domicile: domicile,
-        password: password,
-        passwordShow: confirmPassword,
-        birthDate: birthDate,
-        status: true,
-      });
-    }
-    if (status == "error") {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Email adrealy used!",
-      });
+    } else if (password == confirmPassword) {
+      axios({
+        method: "POST",
+        url:
+          "https://prod-qore-app.qorebase.io/BQkHV3lQMCSxZjO/allMember/forms/register",
+        data: {
+          userRole: role,
+          email: email,
+          username: username,
+          domicile: domicile,
+          password: password,
+          birthDate: birthDate,
+          status: true,
+        },
+      })
+        .then((data) => {
+          console.log(data);
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Success Created Account",
+            showConfirmButton: false,
+            timer: 3000,
+          });
+          history.push("/login");
+        })
+        .catch((error) => {
+          console.log(error);
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Email adrealy used!",
+          });
+        });
     }
   }
-  if (status == "success") {
-    Swal.fire({
-      position: "center",
-      icon: "success",
-      title: "Success Created Account",
-      showConfirmButton: false,
-      timer: 4000,
-    });
-    history.push("/login");
-  }
-  console.log(status, "<<< status");
 
   return (
     <>
