@@ -7,7 +7,8 @@ import { jsPDF } from "jspdf";
 
 const doc = new jsPDF();
 
-const TestResult = () => {
+const TestResult = (props) => {
+  console.log(props.location.state.user.data.username);
   const location = useLocation();
   const history = useHistory();
 
@@ -23,7 +24,13 @@ const TestResult = () => {
 
   function contertPDF() {
     console.log("<<<<< jsPDF >>>>");
-    doc.save(`Hasil test ${location.state.user.username} - Teskarir.pdf`);
+    doc.save(
+      `Hasil test ${
+        props.location.state.user.username
+          ? props.location.state.user.username
+          : props.location.state.user.data.username
+      } - Teskarir.pdf`
+    );
   }
 
   return (
@@ -34,16 +41,23 @@ const TestResult = () => {
           <div className="question-result">
             <h5 style={{ color: "#BDBDBD" }}>
               {location.state.user.username ? (
-                <p>Nama : {location.state.user.username}</p>
-              ) : (
-                <p>Nama : Anonim</p>
-              )}
+                <p>Nama : {props.location.state.user.username}</p>
+              ) : null}
+              {props.location.state.user ? (
+                <>
+                  <p style={{ fontWeight: "bolder", fontSize: "2rem" }}>
+                    {props.location.state.user.data.username}
+                  </p>
+                  <p>{props.location.state.user.data.email}</p>
+                </>
+              ) : null}
             </h5>
             {today.toDateString()}
             <h1>
               {location.state.output
                 ? location.state.output.title
                 : "Jawaban Kosong"}
+              {props.location.state.result ? props.location.state.result : null}
             </h1>
           </div>
 
