@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import Navbar from "../components/navbar";
-import PremiumQuest from "../components/questPremium";
+import QuestTest from "../components/questTest";
 import "./style/testPage.css";
 
 const PremiumTest = () => {
@@ -17,7 +17,7 @@ const PremiumTest = () => {
       <div className="test">
         <Navbar />
         <div className="question-container">
-          {isValid ? <PremiumQuest user={dataUser} /> : null}
+          {isValid ? <QuestTest /> : null}
         </div>
       </div>
     </>

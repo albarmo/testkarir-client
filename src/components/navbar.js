@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import "./style/navbar.css";
+import logo from "../materials/Logo_navbar.png";
 
 const Navbar = () => {
   const history = useHistory();
@@ -8,7 +9,7 @@ const Navbar = () => {
     <div className="navbar">
       <div className="logo">
         <img
-          src="http://teskarir.com/wp-content/uploads/2020/06/imageedit_17_9008611935-150x150.png"
+          src={logo}
           alt="tes"
           width="60px"
           onClick={() => history.push("/")}

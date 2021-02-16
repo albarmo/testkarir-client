@@ -5,6 +5,7 @@ import { BiAtom } from "react-icons/bi";
 import { getResult } from "../helpers/getResult";
 import "./style/questRanking.css";
 import ItemTest from "../components/itemTest";
+import "@atlaskit/css-reset";
 
 var sectionAnswer = [];
 var colIdArr = [];
@@ -46,21 +47,21 @@ const QuestPremium = (props) => {
   const [mainAnswer, setMainAnswer] = useState([]);
   const [clicked, setClicked] = useState([]);
 
-  const Title = styled.h1`
-    color: #7b7b7b;
-    font-family: sans-serif;
-    font-size: 30px;
-    text-align: center;
-    padding-top: 25px;
-  `;
+  //   const Title = styled.h1`
+  //     color: #7b7b7b;
+  //     font-family: sans-serif;
+  //     font-size: 30px;
+  //     text-align: center;
+  //     padding-top: 25px;
+  //   `;
 
-  const CardContainer = styled.div`
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    margin-top: 25px;
-  `;
+  //   const CardContainer = styled.div`
+  //     width: 100%;
+  //     display: flex;
+  //     justify-content: center;
+  //     align-items: flex-start;
+  //     margin-top: 25px;
+  //   `;
 
   var dataQuest = [
     {
@@ -302,16 +303,24 @@ const QuestPremium = (props) => {
       <div class="grid-container">
         {/* draganddrop */}
         <div>
-          <Title>Drag & Drop React JS</Title>
-          <CardContainer>
+          <h1>Drag & Drop React JS</h1>
+          <div className="card">
             {state.cardOrder.map((cardId, index) => {
               const card = state.cards[cardId];
               const tasks = card.taskIds.map((taskId) => state.tasks[taskId]);
               return (
-                <Card key={cardId} card={card} tasks={tasks} index={index} />
+                <h3
+                  className="card"
+                  key={cardId}
+                  card={card}
+                  tasks={tasks}
+                  index={index}
+                >
+                  Item Test Draggable
+                </h3>
               );
             })}
-          </CardContainer>
+          </div>
         </div>
         {/* draganddrop */}
 

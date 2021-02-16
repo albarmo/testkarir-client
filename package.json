@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@atlaskit/css-reset": "^6.0.5",
     "@feedloop/qore-client": "^0.1.32",
     "@feedloop/qore-react": "^0.1.32",
     "@react-pdf/renderer": "^1.6.13",
