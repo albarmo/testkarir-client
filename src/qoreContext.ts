@@ -4,13 +4,6 @@ import config from "./qore.config.json";
 import schema from "./qore.schema.json";
 import Cookies from "js-cookie";
 
-// const client = new QoreClient(config);
-// client.init(schema);
-
-// export const clientAuth = new QoreClient({
-//   config: config,
-//   getToken: () => localStorage.setItem("token"),
-// });
 
 const client = new QoreClient({
   ...config,

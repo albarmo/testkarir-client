@@ -3,34 +3,33 @@ import { useHistory, useParams } from "react-router-dom";
 import "./style/userProfile.css";
 import Navbar from "../components/navbar";
 import qoreContext from "../qoreContext";
+import Cookies from "js-cookie";
+import client from "../qoreContext";
 
 const UserProfile = () => {
+  const { user } = qoreContext.useCurrentUser();
   const history = useHistory();
   const { id } = useParams();
   const [data, setData] = useState();
 
   const handleLogout = () => {
     localStorage.clear();
+    Cookies.remove("token");
     console.log("User is logged out, localStorage now is clear");
     history.push("/");
   };
 
   // id dummy untuk demo
-  // id asli dari use params ketika di push router
   const { data: profileData, status, error } = qoreContext
     .view("allMember")
     .useGetRow(id);
-
-  console.log(status, "<< status");
-  console.log(profileData, "<< status");
-  console.log(error, "<< error");
 
   useEffect(() => {
     setData(profileData);
   }, []);
   return (
     <>
-      {/* data : {data} */}
+      <div>{user ? user.email : "Loading..."}</div>
       <div className="user-profile">
         <Navbar />
 
@@ -63,6 +62,14 @@ const UserProfile = () => {
             </div>
           </div>
         ) : null}
+
+        <div
+          className="button-logout"
+          onClick={() => history.push("/agreement")}
+        >
+          Mulai Test
+        </div>
+
         <div className="button-logout" onClick={() => handleLogout()}>
           Logout
         </div>

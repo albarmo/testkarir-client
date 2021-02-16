@@ -4,7 +4,7 @@ import qoreContext from "../qoreContext";
 import Navbar from "../components/navbar";
 import Swal from "sweetalert2";
 import "./style/login.css";
-import clientAuth from "../qoreContext";
+import Cookies from "js-cookie";
 
 const LoginPage = () => {
   const history = useHistory();
@@ -15,8 +15,6 @@ const LoginPage = () => {
   useEffect(() => {
     if (access_token) {
       console.log("access token ada");
-      // let idParams = localStorage.getItem("user_id");
-      // history.push(`/profile/${idParams}`);
     }
   }, []);
 
@@ -24,7 +22,6 @@ const LoginPage = () => {
   const { data: authData, statusAuth, errorAuth } = qoreContext
     .view("authData")
     .useListRow({ order: "asc" });
-  // get current user
 
   // component function
   function emailHandler(e) {
@@ -38,6 +35,7 @@ const LoginPage = () => {
   }
   const handleLogout = () => {
     localStorage.clear();
+    Cookies.remove("token");
     console.log("User is logged out, localStorage now is clear");
   };
 
@@ -69,6 +67,7 @@ const LoginPage = () => {
       console.log(idX, "idxxx");
       localStorage.setItem("user_id", idX);
       let idParams = localStorage.getItem("user_id");
+      Cookies.set("token", token);
       history.push(`/profile/${idParams}`);
     } catch (error) {
       console.log(error.message);
@@ -94,16 +93,16 @@ const LoginPage = () => {
   return (
     <>
       {/* ---------------- test --------------------------------*/}
-      <button onClick={() => handleLogout()}>Virtual Logout</button>
+      {/* <button onClick={() => handleLogout()}>Virtual Logout</button> */}
       {/* ---------------- test --------------------------------*/}
 
       <div className="login">
         <Navbar />
         <div className="container-login">
           <div className="left-form-login">
-            <h1 className="header-text">LoginPage</h1>
+            <h1 className="header-text">Login</h1>
             <form className="form-login">
-              <label className="label-login" for="email">
+              <label className="label-login" htmlFor="email">
                 Email or Password
               </label>
               <input
@@ -114,7 +113,7 @@ const LoginPage = () => {
                 onChange={(e) => emailHandler(e)}
                 required
               />
-              <label for="password" className="label-login">
+              <label htmlFor="password" className="label-login">
                 Password
               </label>
               <input

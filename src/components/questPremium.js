@@ -1,52 +1,85 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import qoreContext from "../qoreContext";
-import "./style/quest.css";
 import { BiAtom } from "react-icons/bi";
-
 import { getResult } from "../helpers/getResult";
+import "./style/questRanking.css";
+import ItemTest from "../components/itemTest";
 
 var sectionAnswer = [];
 var colIdArr = [];
 
-const Quest = (props) => {
+var initialData = {
+  tasks: {
+    "task-1": { id: "task-1", content: "Learn React JS" },
+    "task-2": { id: "task-2", content: "Learn Vue JS" },
+    "task-3": { id: "task-3", content: "Learn Angular JS" },
+    "task-4": { id: "task-4", content: "Learn Svelte JS" },
+  },
+  cards: {
+    "card-1": {
+      id: "card-1",
+      title: "todo",
+      taskIds: ["task-1", "task-2", "task-3", "task-4"],
+      color: "#FFBA08",
+    },
+    "card-2": {
+      id: "card-2",
+      title: "doing",
+      taskIds: [],
+      color: "#17C9FF",
+    },
+    "card-3": {
+      id: "card-3",
+      title: "completed",
+      taskIds: [],
+      color: "#14E668",
+    },
+  },
+  cardOrder: ["card-1", "card-2", "card-3"],
+};
+
+const QuestPremium = (props) => {
   const history = useHistory();
+  const [state, setState] = useState(initialData);
   const [indexQuestion, setIndexQuestion] = useState(0);
   const [mainAnswer, setMainAnswer] = useState([]);
   const [clicked, setClicked] = useState([]);
 
-  // --------------------------------------------QORE SDK-------------------------------------------------------------//
-  // const { data: freeQuestion, status, error } = qoreContext.view(
-  //   "freeQuestion"
-  // );
-  // --------------------------------------------DATA-----------------------------------------------------------------//
+  const Title = styled.h1`
+    color: #7b7b7b;
+    font-family: sans-serif;
+    font-size: 30px;
+    text-align: center;
+    padding-top: 25px;
+  `;
+
+  const CardContainer = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 25px;
+  `;
 
   var dataQuest = [
     {
       id: 0,
       question:
-        "Pilihlah pernyataan-pernyataan yang paling sesuai dan menggambarkan diri anda. Pada setiap bagian, anda bebas memilih berapapun pernyataan tentang diri anda!",
+        "Disetiap nomor item, terdapat empat pilihan pekerjaan A, B, C dan D. Tugas anda adalah mengurutkan pilihan pekerjaan tersebut, mulai dari pekerjaan yang paling anda sukai sampai pekerjaan yang paling tidak anda sukai. Berilah rangking dari 1 sampai 4 pada masing-masing pekerjaan dengan cara menuliskan angka 1 = pekerjaan yang paling disukai, 2 = pekerjaan yang cukup disukai, 3 = pekerjaan yang kurang disukai, dan 4 = pekerjaan yang paling tidak disukai. Tulislah jawaban anda pada lembar jawaban yang disediakan.",
       answer: [{ id: 0, data: "Ya saya mengerti", active: false }],
     },
     {
       id: 1,
       question: "BAGIAN 1 - KONVENSIONAL",
       answer: [
-        { id: 1, data: "Bagian Administrasi" },
-        { id: 1, data: "Resepsionis" },
-        { id: 1, data: "Gaya hidup praktis dan senyaman mungkin" },
+        { id: 1, data: "Sales Executive" },
+        { id: 1, data: "Pejabat keuangan" },
+        { id: 1, data: "Pembuat kebijakan SDM" },
         {
           id: 1,
-          data: "Tertarik dengan Topik nyata sehari - hari dibanding fiktif",
+          data: "Manajer operasional",
         },
-        { id: 1, data: "Bermain Kartu" },
-        { id: 1, data: "Kolektor Barang Antik" },
-        { id: 1, data: "Pengawas Bangunan" },
-        { id: 1, data: "Mengerjakan tugas dengan rapi dan teratur" },
-        { id: 1, data: "Pendapat dan Perilaku biasa saja" },
-        { id: 1, data: "Meng hargai Tradisi di Sekitar" },
-        { id: 1, data: "Asisten Perpustakaan" },
-        { id: 1, data: "Akuntan" },
       ],
     },
     {
@@ -263,9 +296,25 @@ const Quest = (props) => {
         <h5 style={{ color: "#BDBDBD" }}>
           Pertanyaan {indexQuestion + 1} - {dataQuest.length}
         </h5>
-        <h1>{dataQuest[indexQuestion].question}</h1>
+        <h2>Instruksi</h2>
+        <p>{dataQuest[indexQuestion].question}</p>
       </div>
       <div class="grid-container">
+        {/* draganddrop */}
+        <div>
+          <Title>Drag & Drop React JS</Title>
+          <CardContainer>
+            {state.cardOrder.map((cardId, index) => {
+              const card = state.cards[cardId];
+              const tasks = card.taskIds.map((taskId) => state.tasks[taskId]);
+              return (
+                <Card key={cardId} card={card} tasks={tasks} index={index} />
+              );
+            })}
+          </CardContainer>
+        </div>
+        {/* draganddrop */}
+
         {dataAnswer.map((el, colId) => {
           return (
             <div key={colId}>
@@ -295,4 +344,4 @@ const Quest = (props) => {
   );
 };
 
-export default Quest;
+export default QuestPremium;

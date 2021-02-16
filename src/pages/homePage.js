@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Navbar from "../components/navbar";
+import qoreContext from "../qoreContext";
 import "./style/homepage.css";
 
 // graphic images

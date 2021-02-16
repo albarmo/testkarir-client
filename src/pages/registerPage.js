@@ -30,6 +30,9 @@ const RegisterPage = () => {
     setPassword("");
   }, []);
 
+  const { send, status } = qoreContext.view("allMember").useForm("register");
+  console.log(status, "status register");
+
   async function register() {
     if (password !== confirmPassword) {
       console.log("Confrim passord salah");
@@ -38,19 +41,12 @@ const RegisterPage = () => {
         text: "Retype password wrong!",
       });
     } else if (password == confirmPassword) {
-      axios({
-        method: "POST",
-        url:
-          "https://prod-qore-app.qorebase.io/BQkHV3lQMCSxZjO/allMember/forms/register",
-        data: {
-          userRole: role,
-          email: email,
-          username: username,
-          domicile: domicile,
-          password: password,
-          birthDate: birthDate,
-          status: true,
-        },
+      await send({
+        email: email,
+        username: username,
+        password: password,
+        birthDate: birthDate,
+        domicile: domicile,
       })
         .then((data) => {
           console.log(data);
@@ -74,6 +70,94 @@ const RegisterPage = () => {
     }
   }
 
+  // const { insertRow, status } = qoreContext.view("allMember").useInsertRow();
+  // console.log(status, "status register");
+
+  // async function register() {
+  //   if (password !== confirmPassword) {
+  //     console.log("Confrim passord salah");
+  //     Swal.fire({
+  //       icon: "warning",
+  //       text: "Retype password wrong!",
+  //     });
+  //   } else if (password == confirmPassword) {
+  //     await insertRow({
+  //       email: email,
+  //       username: username,
+  //       domicile: domicile,
+  //       password: password,
+  //       birthDate: birthDate,
+  //       status: true,
+  //     })
+  //       .then((data) => {
+  //         console.log(data);
+  //         Swal.fire({
+  //           position: "center",
+  //           icon: "success",
+  //           title: "Success Created Account",
+  //           showConfirmButton: false,
+  //           timer: 3000,
+  //         });
+  //         history.push("/login");
+  //       })
+  //       .catch((error) => {
+  //         console.log(error);
+  //         Swal.fire({
+  //           icon: "error",
+  //           title: "Oops...",
+  //           text: "Email adrealy used!",
+  //         });
+  //       });
+  //   }
+  // }
+
+  // async function register() {
+  //   if (password !== confirmPassword) {
+  //     console.log("Confrim passord salah");
+  //     Swal.fire({
+  //       icon: "warning",
+  //       text: "Retype password wrong!",
+  //     });
+  //   } else if (password == confirmPassword) {
+  //     axios({
+  //       method: "POST",
+  //       url:
+  //         "https://prod-qore-app.qorebase.io/U6NDz2mu562iqwj/allMember/forms/register",
+  //       data: {
+  //         userRole: role,
+  //         email: email,
+  //         username: username,
+  //         domicile: domicile,
+  //         password: password,
+  //         birthDate: birthDate,
+  //         status: true,
+  //       },
+  //       headers: {
+  //         "X-Qore-Authentication": "46f76c79-e957-4c0b-812c-687ac36f6360",
+  //       },
+  //     })
+  //       .then((data) => {
+  //         console.log(data);
+  //         Swal.fire({
+  //           position: "center",
+  //           icon: "success",
+  //           title: "Success Created Account",
+  //           showConfirmButton: false,
+  //           timer: 3000,
+  //         });
+  //         history.push("/login");
+  //       })
+  //       .catch((error) => {
+  //         console.log(error);
+  //         Swal.fire({
+  //           icon: "error",
+  //           title: "Oops...",
+  //           text: "Email adrealy used!",
+  //         });
+  //       });
+  //   }
+  // }
+
   return (
     <>
       <div className="register">
@@ -82,7 +166,7 @@ const RegisterPage = () => {
         <div className="left-form">
           <form className="form-register">
             <h1 className="header-text">Register</h1>
-            <label for="text" className="label-register">
+            <label htmlFor="text" className="label-register">
               Username
             </label>
             <input
@@ -93,7 +177,7 @@ const RegisterPage = () => {
               onChange={(e) => setUsername(e.target.value)}
             />
 
-            <label for="email" className="label-register">
+            <label htmlFor="email" className="label-register">
               Email
             </label>
             <input
@@ -104,7 +188,7 @@ const RegisterPage = () => {
               onChange={(e) => setEmail(e.target.value)}
             />
 
-            <label for="kota" className="label-register">
+            <label htmlFor="kota" className="label-register">
               Kota
             </label>
             <input
@@ -115,7 +199,7 @@ const RegisterPage = () => {
               onChange={(e) => setDomicile(e.target.value)}
             />
 
-            <label for="email" className="label-register">
+            <label htmlFor="email" className="label-register">
               Tanggal Lahir
             </label>
             <input
@@ -125,7 +209,7 @@ const RegisterPage = () => {
               onChange={(e) => setBirthDate(e.target.value)}
             />
 
-            <label for="password" className="label-register">
+            <label htmlFor="password" className="label-register">
               Role
             </label>
             <select
@@ -140,7 +224,7 @@ const RegisterPage = () => {
               </option>
             </select>
 
-            <label for="text" className="label-register">
+            <label htmlFor="text" className="label-register">
               Password
             </label>
             <input
@@ -151,7 +235,7 @@ const RegisterPage = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
 
-            <label for="confirmPassword" className="label-register">
+            <label htmlFor="confirmPassword" className="label-register">
               Confrim Password
             </label>
             <input

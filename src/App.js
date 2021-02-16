@@ -8,6 +8,8 @@ import {
   HomePage,
   TestPage,
   TestResult,
+  Agreement,
+  PremiumTest,
 } from "./pages/index";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
@@ -27,6 +29,8 @@ function App() {
             <Route path="/profile/:id" component={UserProfile} />
             <Route path="/test" component={TestPage} />
             <Route path="/result" component={TestResult} />
+            <Route path="/agreement" component={Agreement} />
+            <Route path="/testkarir" component={PremiumTest} />
           </Switch>
         </Router>
       </div>

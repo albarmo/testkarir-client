@@ -27,7 +27,7 @@ const TestPage = () => {
                 <h1>Sebelum kita mulai, isi data diri anda disini</h1>
                 <br />
 
-                <label className="label-quest" for="nama">
+                <label className="label-quest" htmlFor="nama">
                   <h1>Masukan nama anda</h1>
                 </label>
                 <input
@@ -40,7 +40,7 @@ const TestPage = () => {
                   required
                 />
 
-                <label className="label-quest" for="umur">
+                <label className="label-quest" htmlFor="umur">
                   <h1>Masukan umur anda</h1>
                 </label>
                 <input
@@ -53,7 +53,7 @@ const TestPage = () => {
                   maxLength={2}
                 />
 
-                <label className="label-quest" for="pekerjaan">
+                <label className="label-quest" htmlFor="pekerjaan">
                   <h1>Masukan pekerjaan/kegiatan anda saat ini</h1>
                 </label>
                 <input
