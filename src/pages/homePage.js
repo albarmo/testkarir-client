@@ -81,8 +81,8 @@ const HomePage = () => {
             width="30%"
             height="28%"
             src="https://www.youtube.com/embed/Xz7g0-LZEmA"
-            allowfullscreen
-            frameborder="0"
+            allowFullScreen
+            frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             // autoplay="true"
           />
@@ -150,7 +150,7 @@ const HomePage = () => {
 
             <div className="card-profile tooltip">
               {/* audio hover */}
-              <span class="tooltiptext">
+              <span className="tooltiptext">
                 <button
                   onMouseEnter={() => {
                     setIsHovering(true);
@@ -162,7 +162,7 @@ const HomePage = () => {
                   }}
                 >
                   Seorang konvensional itu ............
-                  <div isHovering={isHovering}>Hover Audio</div>
+                  <div>Hover Audio</div>
                 </button>
               </span>
               {/* audio hover */}
@@ -184,7 +184,7 @@ const HomePage = () => {
             </div>
             {/* card-profile-items */}
             <div className="card-profile tooltip">
-              <span class="tooltiptext">
+              <span className="tooltiptext">
                 Seorang Investigatif itu ............
               </span>
               {/* audio hover */}
@@ -207,7 +207,9 @@ const HomePage = () => {
             </div>
             {/* card-profile-items */}
             <div className="card-profile tooltip">
-              <span class="tooltiptext">Seorang Artistik itu ............</span>
+              <span className="tooltiptext">
+                Seorang Artistik itu ............
+              </span>
               <p className="card-bg-text" style={{ fontSize: "5rem" }}>
                 AR
                 <br />
@@ -225,7 +227,7 @@ const HomePage = () => {
             </div>
             {/* card-profile-items */}
             <div className="card-profile tooltip">
-              <span class="tooltiptext">
+              <span className="tooltiptext">
                 Seorang Realistik itu ............
               </span>
               <p className="card-bg-text">
@@ -247,7 +249,7 @@ const HomePage = () => {
             </div>
             {/* card-profile-items */}
             <div className="card-profile tooltip">
-              <span class="tooltiptext">
+              <span className="tooltiptext">
                 Seorang Enterprising itu ............
               </span>
               <p className="card-bg-text">
@@ -269,7 +271,9 @@ const HomePage = () => {
             </div>
             {/* card-profile-items */}
             <div className="card-profile tooltip">
-              <span class="tooltiptext">Seorang Socialis itu ............</span>
+              <span className="tooltiptext">
+                Seorang Socialis itu ............
+              </span>
               <p className="card-bg-text">
                 SO
                 <br />

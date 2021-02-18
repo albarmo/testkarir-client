@@ -28,6 +28,17 @@
           "type": "json",
           "deletionProtection": false,
           "id": "answers"
+        },
+        {
+          "name": "Statements Group 1",
+          "type": "relation",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "statementsGroup1",
+          "table": "statementsGroup",
+          "column": "statements",
+          "multiple": true,
+          "displayField": false
         }
       ]
     },
@@ -90,6 +101,23 @@
           "defaultValue": "true",
           "id": "status",
           "displayField": false
+        },
+        {
+          "name": "cardVerify",
+          "type": "file",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "fileType": "image",
+          "id": "cardVerify",
+          "displayField": false
+        },
+        {
+          "name": "numberVerify",
+          "type": "text",
+          "deletionProtection": false,
+          "defaultValue": "unverivfy",
+          "id": "numberVerify",
+          "displayField": false
         }
       ]
     },
@@ -123,6 +151,86 @@
           "deletionProtection": false,
           "defaultValue": "description",
           "id": "description",
+          "displayField": false
+        },
+        {
+          "name": "Output Test 1",
+          "type": "relation",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "outputTest1",
+          "table": "outputTest",
+          "column": "outputId",
+          "multiple": true,
+          "displayField": false
+        }
+      ]
+    },
+    {
+      "name": "Submission",
+      "type": null,
+      "id": "submission",
+      "fields": [
+        {
+          "name": "contributor",
+          "type": "text",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "contributor",
+          "displayField": true
+        },
+        {
+          "name": "message",
+          "type": "text",
+          "deletionProtection": false,
+          "defaultValue": "unset",
+          "id": "message",
+          "displayField": false
+        },
+        {
+          "name": "Test",
+          "type": "relation",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "test",
+          "table": "test",
+          "column": "test",
+          "multiple": false,
+          "displayField": false
+        },
+        {
+          "name": "date",
+          "type": "date",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "date",
+          "displayField": false
+        },
+        {
+          "name": "status",
+          "type": "select",
+          "deletionProtection": false,
+          "defaultValue": "waiting",
+          "id": "status",
+          "select": ["waiting", "approved", "rejected", "done"],
+          "displayField": false
+        },
+        {
+          "name": "data",
+          "type": "file",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "fileType": null,
+          "id": "data",
+          "displayField": false
+        },
+        {
+          "name": "result",
+          "type": "file",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "fileType": null,
+          "id": "result",
           "displayField": false
         }
       ]
@@ -215,6 +323,29 @@
       ]
     },
     {
+      "name": "Article",
+      "type": null,
+      "id": "article",
+      "fields": [
+        {
+          "name": "name",
+          "type": "text",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "name",
+          "displayField": true
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "description",
+          "displayField": false
+        }
+      ]
+    },
+    {
       "name": "Test",
       "type": null,
       "id": "test",
@@ -286,6 +417,17 @@
           "column": "testId",
           "multiple": true,
           "displayField": false
+        },
+        {
+          "name": "Submission 1",
+          "type": "relation",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "test",
+          "table": "submission",
+          "column": "test",
+          "multiple": true,
+          "displayField": false
         }
       ]
     },
@@ -314,19 +456,22 @@
           "displayField": false
         },
         {
-          "name": "Result",
-          "type": "number",
-          "deletionProtection": false,
-          "defaultValue": "0",
-          "id": "result",
-          "displayField": false
-        },
-        {
           "name": "Res",
           "type": "text",
           "deletionProtection": false,
           "defaultValue": null,
           "id": "res",
+          "displayField": false
+        },
+        {
+          "name": "OutputId",
+          "type": "relation",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "outputId",
+          "table": "outputs",
+          "column": "outputTest1",
+          "multiple": false,
           "displayField": false
         }
       ]
@@ -354,6 +499,17 @@
           "column": "statementsGroup",
           "multiple": false,
           "displayField": false
+        },
+        {
+          "name": "Statements",
+          "type": "relation",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "statements",
+          "table": "statements",
+          "column": "statementsGroup1",
+          "multiple": true,
+          "displayField": false
         }
       ]
     }
@@ -364,77 +520,6 @@
       "isAdmin": false,
       "isEditor": false,
       "isPublic": false,
-      "permissions": [
-        {
-          "insert": true,
-          "select": true,
-          "update": true,
-          "delete": true,
-          "viewId": "allStatements"
-        },
-        {
-          "insert": true,
-          "select": true,
-          "update": true,
-          "delete": true,
-          "viewId": "allTest"
-        },
-        {
-          "insert": true,
-          "select": true,
-          "update": true,
-          "delete": true,
-          "viewId": "allOutputTest"
-        },
-        {
-          "insert": true,
-          "select": true,
-          "update": true,
-          "delete": true,
-          "viewId": "allStatementsGroup"
-        },
-        {
-          "insert": true,
-          "select": true,
-          "update": true,
-          "delete": true,
-          "viewId": "allMember"
-        },
-        {
-          "insert": true,
-          "select": true,
-          "update": true,
-          "delete": true,
-          "viewId": "authData"
-        },
-        {
-          "insert": true,
-          "select": true,
-          "update": true,
-          "delete": true,
-          "viewId": "allProducts"
-        },
-        {
-          "insert": true,
-          "select": true,
-          "update": true,
-          "delete": true,
-          "viewId": "allTypes"
-        },
-        {
-          "insert": true,
-          "select": true,
-          "update": true,
-          "delete": true,
-          "viewId": "allOutputs"
-        }
-      ]
-    },
-    {
-      "name": "contributors",
-      "isAdmin": false,
-      "isEditor": false,
-      "isPublic": true,
       "permissions": [
         {
           "insert": true,
@@ -571,21 +656,193 @@
           "viewId": "allStatementsGroup"
         }
       ]
+    },
+    {
+      "name": "contributor",
+      "isAdmin": false,
+      "isEditor": false,
+      "isPublic": true,
+      "permissions": [
+        {
+          "insert": true,
+          "select": true,
+          "update": true,
+          "delete": true,
+          "viewId": "allStatements"
+        },
+        {
+          "insert": true,
+          "select": true,
+          "update": true,
+          "delete": true,
+          "viewId": "allTest"
+        },
+        {
+          "insert": true,
+          "select": true,
+          "update": true,
+          "delete": true,
+          "viewId": "allOutputTest"
+        },
+        {
+          "insert": true,
+          "select": true,
+          "update": true,
+          "delete": true,
+          "viewId": "allStatementsGroup"
+        },
+        {
+          "insert": true,
+          "select": true,
+          "update": true,
+          "delete": true,
+          "viewId": "allMember"
+        },
+        {
+          "insert": true,
+          "select": true,
+          "update": true,
+          "delete": true,
+          "viewId": "authData"
+        },
+        {
+          "insert": true,
+          "select": true,
+          "update": true,
+          "delete": true,
+          "viewId": "allProducts"
+        },
+        {
+          "insert": true,
+          "select": true,
+          "update": true,
+          "delete": true,
+          "viewId": "allTypes"
+        },
+        {
+          "insert": true,
+          "select": true,
+          "update": true,
+          "delete": true,
+          "viewId": "allOutputs"
+        }
+      ]
+    },
+    {
+      "name": "public",
+      "isAdmin": false,
+      "isEditor": false,
+      "isPublic": false,
+      "permissions": [
+        {
+          "insert": true,
+          "select": true,
+          "update": true,
+          "delete": true,
+          "viewId": "authData"
+        },
+        {
+          "insert": true,
+          "select": true,
+          "update": true,
+          "delete": true,
+          "viewId": "allMember"
+        },
+        {
+          "insert": true,
+          "select": true,
+          "update": true,
+          "delete": true,
+          "viewId": "allTypes"
+        },
+        {
+          "insert": true,
+          "select": true,
+          "update": true,
+          "delete": true,
+          "viewId": "allProducts"
+        },
+        {
+          "insert": true,
+          "select": true,
+          "update": true,
+          "delete": true,
+          "viewId": "allOutputs"
+        },
+        {
+          "insert": true,
+          "select": true,
+          "update": true,
+          "delete": true,
+          "viewId": "allStatements"
+        },
+        {
+          "insert": true,
+          "select": true,
+          "update": true,
+          "delete": true,
+          "viewId": "allTest"
+        },
+        {
+          "insert": true,
+          "select": true,
+          "update": true,
+          "delete": true,
+          "viewId": "allOutputTest"
+        },
+        {
+          "insert": true,
+          "select": true,
+          "update": true,
+          "delete": true,
+          "viewId": "allStatementsGroup"
+        }
+      ]
     }
   ],
   "forms": [
     {
-      "name": "Register",
-      "id": "register",
+      "name": "addSubmision",
+      "id": "addSubmision",
+      "tableId": "submission",
+      "fields": [
+        { "id": "contributor" },
+        { "id": "message" },
+        { "id": "test" },
+        { "id": "date" },
+        { "hidden": true, "id": "status", "defaultValue": "'waiting'" }
+      ]
+    },
+    {
+      "name": "CreateUser",
+      "id": "createUser",
       "tableId": "member",
       "fields": [
-        { "hidden": true, "id": "role", "defaultValue": "'hEit0W19gFib3kY'" },
         { "id": "email" },
+        { "hidden": true, "id": "role", "defaultValue": "'hEit0W19gFib3kY'" },
         { "id": "username" },
         { "id": "password" },
         { "id": "birthDate" },
         { "id": "domicile" },
-        { "hidden": true, "id": "status", "defaultValue": "'true'" }
+        { "hidden": true, "id": "status" },
+        { "hidden": true, "id": "cardVerify" },
+        { "hidden": true, "id": "numberVerify" }
+      ]
+    },
+    {
+      "name": "createAdmin",
+      "id": "createAdmin",
+      "tableId": "member",
+      "fields": [
+        { "id": "email" },
+        { "id": "role" },
+        { "id": "username" },
+        { "id": "password" },
+        { "id": "birthDate" },
+        { "id": "domicile" },
+        { "id": "status" },
+        { "id": "cardVerify" },
+        { "id": "numberVerify" }
       ]
     }
   ],
@@ -875,20 +1132,23 @@
           "design": null
         },
         {
-          "name": "Result",
-          "type": "number",
-          "deletionProtection": false,
-          "defaultValue": "0",
-          "id": "result",
-          "displayField": false,
-          "design": null
-        },
-        {
           "name": "Res",
           "type": "text",
           "deletionProtection": false,
           "defaultValue": null,
           "id": "res",
+          "displayField": false,
+          "design": null
+        },
+        {
+          "name": "OutputId",
+          "type": "relation",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "outputId",
+          "table": "outputs",
+          "column": "outputTest1",
+          "multiple": false,
           "displayField": false,
           "design": null
         }
@@ -920,6 +1180,18 @@
           "table": "test",
           "column": "statementsGroup",
           "multiple": false,
+          "displayField": false,
+          "design": null
+        },
+        {
+          "name": "Statements",
+          "type": "relation",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "statements",
+          "table": "statements",
+          "column": "statementsGroup1",
+          "multiple": true,
           "displayField": false,
           "design": null
         }
@@ -992,6 +1264,132 @@
           "deletionProtection": false,
           "defaultValue": "true",
           "id": "status",
+          "displayField": false,
+          "design": null
+        },
+        {
+          "name": "cardVerify",
+          "type": "file",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "fileType": "image",
+          "id": "cardVerify",
+          "displayField": false,
+          "design": null
+        },
+        {
+          "name": "numberVerify",
+          "type": "text",
+          "deletionProtection": false,
+          "defaultValue": "unverivfy",
+          "id": "numberVerify",
+          "displayField": false,
+          "design": null
+        }
+      ],
+      "design": null
+    },
+    {
+      "id": "allArticle",
+      "name": "All Article",
+      "tableId": "article",
+      "parameters": [],
+      "sorts": [],
+      "fields": [
+        {
+          "name": "name",
+          "type": "text",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "name",
+          "displayField": true,
+          "design": null
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "description",
+          "displayField": false,
+          "design": null
+        }
+      ],
+      "design": null
+    },
+    {
+      "id": "allSubmission",
+      "name": "All Submission",
+      "tableId": "submission",
+      "parameters": [],
+      "sorts": [{ "by": "contributor", "order": "desc" }],
+      "fields": [
+        {
+          "name": "contributor",
+          "type": "text",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "contributor",
+          "displayField": true,
+          "design": null
+        },
+        {
+          "name": "message",
+          "type": "text",
+          "deletionProtection": false,
+          "defaultValue": "unset",
+          "id": "message",
+          "displayField": false,
+          "design": null
+        },
+        {
+          "name": "Test",
+          "type": "relation",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "test",
+          "table": "test",
+          "column": "test",
+          "multiple": false,
+          "displayField": false,
+          "design": null
+        },
+        {
+          "name": "date",
+          "type": "date",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "date",
+          "displayField": false,
+          "design": null
+        },
+        {
+          "name": "status",
+          "type": "select",
+          "deletionProtection": false,
+          "defaultValue": "waiting",
+          "id": "status",
+          "select": ["waiting", "approved", "rejected", "done"],
+          "displayField": false,
+          "design": null
+        },
+        {
+          "name": "data",
+          "type": "file",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "fileType": null,
+          "id": "data",
+          "displayField": false,
+          "design": null
+        },
+        {
+          "name": "result",
+          "type": "file",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "fileType": null,
+          "id": "result",
           "displayField": false,
           "design": null
         }

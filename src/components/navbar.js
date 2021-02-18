@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import "./style/navbar.css";
 import logo from "../materials/Logo_navbar.png";
+import qoreContext from "../qoreContext";
 
 const Navbar = () => {
+  const { user } = qoreContext.useCurrentUser();
   const history = useHistory();
   return (
     <div className="navbar">
@@ -20,9 +22,18 @@ const Navbar = () => {
         <p onClick={() => history.push("/")}>Belajar Karir</p>
         <p onClick={() => history.push("/")}>Konsultasi Karir</p>
         <p onClick={() => history.push("/")}>Tentang Teskarir</p>
-        <div className="button-navbar" onClick={() => history.push("/login")}>
-          Login
-        </div>
+        {user ? (
+          <div
+            className="button-navbar"
+            onClick={() => history.push(`/profile/${user.data.id}`)}
+          >
+            {user.data.email}
+          </div>
+        ) : (
+          <div className="button-navbar" onClick={() => history.push("/login")}>
+            Login
+          </div>
+        )}
       </div>
     </div>
   );

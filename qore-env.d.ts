@@ -9,6 +9,7 @@ declare module "@feedloop/qore-client" {
     name: string;
     type: "PG" | "R" | "TF";
     answers: json;
+    statementsGroup1: { nodes: StatementsGroup1TableRow[] };
   };
 
   type MemberTableRow = {
@@ -20,6 +21,8 @@ declare module "@feedloop/qore-client" {
     birthDate: Date;
     domicile: string;
     status: boolean;
+    cardVerify: string;
+    numberVerify: string;
   };
 
   type OutputsTableRow = {
@@ -27,6 +30,18 @@ declare module "@feedloop/qore-client" {
     name: string;
     typeTestId: { nodes: TypeTestIdTableRow[] };
     description: string;
+    outputTest1: { nodes: OutputTest1TableRow[] };
+  };
+
+  type SubmissionTableRow = {
+    id: string;
+    contributor: string;
+    message: string;
+    test: TestTableRow;
+    date: Date;
+    status: "waiting" | "approved" | "rejected" | "done";
+    data: string;
+    result: string;
   };
 
   type ProductsTableRow = {
@@ -45,6 +60,12 @@ declare module "@feedloop/qore-client" {
     test1: { nodes: Test1TableRow[] };
   };
 
+  type ArticleTableRow = {
+    id: string;
+    name: string;
+    description: string;
+  };
+
   type TestTableRow = {
     id: string;
     name: string;
@@ -54,20 +75,22 @@ declare module "@feedloop/qore-client" {
     type: string;
     outputTest: { nodes: OutputTestTableRow[] };
     statementsGroup: { nodes: StatementsGroupTableRow[] };
+    test: { nodes: TestTableRow[] };
   };
 
   type OutputTestTableRow = {
     id: string;
     name: string;
     testId: TestIdTableRow;
-    result: number;
     res: string;
+    outputId: OutputIdTableRow;
   };
 
   type StatementsGroupTableRow = {
     id: string;
     name: string;
     testId: TestIdTableRow;
+    statements: { nodes: StatementsTableRow[] };
   };
 
   type AuthDataViewRow = {
@@ -88,14 +111,27 @@ declare module "@feedloop/qore-client" {
     params: {};
     actions: {};
     forms: {
-      register: {
-        role?: string;
+      createUser: {
         email?: string;
+        role?: string;
         username?: string;
         password?: string;
         birthDate?: Date;
         domicile?: string;
         status?: boolean;
+        cardVerify?: string;
+        numberVerify?: string;
+      };
+      createAdmin: {
+        email?: string;
+        role?: string;
+        username?: string;
+        password?: string;
+        birthDate?: Date;
+        domicile?: string;
+        status?: boolean;
+        cardVerify?: string;
+        numberVerify?: string;
       };
     };
   };
@@ -191,14 +227,14 @@ declare module "@feedloop/qore-client" {
       id: string;
       name: string;
       testId: TestIdTableRow;
-      result: number;
       res: string;
+      outputId: OutputIdTableRow;
     };
     write: {
       name: string;
       testId: string[];
-      result: number;
       res: string;
+      outputId: string[];
     };
     params: {};
     actions: {};
@@ -210,10 +246,12 @@ declare module "@feedloop/qore-client" {
       id: string;
       name: string;
       testId: TestIdTableRow;
+      statements: { nodes: StatementsTableRow[] };
     };
     write: {
       name: string;
       testId: string[];
+      statements: string[];
     };
     params: {};
     actions: {};
@@ -230,6 +268,8 @@ declare module "@feedloop/qore-client" {
       birthDate: Date;
       domicile: string;
       status: boolean;
+      cardVerify: string;
+      numberVerify: string;
     };
     write: {
       email: string;
@@ -238,20 +278,85 @@ declare module "@feedloop/qore-client" {
       birthDate: Date;
       domicile: string;
       status: boolean;
+      cardVerify: string;
+      numberVerify: string;
     };
     params: {
       "$by.email"?: "asc";
     };
     actions: {};
     forms: {
-      register: {
-        role?: string;
+      createUser: {
         email?: string;
+        role?: string;
         username?: string;
         password?: string;
         birthDate?: Date;
         domicile?: string;
         status?: boolean;
+        cardVerify?: string;
+        numberVerify?: string;
+      };
+      createAdmin: {
+        email?: string;
+        role?: string;
+        username?: string;
+        password?: string;
+        birthDate?: Date;
+        domicile?: string;
+        status?: boolean;
+        cardVerify?: string;
+        numberVerify?: string;
+      };
+    };
+  };
+
+  type AllArticleViewRow = {
+    read: {
+      id: string;
+      name: string;
+      description: string;
+    };
+    write: {
+      name: string;
+      description: string;
+    };
+    params: {};
+    actions: {};
+    forms: {};
+  };
+
+  type AllSubmissionViewRow = {
+    read: {
+      id: string;
+      contributor: string;
+      message: string;
+      test: TestTableRow;
+      date: Date;
+      status: "waiting" | "approved" | "rejected" | "done";
+      data: string;
+      result: string;
+    };
+    write: {
+      contributor: string;
+      message: string;
+      test: string[];
+      date: Date;
+      status: "waiting" | "approved" | "rejected" | "done";
+      data: string;
+      result: string;
+    };
+    params: {
+      "$by.contributor"?: "desc";
+    };
+    actions: {};
+    forms: {
+      addSubmision: {
+        contributor?: string;
+        message?: string;
+        test?: string[];
+        date?: Date;
+        status?: "waiting" | "approved" | "rejected" | "done";
       };
     };
   };
@@ -266,5 +371,7 @@ declare module "@feedloop/qore-client" {
     allOutputTest: AllOutputTestViewRow;
     allStatementsGroup: AllStatementsGroupViewRow;
     allMember: AllMemberViewRow;
+    allArticle: AllArticleViewRow;
+    allSubmission: AllSubmissionViewRow;
   };
 }

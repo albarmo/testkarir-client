@@ -1,109 +1,513 @@
-export const initialData = {
-  tasks: [
-    [
-      { id: "task-1", content: "Sales Executive" },
-      { id: "task-2", content: "Pejabat keuangan" },
-      { id: "task-3", content: "Pembuat kebijakan SDM" },
-      { id: "task-4", content: "Manajer operasional" },
-    ],
-    [
-      { id: "task-1", content: "Supervisor pemasaran" },
-      { id: "task-2", content: "Manajer resiko" },
-      { id: "task-3", content: "Pembuat dinamika SDM" },
-      { id: "task-4", content: "Manajer pabrik" },
-    ],
-    [
-      { id: "task-1", content: "Sales Executive" },
-      { id: "task-2", content: "Manajer dana pensiun" },
-      { id: "task-3", content: "Pembuat kebijakan SDM" },
-      { id: "task-4", content: "Manajer operasional" },
-    ],
-    [
-      { id: "task-1", content: "Supervisor  pemasaran" },
-      { id: "task-2", content: "Manajer kas" },
-      { id: "task-3", content: "Pembuat dinamika SDM" },
-      { id: "task-4", content: "Manajer pabrik" },
-    ],
-    [
-      { id: "task-1", content: "Marketing analysis" },
-      { id: "task-2", content: "Analis keuangan" },
-      { id: "task-3", content: "Pengembang SDM" },
-      { id: "task-4", content: "Quality manager " },
-    ],
-    [
-      { id: "task-1", content: "Digital marketing" },
-      { id: "task-2", content: "Analis kredit" },
-      { id: "task-3", content: "Pengembang SDM" },
-      { id: "task-4", content: "Konsultan perbaikan" },
-    ],
-    [
-      { id: "task-1", content: "Advertising" },
-      { id: "task-2", content: "Kontroler" },
-      { id: "task-3", content: "Pengembang SDM" },
-      { id: "task-4", content: "Perencana Rantai pasokan" },
-    ],
-    [
-      { id: "task-1", content: "Marketing analysis" },
-      { id: "task-2", content: "Kontroler" },
-      { id: "task-3", content: "Pengembang SDM" },
-      { id: "task-4", content: "Perencana Produksi" },
-    ],
-    [
-      { id: "task-1", content: "Admin marketing" },
-      { id: "task-2", content: "Asisten bendahara" },
-      { id: "task-3", content: "Personalia" },
-      { id: "task-4", content: "Purchaser" },
-    ],
-    [
-      { id: "task-1", content: "Admin marketing" },
-      { id: "task-2", content: "Pelapor keuangan" },
-      { id: "task-3", content: "Staff rekrutmen" },
-      { id: "task-4", content: "Purchaser" },
-    ],
-    [
-      { id: "task-1", content: "Admin marketing" },
-      { id: "task-2", content: "Pelapor keuangan" },
-      { id: "task-3", content: "Staff training" },
-      { id: "task-4", content: "Purchaser" },
-    ],
-    [
-      { id: "task-1", content: "Admin marketing" },
-      { id: "task-2", content: "Pelapor keuangan" },
-      { id: "task-3", content: "Personalia" },
-      { id: "task-4", content: "Purchaser" },
-    ],
-    [
-      { id: "task-1", content: "Event planner" },
-      { id: "task-2", content: "Kreditur" },
-      { id: "task-3", content: "Pengatur hubungan kerja" },
-      { id: "task-4", content: "Purchaser" },
-    ],
-    [
-      { id: "task-1", content: "Social media marketing" },
-      { id: "task-2", content: "Kreditur" },
-      { id: "task-3", content: "Motivator" },
-      { id: "task-4", content: "Purchaser" },
-    ],
-    [
-      { id: "task-1", content: "Social media marketing" },
-      { id: "task-2", content: "Kreditur" },
-      { id: "task-3", content: "Pengatur hubungan kerja" },
-      { id: "task-4", content: "Purchaser" },
-    ],
-    [
-      { id: "task-1", content: "Event planner" },
-      { id: "task-2", content: "Kreditur" },
-      { id: "task-3", content: "Motivator" },
-      { id: "task-4", content: "Purchaser" },
-    ],
-  ],
-  cards: {
-    "card-1": {
-      id: "card-1",
-      title: "section-1",
-      taskIds: ["task-1", "task-2", "task-3", "task-4"],
-      color: "#041638",
+export const dataQuest = [
+  [
+    {
+      id: "1",
+      name: "Sales Executive",
+      type: "A",
+      thumb:
+        "https://images.vexels.com/media/users/3/193246/isolated/preview/89e77acd7bf8bed338e66e8aba45f051-covid-19-girl-character-icon-by-vexels.png",
     },
+    {
+      id: "2",
+      name: "Pejabat keuangan",
+      type: "B",
+      thumb:
+        "https://images.vexels.com/media/users/3/193238/isolated/preview/ba69c47c377fe5274a3dd047227953a8-covid-19-boy-character-by-vexels.png",
+    },
+    {
+      id: "3",
+      name: "Pembuat kebijakan SDM",
+      type: "C",
+      thumb:
+        "https://images.vexels.com/media/users/3/193272/isolated/preview/e1b8325ba516916a2c40186e4e65ae6c-covid-19-symptom-character-runny-nose-by-vexels.png",
+    },
+    {
+      id: "4",
+      name: "Manajer operasional",
+      type: "D",
+      thumb:
+        "https://cdn3.vectorstock.com/i/1000x1000/39/52/young-woman-sick-with-runny-nose-avatar-character-vector-31733952.jpghttps://images.vexels.com/media/users/3/128418/isolated/preview/149352b9daf762d9ecc428793b67a8db-photographer-profession-cartoon-by-vexels.png",
+    },
+  ],
+  [
+    {
+      id: "1",
+      name: "Supervisor  pemasaran",
+      type: "A",
+      thumb:
+        "https://images.vexels.com/media/users/3/193246/isolated/preview/89e77acd7bf8bed338e66e8aba45f051-covid-19-girl-character-icon-by-vexels.png",
+    },
+    {
+      id: "2",
+      name: "Manajer resiko",
+      type: "B",
+      thumb:
+        "https://images.vexels.com/media/users/3/193238/isolated/preview/ba69c47c377fe5274a3dd047227953a8-covid-19-boy-character-by-vexels.png",
+    },
+    {
+      id: "3",
+      name: "Pembuat dinamika SDM",
+      type: "C",
+      thumb:
+        "https://images.vexels.com/media/users/3/193272/isolated/preview/e1b8325ba516916a2c40186e4e65ae6c-covid-19-symptom-character-runny-nose-by-vexels.png",
+    },
+    {
+      id: "4",
+      name: "Manajer pabrik",
+      type: "D",
+      thumb:
+        "https://cdn3.vectorstock.com/i/1000x1000/39/52/young-woman-sick-with-runny-nose-avatar-character-vector-31733952.jpghttps://images.vexels.com/media/users/3/128418/isolated/preview/149352b9daf762d9ecc428793b67a8db-photographer-profession-cartoon-by-vexels.png",
+    },
+  ],
+  [
+    {
+      id: "1",
+      name: "Sales Executive",
+      type: "A",
+      thumb:
+        "https://images.vexels.com/media/users/3/193246/isolated/preview/89e77acd7bf8bed338e66e8aba45f051-covid-19-girl-character-icon-by-vexels.png",
+    },
+    {
+      id: "2",
+      name: "Manajer dana pensiun",
+      type: "B",
+      thumb:
+        "https://images.vexels.com/media/users/3/193238/isolated/preview/ba69c47c377fe5274a3dd047227953a8-covid-19-boy-character-by-vexels.png",
+    },
+    {
+      id: "3",
+      name: "Pembuat kebijakan SDM",
+      type: "C",
+      thumb:
+        "https://images.vexels.com/media/users/3/193272/isolated/preview/e1b8325ba516916a2c40186e4e65ae6c-covid-19-symptom-character-runny-nose-by-vexels.png",
+    },
+    {
+      id: "4",
+      name: "Manajer operasional",
+      type: "D",
+      thumb:
+        "https://cdn3.vectorstock.com/i/1000x1000/39/52/young-woman-sick-with-runny-nose-avatar-character-vector-31733952.jpghttps://images.vexels.com/media/users/3/128418/isolated/preview/149352b9daf762d9ecc428793b67a8db-photographer-profession-cartoon-by-vexels.png",
+    },
+  ],
+  [
+    {
+      id: "1",
+      name: "Supervisor pemasaran",
+      type: "A",
+      thumb:
+        "https://images.vexels.com/media/users/3/193246/isolated/preview/89e77acd7bf8bed338e66e8aba45f051-covid-19-girl-character-icon-by-vexels.png",
+    },
+    {
+      id: "2",
+      name: "Manajer kas",
+      type: "B",
+      thumb:
+        "https://images.vexels.com/media/users/3/193238/isolated/preview/ba69c47c377fe5274a3dd047227953a8-covid-19-boy-character-by-vexels.png",
+    },
+    {
+      id: "3",
+      name: "Pembuat dinamika SDM",
+      type: "C",
+      thumb:
+        "https://images.vexels.com/media/users/3/193272/isolated/preview/e1b8325ba516916a2c40186e4e65ae6c-covid-19-symptom-character-runny-nose-by-vexels.png",
+    },
+    {
+      id: "4",
+      name: "Manajer pabrik",
+      type: "D",
+      thumb:
+        "https://cdn3.vectorstock.com/i/1000x1000/39/52/young-woman-sick-with-runny-nose-avatar-character-vector-31733952.jpghttps://images.vexels.com/media/users/3/128418/isolated/preview/149352b9daf762d9ecc428793b67a8db-photographer-profession-cartoon-by-vexels.png",
+    },
+  ],
+  [
+    {
+      id: "1",
+      name: "Marketing analysis",
+      type: "A",
+      thumb:
+        "https://images.vexels.com/media/users/3/193246/isolated/preview/89e77acd7bf8bed338e66e8aba45f051-covid-19-girl-character-icon-by-vexels.png",
+    },
+    {
+      id: "2",
+      name: "Analis keuangan",
+      type: "B",
+      thumb:
+        "https://images.vexels.com/media/users/3/193238/isolated/preview/ba69c47c377fe5274a3dd047227953a8-covid-19-boy-character-by-vexels.png",
+    },
+    {
+      id: "3",
+      name: "Pengembang SDM",
+      type: "C",
+      thumb:
+        "https://images.vexels.com/media/users/3/193272/isolated/preview/e1b8325ba516916a2c40186e4e65ae6c-covid-19-symptom-character-runny-nose-by-vexels.png",
+    },
+    {
+      id: "4",
+      name: "Quality manager",
+      type: "D",
+      thumb:
+        "https://cdn3.vectorstock.com/i/1000x1000/39/52/young-woman-sick-with-runny-nose-avatar-character-vector-31733952.jpghttps://images.vexels.com/media/users/3/128418/isolated/preview/149352b9daf762d9ecc428793b67a8db-photographer-profession-cartoon-by-vexels.png",
+    },
+  ],
+  [
+    {
+      id: "1",
+      name: "Digital marketing",
+      type: "A",
+      thumb:
+        "https://images.vexels.com/media/users/3/193246/isolated/preview/89e77acd7bf8bed338e66e8aba45f051-covid-19-girl-character-icon-by-vexels.png",
+    },
+    {
+      id: "2",
+      name: "Analis kredit",
+      type: "B",
+      thumb:
+        "https://images.vexels.com/media/users/3/193238/isolated/preview/ba69c47c377fe5274a3dd047227953a8-covid-19-boy-character-by-vexels.png",
+    },
+    {
+      id: "3",
+      name: "Pengembang SDM",
+      type: "C",
+      thumb:
+        "https://images.vexels.com/media/users/3/193272/isolated/preview/e1b8325ba516916a2c40186e4e65ae6c-covid-19-symptom-character-runny-nose-by-vexels.png",
+    },
+    {
+      id: "4",
+      name: "Konsultan perbaikan",
+      type: "D",
+      thumb:
+        "https://cdn3.vectorstock.com/i/1000x1000/39/52/young-woman-sick-with-runny-nose-avatar-character-vector-31733952.jpghttps://images.vexels.com/media/users/3/128418/isolated/preview/149352b9daf762d9ecc428793b67a8db-photographer-profession-cartoon-by-vexels.png",
+    },
+  ],
+  [
+    {
+      id: "1",
+      name: "Advertising",
+      type: "A",
+      thumb:
+        "https://images.vexels.com/media/users/3/193246/isolated/preview/89e77acd7bf8bed338e66e8aba45f051-covid-19-girl-character-icon-by-vexels.png",
+    },
+    {
+      id: "2",
+      name: "Kontroler",
+      type: "B",
+      thumb:
+        "https://images.vexels.com/media/users/3/193238/isolated/preview/ba69c47c377fe5274a3dd047227953a8-covid-19-boy-character-by-vexels.png",
+    },
+    {
+      id: "3",
+      name: "Pengembang SDM",
+      type: "C",
+      thumb:
+        "https://images.vexels.com/media/users/3/193272/isolated/preview/e1b8325ba516916a2c40186e4e65ae6c-covid-19-symptom-character-runny-nose-by-vexels.png",
+    },
+    {
+      id: "4",
+      name: "Perencana Rantai pasokan",
+      type: "D",
+      thumb:
+        "https://cdn3.vectorstock.com/i/1000x1000/39/52/young-woman-sick-with-runny-nose-avatar-character-vector-31733952.jpghttps://images.vexels.com/media/users/3/128418/isolated/preview/149352b9daf762d9ecc428793b67a8db-photographer-profession-cartoon-by-vexels.png",
+    },
+  ],
+  [
+    {
+      id: "1",
+      name: "Marketing analysis",
+      type: "A",
+      thumb:
+        "https://images.vexels.com/media/users/3/193246/isolated/preview/89e77acd7bf8bed338e66e8aba45f051-covid-19-girl-character-icon-by-vexels.png",
+    },
+    {
+      id: "2",
+      name: "Kontroler",
+      type: "B",
+      thumb:
+        "https://images.vexels.com/media/users/3/193238/isolated/preview/ba69c47c377fe5274a3dd047227953a8-covid-19-boy-character-by-vexels.png",
+    },
+    {
+      id: "3",
+      name: "Pengembang SDM",
+      type: "C",
+      thumb:
+        "https://images.vexels.com/media/users/3/193272/isolated/preview/e1b8325ba516916a2c40186e4e65ae6c-covid-19-symptom-character-runny-nose-by-vexels.png",
+    },
+    {
+      id: "4",
+      name: "Perencana produksi",
+      type: "D",
+      thumb:
+        "https://cdn3.vectorstock.com/i/1000x1000/39/52/young-woman-sick-with-runny-nose-avatar-character-vector-31733952.jpghttps://images.vexels.com/media/users/3/128418/isolated/preview/149352b9daf762d9ecc428793b67a8db-photographer-profession-cartoon-by-vexels.png",
+    },
+  ],
+  [
+    {
+      id: "1",
+      name: "Admin marketing",
+      type: "A",
+      thumb:
+        "https://images.vexels.com/media/users/3/193246/isolated/preview/89e77acd7bf8bed338e66e8aba45f051-covid-19-girl-character-icon-by-vexels.png",
+    },
+    {
+      id: "2",
+      name: "Asisten bendahara",
+      type: "B",
+      thumb:
+        "https://images.vexels.com/media/users/3/193238/isolated/preview/ba69c47c377fe5274a3dd047227953a8-covid-19-boy-character-by-vexels.png",
+    },
+    {
+      id: "3",
+      name: "Personalia",
+      type: "C",
+      thumb:
+        "https://images.vexels.com/media/users/3/193272/isolated/preview/e1b8325ba516916a2c40186e4e65ae6c-covid-19-symptom-character-runny-nose-by-vexels.png",
+    },
+    {
+      id: "4",
+      name: "Purchaser",
+      type: "D",
+      thumb:
+        "https://cdn3.vectorstock.com/i/1000x1000/39/52/young-woman-sick-with-runny-nose-avatar-character-vector-31733952.jpghttps://images.vexels.com/media/users/3/128418/isolated/preview/149352b9daf762d9ecc428793b67a8db-photographer-profession-cartoon-by-vexels.png",
+    },
+  ],
+  [
+    {
+      id: "1",
+      name: "Admin marketing",
+      type: "A",
+      thumb:
+        "https://images.vexels.com/media/users/3/193246/isolated/preview/89e77acd7bf8bed338e66e8aba45f051-covid-19-girl-character-icon-by-vexels.png",
+    },
+    {
+      id: "2",
+      name: "Pelapor keuangan",
+      type: "B",
+      thumb:
+        "https://images.vexels.com/media/users/3/193238/isolated/preview/ba69c47c377fe5274a3dd047227953a8-covid-19-boy-character-by-vexels.png",
+    },
+    {
+      id: "3",
+      name: "Staff rekrutmen",
+      type: "C",
+      thumb:
+        "https://images.vexels.com/media/users/3/193272/isolated/preview/e1b8325ba516916a2c40186e4e65ae6c-covid-19-symptom-character-runny-nose-by-vexels.png",
+    },
+    {
+      id: "4",
+      name: "Purchaser",
+      type: "D",
+      thumb:
+        "https://cdn3.vectorstock.com/i/1000x1000/39/52/young-woman-sick-with-runny-nose-avatar-character-vector-31733952.jpghttps://images.vexels.com/media/users/3/128418/isolated/preview/149352b9daf762d9ecc428793b67a8db-photographer-profession-cartoon-by-vexels.png",
+    },
+  ],
+  [
+    {
+      id: "1",
+      name: "Admin marketing",
+      type: "A",
+      thumb:
+        "https://images.vexels.com/media/users/3/193246/isolated/preview/89e77acd7bf8bed338e66e8aba45f051-covid-19-girl-character-icon-by-vexels.png",
+    },
+    {
+      id: "2",
+      name: "Pelapor keuangan",
+      type: "B",
+      thumb:
+        "https://images.vexels.com/media/users/3/193238/isolated/preview/ba69c47c377fe5274a3dd047227953a8-covid-19-boy-character-by-vexels.png",
+    },
+    {
+      id: "3",
+      name: "Staff training",
+      type: "C",
+      thumb:
+        "https://images.vexels.com/media/users/3/193272/isolated/preview/e1b8325ba516916a2c40186e4e65ae6c-covid-19-symptom-character-runny-nose-by-vexels.png",
+    },
+    {
+      id: "4",
+      name: "Purchaser",
+      type: "D",
+      thumb:
+        "https://cdn3.vectorstock.com/i/1000x1000/39/52/young-woman-sick-with-runny-nose-avatar-character-vector-31733952.jpghttps://images.vexels.com/media/users/3/128418/isolated/preview/149352b9daf762d9ecc428793b67a8db-photographer-profession-cartoon-by-vexels.png",
+    },
+  ],
+  [
+    {
+      id: "1",
+      name: "Admin marketing",
+      type: "A",
+      thumb:
+        "https://images.vexels.com/media/users/3/193246/isolated/preview/89e77acd7bf8bed338e66e8aba45f051-covid-19-girl-character-icon-by-vexels.png",
+    },
+    {
+      id: "2",
+      name: "Pelapor keuangan",
+      type: "B",
+      thumb:
+        "https://images.vexels.com/media/users/3/193238/isolated/preview/ba69c47c377fe5274a3dd047227953a8-covid-19-boy-character-by-vexels.png",
+    },
+    {
+      id: "3",
+      name: "Personalia",
+      type: "C",
+      thumb:
+        "https://images.vexels.com/media/users/3/193272/isolated/preview/e1b8325ba516916a2c40186e4e65ae6c-covid-19-symptom-character-runny-nose-by-vexels.png",
+    },
+    {
+      id: "4",
+      name: "Purchaser",
+      type: "D",
+      thumb:
+        "https://cdn3.vectorstock.com/i/1000x1000/39/52/young-woman-sick-with-runny-nose-avatar-character-vector-31733952.jpghttps://images.vexels.com/media/users/3/128418/isolated/preview/149352b9daf762d9ecc428793b67a8db-photographer-profession-cartoon-by-vexels.png",
+    },
+  ],
+  [
+    {
+      id: "1",
+      name: "Event planner",
+      type: "A",
+      thumb:
+        "https://images.vexels.com/media/users/3/193246/isolated/preview/89e77acd7bf8bed338e66e8aba45f051-covid-19-girl-character-icon-by-vexels.png",
+    },
+    {
+      id: "2",
+      name: "Kreditur",
+      type: "B",
+      thumb:
+        "https://images.vexels.com/media/users/3/193238/isolated/preview/ba69c47c377fe5274a3dd047227953a8-covid-19-boy-character-by-vexels.png",
+    },
+    {
+      id: "3",
+      name: "Pengatur hubungan kerja",
+      type: "C",
+      thumb:
+        "https://images.vexels.com/media/users/3/193272/isolated/preview/e1b8325ba516916a2c40186e4e65ae6c-covid-19-symptom-character-runny-nose-by-vexels.png",
+    },
+    {
+      id: "4",
+      name: "Purchaser",
+      type: "D",
+      thumb:
+        "https://cdn3.vectorstock.com/i/1000x1000/39/52/young-woman-sick-with-runny-nose-avatar-character-vector-31733952.jpghttps://images.vexels.com/media/users/3/128418/isolated/preview/149352b9daf762d9ecc428793b67a8db-photographer-profession-cartoon-by-vexels.png",
+    },
+  ],
+  [
+    {
+      id: "1",
+      name: "Social media marketing",
+      type: "A",
+      thumb:
+        "https://images.vexels.com/media/users/3/193246/isolated/preview/89e77acd7bf8bed338e66e8aba45f051-covid-19-girl-character-icon-by-vexels.png",
+    },
+    {
+      id: "2",
+      name: "Kreditur",
+      type: "B",
+      thumb:
+        "https://images.vexels.com/media/users/3/193238/isolated/preview/ba69c47c377fe5274a3dd047227953a8-covid-19-boy-character-by-vexels.png",
+    },
+    {
+      id: "3",
+      name: "Motivator",
+      type: "C",
+      thumb:
+        "https://images.vexels.com/media/users/3/193272/isolated/preview/e1b8325ba516916a2c40186e4e65ae6c-covid-19-symptom-character-runny-nose-by-vexels.png",
+    },
+    {
+      id: "4",
+      name: "Purchaser",
+      type: "D",
+      thumb:
+        "https://cdn3.vectorstock.com/i/1000x1000/39/52/young-woman-sick-with-runny-nose-avatar-character-vector-31733952.jpghttps://images.vexels.com/media/users/3/128418/isolated/preview/149352b9daf762d9ecc428793b67a8db-photographer-profession-cartoon-by-vexels.png",
+    },
+  ],
+  [
+    {
+      id: "1",
+      name: "Social media marketing",
+      type: "A",
+      thumb:
+        "https://images.vexels.com/media/users/3/193246/isolated/preview/89e77acd7bf8bed338e66e8aba45f051-covid-19-girl-character-icon-by-vexels.png",
+    },
+    {
+      id: "2",
+      name: "Kreditur",
+      type: "B",
+      thumb:
+        "https://images.vexels.com/media/users/3/193238/isolated/preview/ba69c47c377fe5274a3dd047227953a8-covid-19-boy-character-by-vexels.png",
+    },
+    {
+      id: "3",
+      name: "Pengatur hubungan kerja",
+      type: "C",
+      thumb:
+        "https://images.vexels.com/media/users/3/193272/isolated/preview/e1b8325ba516916a2c40186e4e65ae6c-covid-19-symptom-character-runny-nose-by-vexels.png",
+    },
+    {
+      id: "4",
+      name: "Purchaser",
+      type: "D",
+      thumb:
+        "https://cdn3.vectorstock.com/i/1000x1000/39/52/young-woman-sick-with-runny-nose-avatar-character-vector-31733952.jpghttps://images.vexels.com/media/users/3/128418/isolated/preview/149352b9daf762d9ecc428793b67a8db-photographer-profession-cartoon-by-vexels.png",
+    },
+  ],
+  [
+    {
+      id: "1",
+      name: "Event planner",
+      type: "A",
+      thumb:
+        "https://images.vexels.com/media/users/3/193246/isolated/preview/89e77acd7bf8bed338e66e8aba45f051-covid-19-girl-character-icon-by-vexels.png",
+    },
+    {
+      id: "2",
+      name: "Kreditur",
+      type: "B",
+      thumb:
+        "https://images.vexels.com/media/users/3/193238/isolated/preview/ba69c47c377fe5274a3dd047227953a8-covid-19-boy-character-by-vexels.png",
+    },
+    {
+      id: "3",
+      name: "Motivator",
+      type: "C",
+      thumb:
+        "https://images.vexels.com/media/users/3/193272/isolated/preview/e1b8325ba516916a2c40186e4e65ae6c-covid-19-symptom-character-runny-nose-by-vexels.png",
+    },
+    {
+      id: "4",
+      name: "Purchaser",
+      type: "D",
+      thumb:
+        "https://cdn3.vectorstock.com/i/1000x1000/39/52/young-woman-sick-with-runny-nose-avatar-character-vector-31733952.jpghttps://images.vexels.com/media/users/3/128418/isolated/preview/149352b9daf762d9ecc428793b67a8db-photographer-profession-cartoon-by-vexels.png",
+    },
+  ],
+];
+
+let sampleDataFormat = [
+  {
+    id: "1",
+    name: "aku",
+    type: "A",
+    thumb:
+      "https://images.vexels.com/media/users/3/193246/isolated/preview/89e77acd7bf8bed338e66e8aba45f051-covid-19-girl-character-icon-by-vexels.png",
   },
-  cardOrder: ["card-1"],
-};
+  {
+    id: "2",
+    name: "kamu",
+    type: "B",
+    thumb:
+      "https://images.vexels.com/media/users/3/193238/isolated/preview/ba69c47c377fe5274a3dd047227953a8-covid-19-boy-character-by-vexels.png",
+  },
+  {
+    id: "3",
+    name: "dia",
+    type: "C",
+    thumb:
+      "https://images.vexels.com/media/users/3/193272/isolated/preview/e1b8325ba516916a2c40186e4e65ae6c-covid-19-symptom-character-runny-nose-by-vexels.png",
+  },
+  {
+    id: "4",
+    name: "mereka",
+    type: "D",
+    thumb:
+      "https://cdn3.vectorstock.com/i/1000x1000/39/52/young-woman-sick-with-runny-nose-avatar-character-vector-31733952.jpghttps://images.vexels.com/media/users/3/128418/isolated/preview/149352b9daf762d9ecc428793b67a8db-photographer-profession-cartoon-by-vexels.png",
+  },
+];

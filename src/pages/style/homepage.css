@@ -31,8 +31,9 @@ body {
   justify-content: space-between;
   flex-direction: column;
 }
+
 .jumbotron-text span {
-  line-height: 90%;
+  line-height: 150%;
 }
 .jumbotron-text h1 {
   font-size: 35px;
@@ -55,6 +56,7 @@ body {
   justify-content: center;
   color: white;
   text-align: center;
+  margin-top: 10%;
 
   background: linear-gradient(
       270.45deg,
@@ -241,6 +243,21 @@ iframe {
 
   background: #ffffff;
   box-shadow: 0px 7px 18px -3px rgba(0, 0, 0, 0.27);
+  border-radius: 22px;
+  padding: 1%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin-left: 2%;
+}
+.card-profile:hover {
+  width: 12%;
+  height: 52%;
+  background-color: #ffffff;
+  padding: 5px;
+
+  background: #ffffff;
+  box-shadow: 0px 7px 18px -3px rgba(255, 255, 255, 0.842);
   border-radius: 22px;
   padding: 1%;
   display: flex;

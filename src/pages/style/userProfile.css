@@ -1,16 +1,64 @@
 .user-profile {
   top: 0;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   flex-direction: column;
-  background-image: url("../../materials/login.png");
   background-size: 35%;
   background-repeat: no-repeat;
   background-position: left center;
 }
 
+.jubmotron-profile {
+  width: 100%;
+  min-height: 650px;
+  background-image: url("../../materials/bg-profile.svg");
+  background-position: bottom;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position-y: -200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.container-jumbotron-profile {
+  width: 80%;
+  height: 70%;
+  display: flex;
+  flex-direction: row;
+}
+.jumbotron-user {
+  width: 60%;
+  text-align: left;
+  padding-top: 1%;
+}
+
+#user-name {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 50px;
+  line-height: 59px;
+  color: #ffffff;
+  text-shadow: -11px 15px 10px rgba(0, 0, 0, 0.22);
+}
+
+#user-email {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  color: #ffffff;
+  text-shadow: -11px 15px 10px rgba(0, 0, 0, 0.22);
+  margin-top: -3%;
+}
+
+.jumbotron-graphic {
+  width: 40%;
+  height: auto;
+}
 .username-profile {
   font-weight: bold;
   font-size: 2rem;
@@ -24,33 +72,102 @@
 }
 
 .container-profile {
-  width: 30%;
+  width: 80%;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  background-color: transparent;
   align-items: flex-start;
   justify-content: center;
+  align-items: center;
   padding-top: 5%;
 }
 
 .history-test-container {
-  background-color: transparent;
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-direction: row;
-  width: 60%;
+  width: 95%;
+  min-height: 40vh;
 }
 
 .history-card {
-  background-color: transparent;
-  width: 100%;
-  line-height: 10%;
-  text-align: left;
+  width: 19%;
+  height: 256px;
+  left: 1027px;
+  top: 823px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  background: linear-gradient(
+      103.28deg,
+      #1f69ab -20.65%,
+      rgba(59, 134, 248, 0) 108.96%
+    ),
+    #47a5bd;
+  mix-blend-mode: darken;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 14px;
+  background-image: url("../../materials/teskarir.svg");
+  background-repeat: no-repeat;
+  background-position-x: 85%;
+  background-position-y: 20%;
+  padding-bottom: 10px;
+  line-height: 80%;
+  margin-left: 20px;
+  cursor: pointer;
 }
 
-.right-card {
-  background-color: transparent;
-  width: 40%;
+.history-card:hover {
+  width: 20%;
+  height: 290px;
+}
+
+.recomend-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: row;
+  width: 100%;
+  min-height: 600px;
+  /* background-color: #0188c5; */
+  padding-right: 20%;
+  background-image: url("../../materials/rekomen-bg.png");
+  background-position: left center;
+  background-position-x: 100px;
+  background-repeat: no-repeat;
+  background-size: 30%;
+}
+
+.artikel-card {
+  width: 15%;
+  height: 300px;
+  left: 1027px;
+  top: 823px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  text-align: center;
+  background-color: #046a86;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 14px;
+  background-image: url("../../materials/teskarir.svg");
+  background-repeat: no-repeat;
+  background-position-x: 90%;
+  background-position-y: 10%;
+  padding-bottom: 10px;
+  line-height: 80%;
+  margin-left: 20px;
+  cursor: pointer;
+  color: white;
+}
+
+.artikel-card:hover {
+  width: 16%;
+  height: 400px;
+  color: white;
 }
 
 .button-logout {

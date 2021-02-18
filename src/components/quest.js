@@ -265,7 +265,7 @@ const Quest = (props) => {
         </h5>
         <h1>{dataQuest[indexQuestion].question}</h1>
       </div>
-      <div class="grid-container">
+      <div className="grid-container">
         {dataAnswer.map((el, colId) => {
           return (
             <div key={colId}>
