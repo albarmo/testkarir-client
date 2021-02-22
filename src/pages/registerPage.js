@@ -129,7 +129,6 @@ const RegisterPage = () => {
           domicile: domicile,
           password: password,
           birthDate: birthDate,
-          status: true,
         },
         headers: {
           "X-Qore-Authentication": "46f76c79-e957-4c0b-812c-687ac36f6360",
@@ -159,9 +158,6 @@ const RegisterPage = () => {
 
   return (
     <>
-      {password}
-      <br />
-      {confirmPassword}
       <div className="register">
         <Navbar />
         {email}

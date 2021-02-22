@@ -4,7 +4,6 @@ import qoreContext from "../qoreContext";
 import Navbar from "../components/navbar";
 import "./style/submision.css";
 import Swal from "sweetalert2";
-import axios from "axios";
 import Cookies from "js-cookie";
 
 console.log(Cookies.get("token"));
@@ -18,8 +17,6 @@ const TestSubmision = () => {
   const [date, setDate] = useState("");
 
   const { data: allTest, revalidate } = qoreContext.view("allTest").useListRow({
-    offset: 10,
-    limit: 10,
     order: "asc",
   });
   console.log(allTest);
@@ -30,49 +27,31 @@ const TestSubmision = () => {
   console.log(status, "<< status insert new submision");
 
   async function addSubmision() {
-    axios({
-      method: "POST",
-      url:
-        "https://prod-qore-app.qorebase.io/U6NDz2mu562iqwj/allSubmission/forms/addSubmision",
-      data: {
-        contributor: user.email,
-        message: message,
-        test: test,
-        date: date,
-      },
-      headers: { token: Cookies.get("token") },
-    })
-      .then((resp) => {
-        console.log(resp, "responese post submision");
-      })
-      .catch((error) => {
-        console.log(error);
+    let newData = await insertRow({
+      contributor: contributor,
+      message: message,
+      test: test,
+      date: date,
+    });
+    if (newData) {
+      console.log(newData);
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Success Add Submision",
+        showConfirmButton: false,
+        timer: 3000,
       });
-    // let newData = await insertRow({
-    // contributor: contributor,
-    // message: message,
-    // test: test,
-    // date: data,
-    // });
-    // if (newData) {
-    //   console.log(data);
-    //   Swal.fire({
-    //     position: "center",
-    //     icon: "success",
-    //     title: "Success Add Submision",
-    //     showConfirmButton: false,
-    //     timer: 3000,
-    //   });
-    //   // history.push("/");
-    // }
-    // if (error) {
-    //   console.log(error);
-    //   Swal.fire({
-    //     icon: "error",
-    //     title: "Oops...",
-    //     text: "Invalid Data",
-    //   });
-    // }
+      // history.push("/");
+    }
+    if (error) {
+      console.log(error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Invalid Data",
+      });
+    }
   }
 
   useEffect(() => {
@@ -87,7 +66,6 @@ const TestSubmision = () => {
     <>
       <div className="submision">
         <Navbar />
-        {contributor}
         <div className="submision-container">
           <div className="submision-form">
             <div>
@@ -110,11 +88,18 @@ const TestSubmision = () => {
               <h5>Test</h5>
             </label>
             <select onChange={(e) => setTest(e.target.value)} required>
-              {/* mapped */}
-              <option value="a">A</option>
-              <option value="b">B</option>
-              <option value="c">C</option>
-              <option value="d">D</option>
+              <option>none</option>
+              {allTest
+                ? allTest.map((test, id) => {
+                    return (
+                      <>
+                        <option key={id} value={test.id}>
+                          {test.name}
+                        </option>
+                      </>
+                    );
+                  })
+                : "loading"}
             </select>
 
             <label>

@@ -1,16 +1,58 @@
 import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 import Navbar from "../components/navbar";
 import Quest from "../components/quest";
+import qoreContext from "../qoreContext";
 
 import "./style/testPage.css";
 
 const TestPage = () => {
   const [isValid, setIsValid] = useState(true);
-  const [username, setUsername] = useState("");
-  const [age, setAge] = useState("");
-  const [activity, setActivity] = useState("");
+  const [fullname, setFullname] = useState("");
+  const [email, setEmail] = useState("");
+  const [numberIdentfy, setNumberIdentify] = useState("");
+  const [birthDate, setBirthDate] = useState("");
+  const [domicile, setDomicile] = useState("");
+  const [instance, setInstance] = useState("");
+  const [education, setEducation] = useState("");
+  const [gender, setGender] = useState("");
 
-  let dataUser = { username, age, activity };
+  let dataUser = {
+    fullname,
+    email,
+    numberIdentfy,
+    birthDate,
+    domicile,
+    instance,
+    education,
+    gender,
+  };
+
+  const { send, status } = qoreContext
+    .view("allFreeMember")
+    .useForm("submitData");
+  console.log(status, "<< status submit user");
+
+  useEffect(() => {
+    if (status === "success") {
+      setIsValid(true);
+    } else if (status === "error") {
+      Swal.fire("data masih belum lengkap nih");
+    }
+  }, [status]);
+
+  async function startHandler() {
+    let newData = await send({
+      fullname: fullname,
+      email: email,
+      identityNumber: numberIdentfy,
+      birthDate: birthDate,
+      domicile: domicile,
+      instance: instance,
+      educational: education,
+      gender: gender,
+    });
+  }
 
   useEffect(() => {
     setIsValid(false);
@@ -28,45 +70,113 @@ const TestPage = () => {
                 <br />
 
                 <label className="label-quest" htmlFor="nama">
-                  <h1>Masukan nama anda</h1>
+                  <h1>Masukan nama lengkap anda</h1>
                 </label>
                 <input
                   className="input-quest"
                   id="nama"
                   type="text"
                   placeholder="Masukan nama anda"
-                  onChange={(e) => setUsername(e.target.value)}
+                  onChange={(e) => setFullname(e.target.value)}
                   maxLength={30}
                   required
                 />
 
-                <label className="label-quest" htmlFor="umur">
-                  <h1>Masukan umur anda</h1>
+                <label className="label-quest" htmlFor="nama">
+                  <h1>Email </h1>
                 </label>
                 <input
                   className="input-quest"
-                  id="umur"
-                  type="number"
-                  placeholder="Berapa umur anda sekarang?"
-                  onChange={(e) => setAge(e.target.value)}
-                  max={99}
-                  maxLength={2}
+                  id="nama"
+                  type="email"
+                  placeholder="Masukan nama anda"
+                  onChange={(e) => setEmail(e.target.value)}
+                  maxLength={30}
+                  required
                 />
 
-                <label className="label-quest" htmlFor="pekerjaan">
-                  <h1>Masukan pekerjaan/kegiatan anda saat ini</h1>
+                <label className="label-quest" htmlFor="nama">
+                  <h1>Gender</h1>
+                </label>
+                <select
+                  onChange={(e) => setGender(e.target.value)}
+                  className="input-quest"
+                >
+                  <option value="unset" selected>
+                    unset
+                  </option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                </select>
+
+                <label className="label-quest" htmlFor="nama">
+                  <h1>NIK</h1>
                 </label>
                 <input
                   className="input-quest"
-                  id="pekerjaan"
+                  id="nama"
+                  type="number"
+                  placeholder="Masukan nomor indentitas anda"
+                  onChange={(e) => setNumberIdentify(e.target.value)}
+                  maxLength={16}
+                  minLength={16}
+                  required
+                />
+
+                <label className="label-quest" htmlFor="nama">
+                  <h1>Tanggal Lahir</h1>
+                </label>
+                <input
+                  className="input-quest"
+                  id="nama"
+                  type="date"
+                  placeholder="Masukan tanggal lahir anda"
+                  onChange={(e) => setBirthDate(e.target.value)}
+                  maxLength={30}
+                  required
+                />
+
+                <label className="label-quest" htmlFor="nama">
+                  <h1>Domisili</h1>
+                </label>
+                <input
+                  className="input-quest"
+                  id="nama"
                   type="text"
-                  maxLength={50}
-                  placeholder="Apa aktifitas anda sekarang?"
-                  onChange={(e) => setActivity(e.target.value)}
+                  placeholder="Masukan tempat tinggal anda"
+                  onChange={(e) => setDomicile(e.target.value)}
+                  maxLength={30}
+                  required
+                />
+
+                <label className="label-quest" htmlFor="nama">
+                  <h1>Instansi / Intuisi</h1>
+                </label>
+                <input
+                  className="input-quest"
+                  id="nama"
+                  type="text"
+                  placeholder="Masukan instansi anda"
+                  onChange={(e) => setInstance(e.target.value)}
+                  maxLength={30}
+                  required
+                />
+
+                <label className="label-quest" htmlFor="nama">
+                  <h1>Pendidikan Terakhir</h1>
+                </label>
+                <input
+                  className="input-quest"
+                  id="nama"
+                  type="text"
+                  placeholder="Masukan jenjang pendidikan terakhir anda"
+                  onChange={(e) => setEducation(e.target.value)}
+                  maxLength={30}
+                  required
                 />
               </form>
               {!isValid ? (
-                <div className="button-quesy" onClick={() => setIsValid(true)}>
+                <div className="button-quesy" onClick={() => startHandler()}>
                   Mulai Tes
                 </div>
               ) : null}

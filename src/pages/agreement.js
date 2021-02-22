@@ -4,38 +4,53 @@ import qoreContext from "../qoreContext";
 import client from "../qoreContext";
 import "./style/agreement.css";
 import Navbar from "../components/navbar";
+import Swal from "sweetalert2";
 
 const Agreement = () => {
   const history = useHistory();
-
   const [numberVerify, setNumberVerify] = useState("");
-  const [fileUpload, setFileUpload] = useState("");
-
-  const [userId, setUserId] = useState("775b7037-1991-4541-b906-a361addfcfd9");
-  const [verifyMethod, setVerivyMethod] = useState(true);
-
-  //   const { updateRow, status } = qoreContext.view("allMember").useUpdateRow();
-  //   const handleUpload = async (e) => {
-  //     const file = e.currentTarget.files?.item(0);
-  //     if (!file) return;
-  //     const url = await client.view("allMember").upload(file);
-  //     await updateRow(userId, { cardVerify: url });
-  //   };
+  const [userId, setUserId] = useState("");
+  const [isVerify, updateVerifyStatus] = useState(true);
 
   const ID = localStorage.getItem("user_id");
-  useEffect(() => {
-    setUserId(ID);
-  }, [userId]);
+  const { user } = qoreContext.useCurrentUser();
+
+  function isValidId(id) {
+    let regexKtp = /^((1[1-9])|(21)|([37][1-6])|(5[1-4])|(6[1-5])|([8-9][1-2]))[0-9]{2}[0-9]{2}(([0-6][0-9])|(7[0-1]))((0[1-9])|(1[0-2]))([0-9]{2})[0-9]{4}$/.test(
+      id
+    );
+    return regexKtp;
+  }
 
   const { updateRow, status } = qoreContext.view("allMember").useUpdateRow();
   console.log(status, "status update data numberVerify");
 
-  async function inputNumberVerify() {
-    await updateRow(userId, { numberVerify: numberVerify });
-    setVerivyMethod(false);
-  }
+  useEffect(() => {
+    setUserId(ID);
+  }, [userId]);
 
-  let valid = { backround: "green" };
+  useEffect(() => {
+    if (!user) {
+      console.log("loading userdata");
+    } else if (user) {
+      if (user.data.numberVerify !== "unverivfy") {
+        updateVerifyStatus(false);
+      }
+    }
+  }, [user]);
+
+  async function submitVerify() {
+    let regex = isValidId(numberVerify);
+    console.log(regex);
+    if (regex) {
+      await updateRow(userId, { numberVerify: numberVerify });
+      history.push("/testkarir");
+    } else if (numberVerify) {
+      Swal.fire("Tolong masukan Nomor Identitas dengan benar");
+    } else if (user.data.numberVerify) {
+      history.push("/testkarir");
+    }
+  }
 
   return (
     <>
@@ -54,46 +69,28 @@ const Agreement = () => {
             and more recently with desktop publishing software like Aldus
             PageMaker including versions of Lorem Ipsum.
           </p>
-          <div className="form-agreement">
-            <h2>Verify Yourself</h2>
-            <div
-              className="change-method"
-              onClick={() => setVerivyMethod(!verifyMethod)}
-              style={{ cursor: "pointer", backround: "blue" }}
-            >
-              {verifyMethod ? "Input Nomor Identitas" : "Upload Kartu Pelajar"}
-            </div>
-            {verifyMethod ? (
+          {isVerify ? (
+            <div className="form-agreement">
+              <h2>Verify Yourself</h2>
               <div className="text-agreement">
-                NV: {numberVerify}
-                <label htmlFor="nik">Input Nik</label>
+                <label htmlFor="nik"> Input Nomor Identitas Anda</label>
                 <input
                   className="input-text-agreement"
-                  placeholder="317 409 170398 0xxx"
+                  placeholder="--- --- ------ ----"
                   type="text"
                   onChange={(e) => setNumberVerify(e.target.value)}
+                  maxLength="16"
+                  required
                 />
-                <div className="button-nik" onClick={() => inputNumberVerify()}>
-                  Sumbit
-                </div>
+                <label htmlFor="nik" style={{ marginTop: "20px" }}>
+                  Captcha Verify
+                </label>
+                <div className="captcha">ON PROGRESS</div>
               </div>
-            ) : (
-              <div className="upload-agreement">
-                <label htmlFor="nik">Upload Image</label>
-                <input type="file" onChange={(e) => setFileUpload(e)} />
-                <p style={{ fontSize: "10px" }}>* optional</p>
-              </div>
-            )}
-          </div>
-          <div className="captcha-agreement">
-            <label htmlFor="nik">Captcha Verify</label>
-            <div className="captcha">ON PROGRESS</div>
-            <div
-              className="button-start"
-              onClick={() => history.push("/testkarir")}
-            >
-              Mulai
             </div>
+          ) : null}
+          <div className="button-start" onClick={() => submitVerify()}>
+            Mulai Test
           </div>
         </div>
       </div>

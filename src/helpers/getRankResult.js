@@ -3,41 +3,34 @@ let b = 0;
 let c = 0;
 let d = 0;
 
-const resultDummy = [
-  ["A", "C", "A", "B"],
-  ["C", "B", "A", "D"],
-  ["D", "C", "A", "B"],
-  ["C", "B", "A", "D"],
-  ["C", "D", "A", "B"],
-];
 let questAlpha = ["A", "B", "C", "D"];
 
 function getMax() {
   let valueArr = [];
   valueArr.push(a, b, c, d);
-  let max = "";
-  for (let i = 0; i < valueArr.length; i++) {
-    if (valueArr[i] > valueArr[i + 1]) {
-      max = valueArr.indexOf(valueArr[i]);
-    }
-  }
-  let result = questAlpha[max];
+  var min = Math.min(...valueArr);
+  let maxIndex = valueArr.indexOf(min);
+  let result = questAlpha[maxIndex];
   result === undefined
     ? (result = "invalid value!")
-    : (result = questAlpha[max]);
-  console.log(`Final Result is => ${result}`);
+    : (result = questAlpha[maxIndex]);
   return result;
 }
 
 export const getRankRestult = (answer) => {
-  let score = 5;
-  console.log("-------- Helpers Get Rank Result ---------");
-  console.log(" ===> answer ByAlpha <=== ");
+  a = 0;
+  b = 0;
+  c = 0;
+  d = 0;
+
+  let score = 0;
+  // console.log("-------- Helpers Get Rank Result ---------");
+  // console.log(" ===> answer ByAlpha <=== ");
   // console.log(answer);
-  console.log("\n");
+  // console.log("\n");
   // aksaes index 0 dari array result
   for (let i = 0; i < questAlpha.length; i++) {
-    score--;
+    score++;
     // console.log(`-------------- iterasi ke -${i + 1}-----------------`);
     // console.log(score, ">> current Score");
     for (let j = 0; j < answer.length; j++) {

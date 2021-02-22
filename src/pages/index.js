@@ -7,3 +7,5 @@ export { default as TestResult } from "./hasilTest";
 export { default as Agreement } from "./agreement";
 export { default as PremiumTest } from "./premiumTest";
 export { default as TestSubmision } from "./testSubmision";
+export { default as Article } from "./article";
+export { default as ReadArticle } from "./readArticle";

@@ -44,8 +44,8 @@ const QuestTest = () => {
       mainAnswerAlpha.push(listItemByType);
       let final = getRankRestult(mainAnswerAlpha);
       setResult(final);
-      console.log(result);
-      // history.push("/result", { user: user, result: mainAnswer });
+      console.log(final);
+      history.push("/result", { user: user, result: final });
     }
   }
 

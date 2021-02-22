@@ -11,6 +11,8 @@ import {
   Agreement,
   PremiumTest,
   TestSubmision,
+  Article,
+  ReadArticle,
 } from "./pages/index";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
@@ -33,6 +35,8 @@ function App() {
             <Route path="/agreement" component={Agreement} />
             <Route path="/testkarir" component={PremiumTest} />
             <Route path="/submision" component={TestSubmision} />
+            <Route path="/article" component={Article} />
+            <Route path="/read/:id" component={ReadArticle} />
           </Switch>
         </Router>
       </div>

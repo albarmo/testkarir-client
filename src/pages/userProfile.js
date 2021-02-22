@@ -1,12 +1,19 @@
 import { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import "./style/userProfile.css";
-import Navbar from "../components/navbar";
+import Navbar from "../components/navbarTransparent";
 import qoreContext from "../qoreContext";
 import Cookies from "js-cookie";
 import graphicImage from "../materials/profile-graphic.png";
 
 const UserProfile = () => {
+  const { data: allTest } = qoreContext.view("allTest").useListRow({
+    limit: 10,
+    order: "asc",
+  });
+
+  console.log(allTest);
+
   const { user } = qoreContext.useCurrentUser();
   const history = useHistory();
   const { id } = useParams();
@@ -27,8 +34,6 @@ const UserProfile = () => {
   useEffect(() => {
     setData(profileData);
   }, []);
-
-  console.log(profileData);
 
   return (
     <>
@@ -53,30 +58,22 @@ const UserProfile = () => {
               <h1 className="username-profile">Ayo Test Sekarang</h1>
             </div>
             <div className="history-test-container">
-              <div className="history-card">
-                <h2 style={{ marginBottom: "40px", color: "white" }}>
-                  Tes Minat 1
-                </h2>
-                <p style={{ marginTop: "-20px", color: "white" }}>5 menit</p>
-              </div>
-              <div className="history-card">
-                <h2 style={{ marginBottom: "40px", color: "white" }}>
-                  Tes Minat 1
-                </h2>
-                <p style={{ marginTop: "-20px", color: "white" }}>5 menit</p>
-              </div>
-              <div className="history-card">
-                <h2 style={{ marginBottom: "40px", color: "white" }}>
-                  Tes Minat 1
-                </h2>
-                <p style={{ marginTop: "-20px", color: "white" }}>5 menit</p>
-              </div>
-              <div className="history-card">
-                <h2 style={{ marginBottom: "40px", color: "white" }}>
-                  Tes Minat 1
-                </h2>
-                <p style={{ marginTop: "-20px", color: "white" }}>5 menit</p>
-              </div>
+              {allTest
+                ? allTest.map((val, id) => {
+                    return (
+                      <>
+                        <div className="history-card">
+                          <h2 style={{ marginBottom: "40px", color: "white" }}>
+                            {val.name}
+                          </h2>
+                          <p style={{ marginTop: "-20px", color: "white" }}>
+                            {val.testType.displayField}
+                          </p>
+                        </div>
+                      </>
+                    );
+                  })
+                : "loading"}
             </div>
             <h3 className="history-header">Lihat lebih bannyak tes</h3>
           </div>
