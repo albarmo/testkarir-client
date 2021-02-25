@@ -6,7 +6,7 @@ import "./style/agreement.css";
 import Navbar from "../components/navbar";
 import Swal from "sweetalert2";
 
-const Agreement = () => {
+const Agreement = (props) => {
   const history = useHistory();
   const [numberVerify, setNumberVerify] = useState("");
   const [userId, setUserId] = useState("");
@@ -44,11 +44,11 @@ const Agreement = () => {
     console.log(regex);
     if (regex) {
       await updateRow(userId, { numberVerify: numberVerify });
-      history.push("/testkarir");
+      history.push(`/teskarir/${props.location.state.testId}`);
     } else if (numberVerify) {
       Swal.fire("Tolong masukan Nomor Identitas dengan benar");
     } else if (user.data.numberVerify) {
-      history.push("/testkarir");
+      history.push(`/teskarir/${props.location.state.testId}`);
     }
   }
 

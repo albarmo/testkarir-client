@@ -35,3 +35,31 @@ function login(e) {
     }
   }
 }
+
+// // PDF -------------------------------------------------------------------
+// doc.setFont("times", "bold");
+// doc.setFontSize(22);
+// doc.text(`Hii, ${props.location.state.user.data.username} `, 24, 24);
+// doc.setFontSize(12);
+// doc.setFont("times", "normal");
+// doc.text(
+//   `Terima kasih banyak sudah melakukan tes minat di teskarir, berikut hasilnya :), `,
+//   24,
+//   34
+// );
+// doc.addImage(imgData, "JPEG", 40, 40, 50, 50);
+// doc.setFontSize(11);
+// doc.setFont("times", "normal");
+
+// // PDF -------------------------------------------------------------------
+
+// function contertPDF() {
+//   console.log("<<<<< jsPDF >>>>");
+//   doc.save(
+//     `Hasil test ${
+//       props.location.state.user.username
+//         ? props.location.state.user.username
+//         : props.location.state.user.data.username
+//     } - Teskarir.pdf`
+//   );
+// }

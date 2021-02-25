@@ -9,3 +9,5 @@ export { default as PremiumTest } from "./premiumTest";
 export { default as TestSubmision } from "./testSubmision";
 export { default as Article } from "./article";
 export { default as ReadArticle } from "./readArticle";
+export { default as UploadReport } from "./uploadReport";
+export { default as FreeTestResult } from "./hasilTestGratis";

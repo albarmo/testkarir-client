@@ -13,6 +13,8 @@ import {
   TestSubmision,
   Article,
   ReadArticle,
+  UploadReport,
+  FreeTestResult,
 } from "./pages/index";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
@@ -33,10 +35,12 @@ function App() {
             <Route path="/test" component={TestPage} />
             <Route path="/result" component={TestResult} />
             <Route path="/agreement" component={Agreement} />
-            <Route path="/testkarir" component={PremiumTest} />
+            <Route path="/teskarir/:id" component={PremiumTest} />
             <Route path="/submision" component={TestSubmision} />
             <Route path="/article" component={Article} />
             <Route path="/read/:id" component={ReadArticle} />
+            <Route exact path="/report" component={UploadReport} />
+            <Route path="/freetest/result" component={FreeTestResult} />
           </Switch>
         </Router>
       </div>

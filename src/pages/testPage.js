@@ -36,6 +36,16 @@ const TestPage = () => {
   useEffect(() => {
     if (status === "success") {
       setIsValid(true);
+      Swal.fire({
+        title:
+          "Pilihlah pernyataan-pernyataan yang paling sesuai dan menggambarkan diri anda. Pada setiap bagian, anda bebas memilih berapapun pernyataan tentang diri anda!",
+        showClass: {
+          popup: "animate__animated animate__fadeInDown",
+        },
+        hideClass: {
+          popup: "animate__animated animate__fadeOutUp",
+        },
+      });
     } else if (status === "error") {
       Swal.fire("data masih belum lengkap nih");
     }

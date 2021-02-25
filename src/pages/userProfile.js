@@ -62,7 +62,12 @@ const UserProfile = () => {
                 ? allTest.map((val, id) => {
                     return (
                       <>
-                        <div className="history-card">
+                        <div
+                          className="history-card"
+                          onClick={() =>
+                            history.push("/agreement", { testId: val.id })
+                          }
+                        >
                           <h2 style={{ marginBottom: "40px", color: "white" }}>
                             {val.name}
                           </h2>
@@ -87,42 +92,18 @@ const UserProfile = () => {
 
         <div className="recomend-container">
           <div className="artikel-card">
-            {/* <img
-              src="https://c0.klipartz.com/pngpicture/533/98/gratis-png-homer-simpson-bart-simpson-dibujo-pub-quiz-pensamiento-inicio-de-sesion-ixl-zamora.png"
-              alt="article image"
-              width="60%"
-              style={{ marginLeft: "20%" }}
-            /> */}
             <h2>Artikel 1</h2>
             <p>5 menit</p>
           </div>
           <div className="artikel-card">
-            {/* <img
-              src="https://p7.hiclipart.com/preview/893/90/392/homer-simpson-marge-simpson-bart-simpson-lisa-simpson-maggie-simpson-homer.jpg"
-              alt="article image"
-              width="60%"
-              style={{ marginLeft: "20%" }}
-            /> */}
             <h2>Artikel 2</h2>
             <p>5 menit</p>
           </div>
           <div className="artikel-card">
-            {/* <img
-              src="https://w7.pngwing.com/pngs/484/879/png-transparent-homer-simpson-marge-simpson-lisa-simpson-bart-simpson-television-bart-simpson-homer-simpson-marge-simpson-lisa-simpson.png"
-              alt="article image"
-              width="60%"
-              style={{ marginLeft: "20%" }}
-            /> */}
             <h2>Artikel 3</h2>
             <p>5 menit</p>
           </div>
           <div className="artikel-card">
-            {/* <img
-              src="https://e7.pngegg.com/pngimages/994/607/png-clipart-the-simpson-homer-simpson-holding-donut-illustration-homer-simpson-bart-simpson-donuts-computer-icons-homero-text-smiley.png"
-              alt="article image"
-              width="60%"
-              style={{ marginLeft: "20%" }}
-            /> */}
             <h2>Artikel 3</h2>
             <p>5 menit</p>
           </div>
@@ -136,13 +117,6 @@ const UserProfile = () => {
             marginLeft: "30%",
           }}
         >
-          <div
-            className="button-logout"
-            onClick={() => history.push("/agreement")}
-          >
-            Mulai Test
-          </div>
-
           <div
             className="button-logout"
             onClick={() => history.push("/submision")}
