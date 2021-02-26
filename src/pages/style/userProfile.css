@@ -160,14 +160,22 @@
   mix-blend-mode: darken;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 14px;
-  background-image: url("../../materials/teskarir.svg");
   background-repeat: no-repeat;
   background-position-x: 90%;
   background-position-y: 10%;
   padding-bottom: 10px;
-  line-height: 80%;
   margin-left: 20px;
   cursor: pointer;
+}
+
+#color-overlay {
+  top: 0;
+  left: 0;
+  background-color: black;
+  opacity: 90;
+}
+
+.artikel-card h2 {
   color: white;
 }
 
@@ -177,10 +185,100 @@
   color: white;
 }
 
-.button-logout {
+.submision {
+  color: white;
+  height: 1300px;
+}
+
+.userSubmision table {
+  width: 50%;
+  background-color: blue;
+  border-top: 2px;
+}
+
+.userSubmision th {
+  background-color: #0188c5;
+  border: 2px;
+  padding: 5px;
+  text-align: center;
+}
+.userSubmision td {
+  background-color: #ececec;
+  padding-left: 10px;
+  border: 2px;
+}
+
+.submision h1 {
+  color: white;
+  font-weight: bolder;
+  font-size: 3rem;
+  width: 40%;
+}
+
+.submision h1 {
+  color: #017ca3;
+}
+
+.submision p {
+  width: 35%;
+  font-weight: bold;
+  color: #017ca3;
+}
+
+.process-submision {
+  width: 40%;
+  text-align: left;
+}
+
+.process-submision h2 {
+  width: 90%;
+  text-align: left;
+  font-size: 1.8rem;
+  color: white;
+}
+
+.process-item {
+  background-color: royalblue;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 15px;
+  border-radius: 20px;
+  margin-top: 30px;
+
+  background: linear-gradient(
+      270.45deg,
+      #03d2d2 -11.66%,
+      rgba(68, 123, 123, 0.552083) 47.02%,
+      rgba(133, 191, 191, 0) 119.36%
+    ),
+    #017ca3;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.process-item p {
+  margin-left: 180px;
+  margin-top: -10px;
+  text-align: left;
+  width: 50%;
+  font-weight: normal;
+  color: white;
+}
+
+.logout {
+  margin-top: 10%;
+  width: 400px;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+.button-submision {
   margin-top: 100px;
-  width: 20%;
-  height: 43px;
+  width: 40%;
+  height: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -189,85 +287,290 @@
   font-weight: bold;
 
   background: linear-gradient(
-      270deg,
-      #00f7f7 -16.06%,
-      rgba(133, 191, 191, 0) 125.18%
+      270.45deg,
+      #03d2d2 -11.66%,
+      rgba(68, 123, 123, 0.552083) 47.02%,
+      rgba(133, 191, 191, 0) 119.36%
     ),
-    #67bad5;
-  box-shadow: inset 0px -1px 4px rgba(0, 0, 0, 0.09);
+    #017ca3;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
   cursor: pointer;
 }
+
+/* ================================ monbile phone=========================================== */
 
 @media only screen and (max-width: 720px) {
   .user-profile {
     top: 0;
     width: 100%;
-    height: 100vh;
-    background-image: url("../../materials/login.png");
-    background-size: 140%;
-    background-repeat: no-repeat;
-    background-position: bottom center;
     display: flex;
-    justify-content: space-between;
+    display: flex;
+    justify-content: space-evenly;
   }
 
+  .jubmotron-profile {
+    width: 100%;
+    min-height: 600px;
+    background-image: url("../../materials/bg-profile.svg");
+    background-position: bottom;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-y: -200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+
+  .container-jumbotron-profile {
+    width: 80%;
+    height: 20%;
+    display: flex;
+    flex-direction: row;
+    margin-top: -200px;
+  }
+  .jumbotron-user {
+    width: 30%;
+    text-align: left;
+  }
+
+  #user-name {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 2.2rem;
+    line-height: 59px;
+    color: #ffffff;
+    text-shadow: -11px 15px 10px rgba(0, 0, 0, 0.22);
+  }
+
+  #user-email {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    color: #ffffff;
+    text-shadow: -11px 15px 10px rgba(0, 0, 0, 0.22);
+    margin-top: -3%;
+  }
+
+  .jumbotron-graphic {
+    width: 10px;
+    height: 40px;
+    visibility: hidden;
+  }
   .username-profile {
-    width: 90%;
     font-weight: bold;
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: #117ea0;
     text-align: left;
-    line-height: 70%;
-    background-color: rgba(221, 221, 221, 0.664);
-    border: none;
-    border-radius: 20px;
-    padding: 10px;
+    line-height: 40%;
   }
   .username-profile p {
     font-size: 60%;
     color: black;
-    background-color: transparent;
-    font-weight: bold;
   }
 
   .container-profile {
-    width: 95%;
-    height: 3800px;
+    width: 80%;
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
     align-items: center;
-    justify-content: flex-start;
-    padding-top: 5%;
+    padding-top: 0%;
   }
 
   .history-test-container {
-    background-color: transparent;
     display: flex;
     align-items: center;
-    flex-direction: row;
-    width: 60%;
-    height: auto;
-    background-color: transparent;
-    background-color: rgba(231, 229, 229, 0.664);
-    border: none;
-    border-radius: 20px;
-    padding: 20px;
-  }
-  .history-header {
-    color: rgb(7, 6, 6);
-    font-size: x-large;
+    justify-content: center;
+    flex-direction: column;
+    width: 95%;
+    min-height: 40vh;
   }
 
   .history-card {
-    background-color: transparent;
+    margin-top: 20px;
+    width: 90%;
+    height: 256px;
+    left: 1027px;
+    top: 823px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    background: linear-gradient(
+        103.28deg,
+        #1f69ab -20.65%,
+        rgba(59, 134, 248, 0) 108.96%
+      ),
+      #47a5bd;
+    mix-blend-mode: darken;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 14px;
+    background-image: url("../../materials/teskarir.svg");
+    background-repeat: no-repeat;
+    background-position-x: 85%;
+    background-position-y: 20%;
+    padding-bottom: 10px;
+    margin-left: 20px;
+    cursor: pointer;
+  }
+
+  .history-card:hover {
     width: 100%;
-    line-height: 10%;
+    height: 290px;
+  }
+
+  .username-profile {
+    margin-top: 50px;
+  }
+
+  .recomend-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-direction: column;
+    width: 100%;
+    min-height: 600px;
+    padding-right: 0%;
+    background-image: none;
+    background-position: left center;
+    background-position-x: 100px;
+    background-repeat: no-repeat;
+    background-size: 30%;
+  }
+
+  .artikel-card {
+    margin-top: 10px;
+    width: 90%;
+    top: 823px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    text-align: center;
+
+    background: linear-gradient(
+        103.28deg,
+        #1f69ab -20.65%,
+        rgba(59, 134, 248, 0) 108.96%
+      ),
+      #47a5bd;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    mix-blend-mode: darken;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 14px;
+    background-repeat: no-repeat;
+    background-position-x: 90%;
+    background-position-y: 10%;
+    padding-bottom: 10px;
+    margin-left: 20px;
+    cursor: pointer;
+  }
+
+  #color-overlay {
+    top: 0;
+    left: 0;
+    background-color: black;
+    opacity: 90;
+  }
+
+  .artikel-card h2 {
+    color: white;
+  }
+
+  .artikel-card:hover {
+    width: 100%;
+    height: 400px;
+  }
+
+  .submision {
+    padding-top: 10%;
+    color: white;
+  }
+
+  .submision h1 {
+    color: white;
+    font-weight: bolder;
+    font-size: 2rem;
+    width: 80%;
+  }
+
+  .submision h1 {
+    color: #017ca3;
+  }
+
+  .submision p {
+    width: 80%;
+    font-weight: bold;
+    color: #017ca3;
+  }
+
+  .process-submision {
+    width: 60%;
     text-align: left;
   }
 
-  .right-card {
-    background-color: transparent;
-    width: 40%;
+  .process-submision h2 {
+    width: 80%;
+    text-align: left;
+    font-size: 1.8rem;
+    color: white;
+  }
+
+  .process-item {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    padding: 15px;
+    border-radius: 20px;
+    margin-top: 30px;
+    width: 100%;
+
+    background: linear-gradient(
+        270.45deg,
+        #03d2d2 -11.66%,
+        rgba(68, 123, 123, 0.552083) 47.02%,
+        rgba(133, 191, 191, 0) 119.36%
+      ),
+      #017ca3;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  .process-item p {
+    margin-left: 40px;
+    margin-top: 10px;
+    text-align: left;
+    width: 80%;
+    font-weight: normal;
+    color: white;
+  }
+
+  .button-submision {
+    width: 60%;
+    font-weight: bold;
+
+    background: linear-gradient(
+        270.45deg,
+        #03d2d2 -11.66%,
+        rgba(68, 123, 123, 0.552083) 47.02%,
+        rgba(133, 191, 191, 0) 119.36%
+      ),
+      #017ca3;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+  .logout {
+    margin-top: 10%;
+    width: 400px;
+    font-weight: normal;
+    cursor: pointer;
   }
 }

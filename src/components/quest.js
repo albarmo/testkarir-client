@@ -4,11 +4,13 @@ import qoreContext from "../qoreContext";
 import "./style/quest.css";
 import { BiAtom } from "react-icons/bi";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 import { getResult } from "../helpers/getResult";
 
 var sectionAnswer = [];
 var colIdArr = [];
+let datax = [];
 
 const Quest = (props) => {
   const history = useHistory();
@@ -16,24 +18,41 @@ const Quest = (props) => {
   const [mainAnswer, setMainAnswer] = useState([]);
   const [clicked, setClicked] = useState([]);
 
-  // --------------------------------------------QORE SDK-------------------------------------------------------------//
-  const { data: allStatementsGroup, status, error } = qoreContext
-    .view("allStatementsGroup")
-    .useListRow(
-      {
-        order: "asc",
-      },
-      { networkPolicy: "network-and-cache" }
-    );
+  function getAllStatementGroup() {
+    console.log("fetch");
+    axios({
+      method: "GET",
+      url:
+        "https://prod-qore-app.qorebase.io/U6NDz2mu562iqwj/allStatementsGroup/fields",
+    })
+      .then(({ data }) => {
+        let { nodes } = data;
+        let allStatementsGroup = nodes;
+        datax = nodes;
+      })
+      .catch((error) => {
+        console.log(error, "err fetch");
+      });
+  }
 
-  console.log(status, "fetch data statementGroup");
-  console.log(error);
+  useEffect(() => {
+    getAllStatementGroup();
+  }, []);
+
+  // --------------------------------------------QORE SDK-------------------------------------------------------------//
+  const { data: allStatementsGroup2, status, error } = qoreContext
+    .view("allStatementsGroup")
+    .useListRow({ limit: 100 });
+
+  console.log(allStatementsGroup2, "qore");
+  console.log(datax);
 
   // // --------------------------------------------DATA-----------------------------------------------------------------//
-
-  let filterFreeTest = allStatementsGroup.filter(
-    (val) => val.testId.displayField === "FreeTest"
-  );
+  if (allStatementsGroup2) {
+    var filterFreeTest = allStatementsGroup2.filter(
+      (val) => val.testId.displayField === "FreeTest"
+    );
+  }
 
   let questLength = filterFreeTest[0]
     ? filterFreeTest[0].statements.totalCount
@@ -82,7 +101,7 @@ const Quest = (props) => {
       let Result = getResult(sectionAnswer, statementName);
       console.log(Result, "FINAL RESULT");
       history.push({
-        pathname: "/freetest/result",
+        pathname: "/resultfree",
         state: { user: props.user, output: Result },
       });
     }

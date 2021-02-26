@@ -60,6 +60,7 @@ class ExcelReader extends Component {
   render() {
     return (
       <div>
+        <h1 style={{ color: "black", width: "100%" }}>Upload Data Peserta</h1>
         <br />
         <div
           style={{
@@ -74,7 +75,7 @@ class ExcelReader extends Component {
             id="file"
             accept={SheetJSFT}
             onChange={this.handleChange}
-            style={{ width: "70%" }}
+            style={{ width: "100%", color: "black" }}
           />
           <br />
           {this.state.clicked ? null : (

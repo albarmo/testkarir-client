@@ -11,7 +11,7 @@ import Swal from "sweetalert2";
 import Moment from "react-moment";
 import "moment-timezone";
 
-const UserProfile = () => {
+const ParticipantProfile = () => {
   const { data: allTest } = qoreContext.view("allTest").useListRow({
     limit: 10,
     order: "asc",
@@ -64,20 +64,15 @@ const UserProfile = () => {
   console.log(userData);
 
   if (role === "participants") {
-    var submisionId = user ? userData.submisionId.nodes : null;
+    var submisionId = user ? userData.submisionId.nodes[0] : null;
     var userSubmisionId = user
       ? userData.submisionId.nodes.map((val) => val.id)
       : "loading submisionId user";
-    console.log(userSubmisionId[0], "sub");
-
-    console.log(submisionId, "subid");
-
-    var participantTestFilter = allSubmission
-      ? allSubmission.filter(
-          (val, id) => val.id == "c69ce6b0-f0c7-46e6-851c-9acbe0155a54"
-        )
+    console.log(userSubmisionId);
+    var participantTestFilter = submisions
+      ? submisions.filter((val, id) => val.id == userSubmisionId[0])
       : "tidak ada";
-    console.log(participantTestFilter, "aw");
+    console.log(participantTestFilter);
   }
 
   const { data: allArticle } = qoreContext.view("allArticle").useListRow(
@@ -341,4 +336,4 @@ const UserProfile = () => {
   );
 };
 
-export default UserProfile;
+export default ParticipantProfile;

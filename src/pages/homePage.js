@@ -49,7 +49,7 @@ const HomePage = () => {
               </p>
               <div
                 className="button-jumbotron"
-                onClick={() => history.push("/test")}
+                onClick={() => history.push("/freetest")}
               >
                 Coba Gratis
               </div>

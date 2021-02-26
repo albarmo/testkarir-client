@@ -12,8 +12,11 @@ const BulkDataInsert = (props) => {
     .view("allParticipants")
     .useForm("participantUpload");
 
+  console.log(props);
+  console.log(props.submision, "dataaa");
+
   async function bulkCreateParticipant(data) {
-    console.log(data.date);
+    console.log(data);
     setEmailNotUnique(data.email);
     console.log(data, "insertttting");
     let gender = "male";
@@ -23,16 +26,15 @@ const BulkDataInsert = (props) => {
     let newData = await send({
       email: data.email,
       password: "Password123",
-      birtHdate: data.birtHdate,
+      birthDate: new Date(),
       domicile: data.domisili,
-      status: true,
       gender: gender,
       indentityNumber: data.noIdentitas,
       fullname: data.fullname,
       instansi: "instance",
       educational: "educational",
       contributor: props.contributor,
-      submisionId: props.submision.id,
+      submisionId: [props.submision.id],
     });
   }
   function trigger(indexLoop) {
@@ -59,7 +61,7 @@ const BulkDataInsert = (props) => {
 
   return (
     <>
-      <h5>{status}</h5>
+      <h5 style={{ color: "black" }}>{status}</h5>
       {status === "success" ? (
         <button
           className="button-submision"

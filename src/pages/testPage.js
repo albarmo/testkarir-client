@@ -1,3 +1,4 @@
+import { set } from "js-cookie";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import Navbar from "../components/navbar";
@@ -7,6 +8,8 @@ import qoreContext from "../qoreContext";
 import "./style/testPage.css";
 
 const TestPage = () => {
+  const { user } = qoreContext.useCurrentUser();
+
   const [isValid, setIsValid] = useState(true);
   const [fullname, setFullname] = useState("");
   const [email, setEmail] = useState("");
@@ -27,6 +30,25 @@ const TestPage = () => {
     education,
     gender,
   };
+
+  useEffect(() => {
+    console.log(`checking user isLogin`);
+    if (user) {
+      setIsValid(true);
+      if (user) {
+        dataUser = {
+          fullname: user.data.username,
+          email: user.data.email,
+          numberIdentfy: user.data.numberVerify,
+          birthDate: user.data.birthDate,
+          domicile: user.data.domicile,
+          instance: "",
+          education: "",
+          gender: "",
+        };
+      }
+    }
+  }, [user]);
 
   const { send, status } = qoreContext
     .view("allFreeMember")

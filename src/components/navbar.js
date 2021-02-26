@@ -18,7 +18,7 @@ const Navbar = () => {
         />
       </div>
       <div className="menu">
-        <p onClick={() => history.push("/test")}>Tes Gratis</p>
+        <p onClick={() => history.push("/freetest")}>Tes Gratis</p>
         <p onClick={() => history.push("/article")}>Belajar Karir</p>
         <p onClick={() => history.push("/")}>Konsultasi Karir</p>
         <p onClick={() => history.push("/")}>Tentang Teskarir</p>

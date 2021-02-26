@@ -68,6 +68,22 @@ const TestSubmision = () => {
     }
   });
 
+  let today = new Date();
+  function dateValidation(dateInput) {
+    if (dateInput > today) {
+      console.log(dateInput);
+      console.log("gabisa");
+      // Swal.fire({
+      //   position: "center-center",
+      //   icon: "Hmmm",
+      //   title: "Tanggal tidak valid!",
+      //   showConfirmButton: false,
+      //   timer: 500,
+      // });
+    } else {
+      setDate(dateInput);
+    }
+  }
   return (
     <>
       <div className="submision">
@@ -76,7 +92,7 @@ const TestSubmision = () => {
           <div className="submision-form">
             {status !== "success" ? (
               <>
-                <div>
+                <div className="submision-header">
                   <h1>Pengajuan Tes</h1>
                   <p>Harap isi data dengan baik dan valid</p>
                 </div>
@@ -115,15 +131,12 @@ const TestSubmision = () => {
                 </label>
                 <input
                   type="date"
-                  onChange={(e) => setDate(e.target.value)}
+                  onChange={(e) => dateValidation(e.target.value)}
                   required
                 />
 
                 <label style={{ display: "flex", flexDirection: "row" }}>
                   <h5>Tambahkan Pesan Khusus</h5>
-                  <p className="submision-tips" style={{ fontSize: "small" }}>
-                    *opsional
-                  </p>
                 </label>
                 <textarea
                   className="submision-textarea"
@@ -132,14 +145,14 @@ const TestSubmision = () => {
                   placeholder="masukan pesan anda disini jika anda memiliki deskripsi kusus"
                   onChange={(e) => setMessage(e.target.value)}
                 />
+                <p className="submision-tips" style={{ fontSize: "small" }}>
+                  *opsional
+                </p>
               </>
             ) : null}
 
             {status === "success" ? (
               <>
-                <label>
-                  <h5>Upload Data Peserta</h5>
-                </label>
                 <ExcelReader
                   contributor={contributorId}
                   submision={newSubmision}
@@ -174,6 +187,5 @@ const TestSubmision = () => {
     </>
   );
 };
-// history.push("/report", { submision: newData });
 
 export default TestSubmision;

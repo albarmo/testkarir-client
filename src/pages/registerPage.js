@@ -16,6 +16,11 @@ const RegisterPage = () => {
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
   const [confirmPassword, setConfrimPassword] = useState("");
+  const [fullname, setFullname] = useState("");
+  const [identityNumber, setNumberIdentify] = useState("");
+  const [instance, setInstance] = useState("");
+  const [educational, setEducational] = useState("");
+  const [gender, setGender] = useState("");
 
   // clear all data state on component did mount
   useEffect(() => {
@@ -129,6 +134,11 @@ const RegisterPage = () => {
           domicile: domicile,
           password: password,
           birthDate: birthDate,
+          fullname: fullname,
+          identityNumber: identityNumber,
+          instansi: instance,
+          educational: educational,
+          gender: gender,
         },
         headers: {
           "X-Qore-Authentication": "46f76c79-e957-4c0b-812c-687ac36f6360",
@@ -174,7 +184,6 @@ const RegisterPage = () => {
               name="username"
               onChange={(e) => setUsername(e.target.value)}
             />
-
             <label htmlFor="email" className="label-register">
               Email
             </label>
@@ -185,7 +194,6 @@ const RegisterPage = () => {
               name="email"
               onChange={(e) => setEmail(e.target.value)}
             />
-
             <label htmlFor="kota" className="label-register">
               Kota
             </label>
@@ -197,6 +205,21 @@ const RegisterPage = () => {
               onChange={(e) => setDomicile(e.target.value)}
             />
 
+            <label htmlFor="password" className="label-register">
+              Gender
+            </label>
+            <select
+              className="input-register"
+              onChange={(e) => setGender(e.target.value)}
+            >
+              <option value="male" style={{ color: "black" }}>
+                Laki Laki
+              </option>
+              <option value="female" style={{ color: "black" }}>
+                wanita
+              </option>
+            </select>
+
             <label htmlFor="email" className="label-register">
               Tanggal Lahir
             </label>
@@ -206,21 +229,49 @@ const RegisterPage = () => {
               name="email"
               onChange={(e) => setBirthDate(e.target.value)}
             />
-
-            <label htmlFor="password" className="label-register">
-              Role
+            <label htmlFor="fullname" className="label-register">
+              Nama lengkap
             </label>
-            <select
+            <input
               className="input-register"
-              onChange={(e) => setRole(e.target.value)}
-            >
-              <option value="peserta" style={{ color: "black" }}>
-                Peserta
-              </option>
-              <option value="kontributor" style={{ color: "black" }}>
-                Kontributor
-              </option>
-            </select>
+              type="text"
+              name="text"
+              onChange={(e) => setFullname(e.target.value)}
+              placeholder="nama lengkap anda"
+            />
+
+            <label htmlFor="nik" className="label-register">
+              Nomor Identitas
+            </label>
+            <input
+              className="input-register"
+              type="number"
+              name="nik"
+              onChange={(e) => setNumberIdentify(e.target.value)}
+              placeholder="--- --- --- ----"
+            />
+
+            <label htmlFor="instance" className="label-register">
+              Instansi / Intuisi
+            </label>
+            <input
+              className="input-register"
+              type="text"
+              name="instance"
+              onChange={(e) => setInstance(e.target.value)}
+              placeholder="masukann instansi atau intuisi"
+            />
+
+            <label htmlFor="education" className="label-register">
+              Pendidikan Terakhir
+            </label>
+            <input
+              className="input-register"
+              type="text"
+              name="education"
+              onChange={(e) => setEducational(e.target.value)}
+              placeholder="masukann pendidikan terakhir anda"
+            />
 
             <label htmlFor="text" className="label-register">
               Password
@@ -232,7 +283,6 @@ const RegisterPage = () => {
               name="password"
               onChange={(e) => setPassword(e.target.value)}
             />
-
             <label htmlFor="confirmPassword" className="label-register">
               Confrim Password
             </label>

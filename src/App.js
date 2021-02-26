@@ -32,7 +32,7 @@ function App() {
             <Route exact path="/login" component={LoginPage} />
             <Route path="/register" component={RegsiterPage} />
             <Route path="/profile/:id" component={UserProfile} />
-            <Route path="/test" component={TestPage} />
+            <Route path="/freetest" component={TestPage} />
             <Route path="/result" component={TestResult} />
             <Route path="/agreement" component={Agreement} />
             <Route path="/teskarir/:id" component={PremiumTest} />
@@ -40,7 +40,7 @@ function App() {
             <Route path="/article" component={Article} />
             <Route path="/read/:id" component={ReadArticle} />
             <Route exact path="/report" component={UploadReport} />
-            <Route path="/freetest/result" component={FreeTestResult} />
+            <Route exact path="/resultfree" component={FreeTestResult} />
           </Switch>
         </Router>
       </div>
