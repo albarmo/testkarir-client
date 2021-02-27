@@ -15,6 +15,8 @@ import {
   ReadArticle,
   UploadReport,
   FreeTestResult,
+  AboutPage,
+  NotFoundP404,
 } from "./pages/index";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
@@ -41,6 +43,8 @@ function App() {
             <Route path="/read/:id" component={ReadArticle} />
             <Route exact path="/report" component={UploadReport} />
             <Route exact path="/resultfree" component={FreeTestResult} />
+            <Route path="/about" component={AboutPage} />
+            <Route path="*" component={NotFoundP404} />
           </Switch>
         </Router>
       </div>

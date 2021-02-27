@@ -1,0 +1,109 @@
+.not-found {
+  top: 0;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  background-image: url("../../materials/notfound404.png");
+  background-size: 70%;
+  background-repeat: no-repeat;
+  background-position: right center;
+  color: #0f7c9a;
+}
+
+.not-found-container {
+  width: 50%;
+  text-align: left;
+}
+
+.not-found-container h1 {
+  width: 30%;
+  text-align: left;
+  font-size: 3rem;
+}
+
+.not-found-container p {
+  width: 30%;
+  text-align: left;
+}
+
+.button-notfound {
+  margin-top: 70px;
+  width: 20%;
+  min-width: 20%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  padding: 0px 10px 0px 10px;
+  background: linear-gradient(
+      270.45deg,
+      #03d2d2 -11.66%,
+      rgba(68, 123, 123, 0.552083) 47.02%,
+      rgba(133, 191, 191, 0) 119.36%
+    ),
+    #017ca3;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 720px) {
+  .not-found {
+    top: 0;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    background-image: url("../../materials/notfound404.png");
+    background-size: 110%;
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    color: #0f7c9a;
+  }
+
+  .not-found-container {
+    margin-bottom: 90px;
+    width: 80%;
+    text-align: left;
+  }
+
+  .not-found-container h1 {
+    width: 100%;
+    text-align: left;
+    font-size: 3rem;
+  }
+
+  .not-found-container p {
+    width: 100%;
+    text-align: left;
+  }
+
+  .button-notfound {
+    width: 40%;
+    min-width: 20%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    padding: 0px 10px 0px 10px;
+    background: linear-gradient(
+        270.45deg,
+        #03d2d2 -11.66%,
+        rgba(68, 123, 123, 0.552083) 47.02%,
+        rgba(133, 191, 191, 0) 119.36%
+      ),
+      #017ca3;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    cursor: pointer;
+  }
+}

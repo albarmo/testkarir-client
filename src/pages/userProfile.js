@@ -50,34 +50,26 @@ const UserProfile = () => {
   let role = user ? user.data.role.displayField : "loading";
   let today = new Date();
 
-  console.log(userId, "userid");
-
+  // console.log(userId, "userid");
   let filteredSubmisions = allSubmission
     ? allSubmission.filter((val) => val.contributor.id === userId)
     : "loading";
-
-  console.log(allSubmission);
-  console.log(filteredSubmisions, "filtered sub");
-
+  // console.log(allSubmission);
+  // console.log(filteredSubmisions, "filtered sub");
   let userData = user ? user.data : "loading";
-
-  console.log(userData);
 
   if (role === "participants") {
     var submisionId = user ? userData.submisionId.nodes : null;
     var userSubmisionId = user
       ? userData.submisionId.nodes.map((val) => val.id)
       : "loading submisionId user";
-    console.log(userSubmisionId[0], "sub");
-
-    console.log(submisionId, "subid");
 
     var participantTestFilter = allSubmission
       ? allSubmission.filter(
           (val, id) => val.id == "c69ce6b0-f0c7-46e6-851c-9acbe0155a54"
         )
       : "tidak ada";
-    console.log(participantTestFilter, "aw");
+    // console.log(participantTestFilter, "aw");
   }
 
   const { data: allArticle } = qoreContext.view("allArticle").useListRow(
@@ -93,7 +85,6 @@ const UserProfile = () => {
   }, []);
 
   function testHandler(test) {
-    console.log(test);
     let type = test.type;
     if (type === "PG") {
       history.push("/freetest");
@@ -102,6 +93,17 @@ const UserProfile = () => {
       history.push("/agreement", { testId: test.id });
     }
     if (type == "TF") {
+      history.push("/agreement", { testId: test.id });
+    }
+  }
+
+  function goTotestHandler(date, test) {
+    console.log(test);
+    console.log(date);
+    console.log(today);
+    if (date < today) {
+      Swal.fire("Any fool can use a computer");
+    } else {
       history.push("/agreement", { testId: test.id });
     }
   }
@@ -123,7 +125,7 @@ const UserProfile = () => {
           <div style={{ height: "150px" }}></div>
         </div>
 
-        {profileData ? (
+        {role === "contributor" ? (
           <div className="container-profile">
             <div className="username-profile">
               <h1 className="username-profile">Ayo Test Sekarang</h1>
@@ -142,6 +144,38 @@ const UserProfile = () => {
                           </h2>
                           <p style={{ marginTop: "-20px", color: "white" }}>
                             {val.testType.displayField} - {val.type}
+                          </p>
+                        </div>
+                      </>
+                    );
+                  })
+                : "belum ada test nih !"}
+            </div>
+          </div>
+        ) : null}
+
+        {role === "participants" ? (
+          <div className="container-profile">
+            <div className="username-profile">
+              <h1 className="username-profile">Test Anda</h1>
+            </div>
+            <div className="history-test-container">
+              {participantTestFilter
+                ? participantTestFilter.map((val, id) => {
+                    return (
+                      <>
+                        <div
+                          className="history-card"
+                          onClick={() => goTotestHandler(val.date, val)}
+                        >
+                          <h2 style={{ marginBottom: "40px", color: "white" }}>
+                            {val.test ? val.test.displayField : "loading"}
+                          </h2>
+                          <p style={{ marginTop: "-20px", color: "white" }}>
+                            <Moment fromNow ago>
+                              {val.date ? val.date : "loading data"}
+                            </Moment>
+                            {val.date < today ? " again" : " ago"}
                           </p>
                         </div>
                       </>
@@ -309,7 +343,12 @@ const UserProfile = () => {
                     return (
                       <tr key={id}>
                         <td>{id + 1}</td>
-                        <td>{val.test ? val.test.displayField : "loading"}</td>
+                        <td
+                          onClick={() => goTotestHandler(val.date)}
+                          style={{ fontWeight: "bolder", cursor: "pointer" }}
+                        >
+                          {val.test ? val.test.displayField : "loading"}
+                        </td>
                         <td>
                           <Moment parse="YYYY-MM-DD HH:mm">
                             {val.date ? val.date : "loading"}

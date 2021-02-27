@@ -11,3 +11,5 @@ export { default as Article } from "./article";
 export { default as ReadArticle } from "./readArticle";
 export { default as UploadReport } from "./uploadReport";
 export { default as FreeTestResult } from "./hasilTestGratis";
+export { default as AboutPage } from "./about";
+export { default as NotFoundP404 } from "./notFound404";

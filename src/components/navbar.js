@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory, useLocation, Link } from "react-router-dom";
 import "./style/navbar.css";
 import logo from "../materials/Logo_navbar.png";
 import qoreContext from "../qoreContext";
@@ -20,8 +20,13 @@ const Navbar = () => {
       <div className="menu">
         <p onClick={() => history.push("/freetest")}>Tes Gratis</p>
         <p onClick={() => history.push("/article")}>Belajar Karir</p>
-        <p onClick={() => history.push("/")}>Konsultasi Karir</p>
-        <p onClick={() => history.push("/")}>Tentang Teskarir</p>
+        <a
+          href="https://api.whatsapp.com/send?phone=6285964015420&text=halo%20tim%20teskarir%2C%20saya%20mau%20tanya...."
+          style={{ textDecoration: "none", color: "black" }}
+        >
+          <p>Konsultasi Karir</p>
+        </a>
+        <p onClick={() => history.push("/about")}>Tentang Teskarir</p>
         {user ? (
           <div
             className="button-navbar"

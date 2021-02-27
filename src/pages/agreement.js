@@ -15,12 +15,12 @@ const Agreement = (props) => {
   const ID = localStorage.getItem("user_id");
   const { user } = qoreContext.useCurrentUser();
 
-  function isValidId(id) {
-    let regexKtp = /^((1[1-9])|(21)|([37][1-6])|(5[1-4])|(6[1-5])|([8-9][1-2]))[0-9]{2}[0-9]{2}(([0-6][0-9])|(7[0-1]))((0[1-9])|(1[0-2]))([0-9]{2})[0-9]{4}$/.test(
-      id
-    );
-    return regexKtp;
-  }
+  // function isValidId(id) {
+  //   let regexKtp = /^((1[1-9])|(21)|([37][1-6])|(5[1-4])|(6[1-5])|([8-9][1-2]))[0-9]{2}[0-9]{2}(([0-6][0-9])|(7[0-1]))((0[1-9])|(1[0-2]))([0-9]{2})[0-9]{4}$/.test(
+  //     id
+  //   );
+  //   return regexKtp;
+  // }
 
   const { updateRow, status } = qoreContext.view("allMember").useUpdateRow();
   console.log(status, "status update data numberVerify");
@@ -39,16 +39,25 @@ const Agreement = (props) => {
     }
   }, [user]);
 
+  let userIdentifyKey = user ? user.data.indentityNumber : "loading";
+  console.log(userIdentifyKey);
+
   async function submitVerify() {
-    let regex = isValidId(numberVerify);
-    console.log(regex);
-    if (regex) {
-      await updateRow(userId, { numberVerify: numberVerify });
+    if (numberVerify === userIdentifyKey) {
+      console.log({
+        status: {
+          status: "success",
+          message: "id approved",
+        },
+      });
       history.push(`/teskarir/${props.location.state.testId}`);
-    } else if (numberVerify) {
-      Swal.fire("Tolong masukan Nomor Identitas dengan benar");
-    } else if (user.data.numberVerify) {
-      history.push(`/teskarir/${props.location.state.testId}`);
+    } else if (numberVerify != userIdentifyKey) {
+      console.error({
+        status: {
+          status: "rejected",
+          message: "input identity number invalid",
+        },
+      });
     }
   }
 
@@ -69,23 +78,34 @@ const Agreement = (props) => {
             and more recently with desktop publishing software like Aldus
             PageMaker including versions of Lorem Ipsum.
           </p>
+          input {numberVerify}
+          <br></br>
+          key {userIdentifyKey}
           {isVerify ? (
             <div className="form-agreement">
               <h2>Verify Yourself</h2>
               <div className="text-agreement">
                 <label htmlFor="nik"> Input Nomor Identitas Anda</label>
+                {numberVerify !== userIdentifyKey &&
+                numberVerify.length === 16 ? (
+                  <p
+                    style={{
+                      color: "red",
+                      fontSize: "small",
+                      marginLeft: "10px",
+                    }}
+                  >
+                    {numberVerify ? "invalid id" : null}
+                  </p>
+                ) : null}
                 <input
                   className="input-text-agreement"
                   placeholder="--- --- ------ ----"
-                  type="text"
+                  type="number"
                   onChange={(e) => setNumberVerify(e.target.value)}
                   maxLength="16"
                   required
                 />
-                <label htmlFor="nik" style={{ marginTop: "20px" }}>
-                  Captcha Verify
-                </label>
-                <div className="captcha">ON PROGRESS</div>
               </div>
             </div>
           ) : null}

@@ -15,13 +15,11 @@ const QuestTest = () => {
   const { id } = useParams();
 
   //  ----------------------------------Qore SDK -------------------------------------------
-  const { data: allStatementsGroup, status } = qoreContext
+  const { data: allStatementsGroup } = qoreContext
     .view("allStatementsGroup")
     .useListRow({
-      limit: 10,
+      limit: 100,
     });
-
-  // console.log(status);
 
   let filteredByTestId = allStatementsGroup.filter(
     (val) => val.testId.id === id
@@ -38,46 +36,75 @@ const QuestTest = () => {
     .view("allStatements")
     .useGetRow(statementId[index]);
 
+  const { data: allStatement, status } = qoreContext
+    .view("allStatements")
+    .useListRow({
+      limit: 100,
+    });
+
+  // filter data by statementId
   let image =
     "https://images.vexels.com/media/users/3/193246/isolated/preview/89e77acd7bf8bed338e66e8aba45f051-covid-19-girl-character-icon-by-vexels.png";
   let alphaKey = ["A", "B", "C", "D"];
   let numberKey = ["1", "2", "3", "4"];
 
-  var answers = statement
-    ? statement.answers.map((val, id) => ({
-        id: numberKey[id],
-        name: val.Answer,
-        type: alphaKey[id],
-        thumb: image,
-      }))
-    : "loading answer";
+  const dataFiltered = () => {
+    let data100 = [];
+    for (let i = 0; i < allStatement.length; i++) {
+      // console.log(`${allStatement[i].id} iterasi ke- ${i}`);
+      for (let j = 0; j < statementId.length; j++) {
+        if (allStatement[i].id === statementId[j]) {
+          var answers = allStatement
+            ? allStatement[i].answers.map((val, id) => ({
+                id: numberKey[id],
+                name: val.Answer,
+                type: alphaKey[id],
+                thumb: image,
+              }))
+            : "loading answer";
 
-  dataOfAnswer.push(answers);
-  dataOfAnswer.push(answers);
-  dataOfAnswer.push(answers);
-  dataOfAnswer.push(answers);
-  dataOfAnswer.push(answers);
-  dataOfAnswer.push(answers);
-  // console.log(dataQuest, "data of quest");
-  // console.log(dataOfAnswer, "data of fetch");
+          data100.push(answers);
+        }
+      }
+    }
+    return data100;
+  };
 
-  let mappedAnswer = answers ? [answers].map((val) => val) : null;
-  // console.log(mappedAnswer, "mapped answer");
+  let statementLoop = dataFiltered();
+  console.log(
+    statementLoop ? statementLoop[indexQuestion] : null,
+    "statementLoop"
+  );
+  console.log(dataQuest[indexQuestion], "data of quest");
 
   // -------------------------------------QOre SDK ----------------------------------------------
 
+  const { user } = qoreContext.useCurrentUser();
   const history = useHistory();
-  const [option, updateOption] = useState(dataQuest[indexQuestion]);
-  const [option2, updateOption2] = useState(mappedAnswer[indexQuestion]);
+  const [option, updateOption] = useState();
   const [questStatus, setQuestStatus] = useState(false);
   const [result, setResult] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const { user } = qoreContext.useCurrentUser();
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      updateOption(statementLoop[indexQuestion]);
+    }, 1000);
+    setLoading(false);
+  }, [allStatement]);
+
+  useEffect(() => {
+    if (!option) {
+      setLoading(true);
+    } else if (option) {
+      setLoading(false);
+    }
+  });
 
   function handleOnDragEnd(result) {
     if (!result.destination) return;
     console.log(option, "option");
-    console.log(answers, "answer");
     const items = Array.from(option);
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
@@ -85,10 +112,13 @@ const QuestTest = () => {
   }
 
   // current answer while user change list
-  let listItem = option.map((val) => Number(val.id));
-  let listItemByType = option.map((val) => val.type);
-  console.log(listItemByType);
+  console.log(option, "option");
+  if (option) {
+    var listItem = option.map((val) => Number(val.id));
+    var listItemByType = option.map((val) => val.type);
+  }
 
+  // handling generate and display quest
   function next() {
     if (indexQuestion < dataQuest.length - 1) {
       indexQuestion++;
@@ -109,10 +139,6 @@ const QuestTest = () => {
 
   return (
     <div className="App">
-      {/* {JSON.stringify(option)}
-      <br></br>
-      <br></br>
-      {JSON.stringify(answers)} */}
       <header className="App-header">
         <div>
           <h1 style={{ color: "#117EA0" }}>
@@ -123,6 +149,7 @@ const QuestTest = () => {
             pernyataan
           </h4>
         </div>
+        {loading ? <h1 style={{ color: "black" }}>Loading Data</h1> : null}
         <div className="container-dnd">
           <div className="dnd-ranger">
             <p>suka banget</p>

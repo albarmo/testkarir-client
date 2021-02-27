@@ -13,39 +13,45 @@ var colIdArr = [];
 let datax = [];
 
 const Quest = (props) => {
+  const { user } = qoreContext.useCurrentUser();
   const history = useHistory();
   const [indexQuestion, setIndexQuestion] = useState(0);
   const [mainAnswer, setMainAnswer] = useState([]);
   const [clicked, setClicked] = useState([]);
+  const [statementState, setDataStatement] = useState("");
 
-  function getAllStatementGroup() {
-    console.log("fetch");
-    axios({
-      method: "GET",
-      url:
-        "https://prod-qore-app.qorebase.io/U6NDz2mu562iqwj/allStatementsGroup/fields",
-    })
-      .then(({ data }) => {
-        let { nodes } = data;
-        let allStatementsGroup = nodes;
-        datax = nodes;
-      })
-      .catch((error) => {
-        console.log(error, "err fetch");
-      });
+  try {
+    const { data: allStatementsGroup, status, error } = qoreContext
+      .view("allStatementsGroup")
+      .useListRow(
+        {
+          limit: 31,
+          order: "asc",
+        },
+        { networkPolicy: "cache-only" }
+      );
+
+    console.log(allStatementsGroup, "allsg");
+  } catch (error) {
+    console.log(error);
   }
 
-  useEffect(() => {
-    getAllStatementGroup();
-  }, []);
+  console.log(status);
+  console.log(error);
 
   // --------------------------------------------QORE SDK-------------------------------------------------------------//
-  const { data: allStatementsGroup2, status, error } = qoreContext
-    .view("allStatementsGroup")
-    .useListRow({ limit: 100 });
 
+  var { data: allStatementsGroup2, status, error } = qoreContext
+    .view("allStatementsGroup")
+    .useListRow(
+      {
+        limit: 100,
+        order: "asc",
+      },
+      { networkPolicy: "cache-only" }
+    );
   console.log(allStatementsGroup2, "qore");
-  console.log(datax);
+  console.log(statementState, "state");
 
   // // --------------------------------------------DATA-----------------------------------------------------------------//
   if (allStatementsGroup2) {
@@ -102,7 +108,12 @@ const Quest = (props) => {
       console.log(Result, "FINAL RESULT");
       history.push({
         pathname: "/resultfree",
-        state: { user: props.user, output: Result },
+        state: {
+          user: props.user,
+          output: Result,
+          userdata: user,
+          test: filterFreeTest,
+        },
       });
     }
   }
@@ -160,7 +171,7 @@ const Quest = (props) => {
                 </div>
               );
             })
-          : "loading"}
+          : "error"}
       </div>
       <div className="button-test" onClick={(e) => nextQuest(e)}>
         {indexQuestion >= questLength - 1 ? "Lihat Hasil" : "Lanjut"}

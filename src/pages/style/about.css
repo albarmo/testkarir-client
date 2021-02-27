@@ -1,0 +1,86 @@
+.about {
+  top: 0;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  background-image: url("../../materials/register.png");
+  background-size: 30%;
+  background-repeat: no-repeat;
+  background-position: right center;
+  color: #0f7c9a;
+}
+
+.about p {
+  width: 60%;
+}
+
+.about-container {
+  height: 100%;
+  width: 60%;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  text-align: left;
+  align-self: center;
+  margin-top: 100px;
+}
+
+.about-sociale {
+  display: flex;
+  width: 70%;
+  justify-content: space-between;
+  color: #0f7c9a;
+  font-size: 1.6rem;
+}
+
+@media only screen and (max-width: 720px) {
+  .about {
+    top: 0;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    background-image: url("../../materials/register.png");
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: right center;
+    color: #0f7c9a;
+    padding: 0px;
+  }
+
+  .about p {
+    width: 100%;
+  }
+
+  .about iframe {
+    width: 100%;
+  }
+
+  .about-container {
+    height: 100%;
+    width: 60%;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    text-align: left;
+    align-self: center;
+    margin-top: 60px;
+  }
+
+  .about-sociale {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    color: #0f7c9a;
+    font-size: 0.7rem;
+    align-items: baseline;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

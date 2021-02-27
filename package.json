@@ -37,8 +37,10 @@
     "styled-components": "^5.2.1",
     "sweetalert2": "^10.14.0",
     "use-sound": "^2.0.1",
+    "validator": "^13.5.2",
     "web-vitals": "^1.1.0",
-    "xlsx": "^0.16.9"
+    "xlsx": "^0.16.9",
+    "yup": "^0.32.9"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -3,9 +3,8 @@ import { useHistory } from "react-router-dom";
 import qoreContext from "../qoreContext";
 import "./style/register.css";
 import Swal from "sweetalert2";
-import axios from "axios";
-
 import Navbar from "../components/navbar";
+import validator from "validator";
 
 const RegisterPage = () => {
   const history = useHistory();
@@ -21,6 +20,7 @@ const RegisterPage = () => {
   const [instance, setInstance] = useState("");
   const [educational, setEducational] = useState("");
   const [gender, setGender] = useState("");
+  const [dataValdiator, updateDataValidator] = useState({ email: false });
 
   // clear all data state on component did mount
   useEffect(() => {
@@ -35,114 +35,47 @@ const RegisterPage = () => {
     setPassword("");
   }, []);
 
-  // const { send, status } = qoreContext.view("allMember").useForm("createUser");
-  // console.log(status, "status register");
+  const { send, status } = qoreContext.view("allMember").useForm("createUser");
+  console.log(status, "status register");
 
-  // async function register() {
-  //   if (password !== confirmPassword) {
-  //     console.log("Confrim passord salah");
-  //     Swal.fire({
-  //       icon: "warning",
-  //       text: "Retype password wrong!",
-  //     });
-  //   } else if (password == confirmPassword) {
-  //     await send({
-  //       email: email,
-  //       username: username,
-  //       password: password,
-  //       birthDate: birthDate,
-  //       domicile: domicile,
-  //     })
-  //       .then((data) => {
-  //         console.log(data);
-  //         Swal.fire({
-  //           position: "center",
-  //           icon: "success",
-  //           title: "Success Created Account",
-  //           showConfirmButton: false,
-  //           timer: 3000,
-  //         });
-  //         history.push("/login");
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //         Swal.fire({
-  //           icon: "error",
-  //           title: "Oops...",
-  //           text: "Email adrealy used!",
-  //         });
-  //       });
-  //   }
-  // }
+  function isValidId(id) {
+    let regexKtp = /^((1[1-9])|(21)|([37][1-6])|(5[1-4])|(6[1-5])|([8-9][1-2]))[0-9]{2}[0-9]{2}(([0-6][0-9])|(7[0-1]))((0[1-9])|(1[0-2]))([0-9]{2})[0-9]{4}$/.test(
+      id
+    );
+    return regexKtp;
+  }
 
-  // const { insertRow, status } = qoreContext.view("allMember").useInsertRow();
-  // console.log(status, "status register");
-
-  // async function register() {
-  //   if (password !== confirmPassword) {
-  //     console.log("Confrim passord salah");
-  //     Swal.fire({
-  //       icon: "warning",
-  //       text: "Retype password wrong!",
-  //     });
-  //   } else if (password == confirmPassword) {
-  //     await insertRow({
-  //       email: email,
-  //       username: username,
-  //       domicile: domicile,
-  //       password: password,
-  //       birthDate: birthDate,
-  //       status: true,
-  //     })
-  //       .then((data) => {
-  //         console.log(data);
-  //         Swal.fire({
-  //           position: "center",
-  //           icon: "success",
-  //           title: "Success Created Account",
-  //           showConfirmButton: false,
-  //           timer: 3000,
-  //         });
-  //         history.push("/login");
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //         Swal.fire({
-  //           icon: "error",
-  //           title: "Oops...",
-  //           text: "Email adrealy used!",
-  //         });
-  //       });
-  //   }
-  // }
+  async function idValidationHandler() {
+    let regex = isValidId(identityNumber);
+    console.log(regex);
+    if (regex) {
+      setNumberIdentify(identityNumber);
+    } else if (!regex) {
+      Swal.fire("Tolong masukan Nomor Identitas dengan benar");
+    }
+  }
 
   async function register() {
-    if (password !== confirmPassword) {
+    let isIdValid = idValidationHandler();
+    let isEmailVaid = validator.isEmail(email);
+    if (password !== confirmPassword && isIdValid && isEmailVaid) {
       console.log("Confrim passord salah");
       Swal.fire({
         icon: "warning",
         text: "Retype password wrong!",
       });
     } else if (password == confirmPassword) {
-      axios({
-        method: "POST",
-        url:
-          "https://prod-qore-app.qorebase.io/U6NDz2mu562iqwj/allMember/forms/createUser",
-        data: {
-          email: email,
-          username: username,
-          domicile: domicile,
-          password: password,
-          birthDate: birthDate,
-          fullname: fullname,
-          identityNumber: identityNumber,
-          instansi: instance,
-          educational: educational,
-          gender: gender,
-        },
-        headers: {
-          "X-Qore-Authentication": "46f76c79-e957-4c0b-812c-687ac36f6360",
-        },
+      await send({
+        email: email,
+        username: username,
+        domicile: domicile,
+        password: password,
+        birthDate: birthDate,
+        fullname: fullname,
+        indentityNumber: identityNumber,
+        instansi: instance,
+        educational: educational,
+        gender: gender,
       })
         .then((data) => {
           console.log(data);
@@ -160,7 +93,7 @@ const RegisterPage = () => {
           Swal.fire({
             icon: "error",
             title: "Oops...",
-            text: "Email adrealy used!",
+            text: "proses registrasi gagal!",
           });
         });
     }
@@ -170,13 +103,19 @@ const RegisterPage = () => {
     <>
       <div className="register">
         <Navbar />
-        {email}
         <div className="left-form">
           <form className="form-register">
             <h1 className="header-text">Register</h1>
             <label htmlFor="text" className="label-register">
               Username
             </label>
+            {username.length > 20 ? (
+              <p
+                style={{ color: "red", fontSize: "small", marginLeft: "10px" }}
+              >
+                {username ? "masimal karakter 20" : null}
+              </p>
+            ) : null}
             <input
               className="input-register"
               placeholder="Enter your username here"
@@ -187,6 +126,14 @@ const RegisterPage = () => {
             <label htmlFor="email" className="label-register">
               Email
             </label>
+
+            {validator.isEmail(email) ? null : (
+              <p
+                style={{ color: "red", fontSize: "small", marginLeft: "10px" }}
+              >
+                {email ? "email tidak valid" : null}
+              </p>
+            )}
             <input
               className="input-register"
               placeholder="@email"
@@ -197,6 +144,13 @@ const RegisterPage = () => {
             <label htmlFor="kota" className="label-register">
               Kota
             </label>
+            {domicile.length > 20 ? (
+              <p
+                style={{ color: "red", fontSize: "small", marginLeft: "10px" }}
+              >
+                {domicile ? "masimal karakter 20" : null}
+              </p>
+            ) : null}
             <input
               className="input-register"
               placeholder="Domisili tempat tinggal"
@@ -212,6 +166,9 @@ const RegisterPage = () => {
               className="input-register"
               onChange={(e) => setGender(e.target.value)}
             >
+              <option value="male" style={{ color: "black" }} selected>
+                select your gender
+              </option>
               <option value="male" style={{ color: "black" }}>
                 Laki Laki
               </option>
@@ -229,7 +186,20 @@ const RegisterPage = () => {
               name="email"
               onChange={(e) => setBirthDate(e.target.value)}
             />
+
             <label htmlFor="fullname" className="label-register">
+              {fullname.length > 30 ? (
+                <p
+                  style={{
+                    color: "red",
+                    fontSize: "small",
+                    marginLeft: "10px",
+                    marginTop: "10px",
+                  }}
+                >
+                  {fullname ? "masimal karakter 30" : null}
+                </p>
+              ) : null}
               Nama lengkap
             </label>
             <input
@@ -242,6 +212,18 @@ const RegisterPage = () => {
 
             <label htmlFor="nik" className="label-register">
               Nomor Identitas
+              {identityNumber.length != 16 ? (
+                <p
+                  style={{
+                    color: "gainsbro",
+                    fontSize: "small",
+                    marginLeft: "10px",
+                    marginTop: "10px",
+                  }}
+                >
+                  {identityNumber ? "data tidak valid" : null}
+                </p>
+              ) : null}
             </label>
             <input
               className="input-register"
@@ -254,6 +236,18 @@ const RegisterPage = () => {
             <label htmlFor="instance" className="label-register">
               Instansi / Intuisi
             </label>
+            {instance.length > 30 ? (
+              <p
+                style={{
+                  color: "red",
+                  fontSize: "small",
+                  marginLeft: "10px",
+                  marginTop: "10px",
+                }}
+              >
+                {instance ? "masimal karakter 30" : null}
+              </p>
+            ) : null}
             <input
               className="input-register"
               type="text"
@@ -265,6 +259,18 @@ const RegisterPage = () => {
             <label htmlFor="education" className="label-register">
               Pendidikan Terakhir
             </label>
+            {educational.length > 30 ? (
+              <p
+                style={{
+                  color: "red",
+                  fontSize: "small",
+                  marginLeft: "10px",
+                  marginTop: "10px",
+                }}
+              >
+                {educational ? "masimal karakter 30" : null}
+              </p>
+            ) : null}
             <input
               className="input-register"
               type="text"
@@ -276,6 +282,18 @@ const RegisterPage = () => {
             <label htmlFor="text" className="label-register">
               Password
             </label>
+            {password.length < 6 ? (
+              <p
+                style={{
+                  color: "red",
+                  fontSize: "small",
+                  marginLeft: "10px",
+                  marginTop: "10px",
+                }}
+              >
+                {password ? "password minimal karakter 6" : null}
+              </p>
+            ) : null}
             <input
               className="input-register"
               placeholder="Password"
@@ -286,6 +304,18 @@ const RegisterPage = () => {
             <label htmlFor="confirmPassword" className="label-register">
               Confrim Password
             </label>
+            {confirmPassword !== password ? (
+              <p
+                style={{
+                  color: "red",
+                  fontSize: "small",
+                  marginLeft: "10px",
+                  marginTop: "10px",
+                }}
+              >
+                {confirmPassword ? "konfirmasi password salah" : null}
+              </p>
+            ) : null}
             <input
               className="input-register"
               placeholder="Confrim Password"

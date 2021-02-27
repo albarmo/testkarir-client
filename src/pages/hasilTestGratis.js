@@ -40,6 +40,8 @@ const FreeTestResult = (props) => {
     ? allOutput.filter((val) => val.name.toUpperCase() === output.toUpperCase())
     : "failed fetching output";
 
+  console.log(fetchOutput);
+
   let resultId = fetchOutput[0] ? fetchOutput[0].id : null;
   console.log(resultId, "result id");
 
@@ -48,17 +50,24 @@ const FreeTestResult = (props) => {
     .useForm("createHistory");
   console.log(`create new history status : ${status}`);
 
-  const generateHistory = () => {
-    const testId = "496a27a8-ee80-46a2-aff3-88923fa8382c";
-    const typeId = "c587e204-d1b4-4fff-bbd0-df84fd4004de";
+  const testId = props.location.state.test[0].testId.id;
+  const typeId = "c587e204-d1b4-4fff-bbd0-df84fd4004de";
+  const userId = props.location.state
+    ? props.location.state.userdata.data.id
+    : null;
 
+  const generateHistory = () => {
+    setTimeout(() => {
+      console.log("waiting props data!");
+    }, 5000);
     let createNewHistory = send({
-      type: ["496a27a8-ee80-46a2-aff3-88923fa8382c"],
-      userId: [""],
+      // type: ["496a27a8-ee80-46a2-aff3-88923fa8382c"],
+      userId: [userId],
       date: new Date(),
       testId: [testId],
-      result: [resultId],
+      // result: [resultId],
     });
+    console.log(createNewHistory);
   };
 
   useEffect(() => {

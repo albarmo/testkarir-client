@@ -31,9 +31,12 @@ const TestPage = () => {
     gender,
   };
 
+  let userData = user ? user.data : "loading user";
+  console.log(userData);
+
   useEffect(() => {
     console.log(`checking user isLogin`);
-    if (user) {
+    if (userData) {
       setIsValid(true);
       if (user) {
         dataUser = {
@@ -48,7 +51,7 @@ const TestPage = () => {
         };
       }
     }
-  }, [user]);
+  }, [userData]);
 
   const { send, status } = qoreContext
     .view("allFreeMember")
@@ -73,8 +76,8 @@ const TestPage = () => {
     }
   }, [status]);
 
-  async function startHandler() {
-    let newData = await send({
+  function startHandler() {
+    let newData = send({
       fullname: fullname,
       email: email,
       identityNumber: numberIdentfy,
@@ -85,10 +88,6 @@ const TestPage = () => {
       gender: gender,
     });
   }
-
-  useEffect(() => {
-    setIsValid(false);
-  }, []);
 
   return (
     <>
