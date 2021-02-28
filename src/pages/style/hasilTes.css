@@ -105,7 +105,7 @@
     color: #117ea0;
     text-align: left;
     background-color: transparent;
-    width: 60%;
+    width: 90%;
     margin-top: 10%;
   }
 
@@ -120,7 +120,7 @@
     background-color: transparent;
     width: 80%;
     margin-left: 2%;
-    color: black;
+    color: rgb(216, 216, 216);
   }
 
   .button-result {

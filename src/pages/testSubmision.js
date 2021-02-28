@@ -6,6 +6,7 @@ import "./style/submision.css";
 import Swal from "sweetalert2";
 import ExcelReader from "../helpers/exelHandler/exelReader";
 import data from "../helpers/exelHandler/exelReader";
+import Footer from "../components/footer";
 
 const TestSubmision = () => {
   const { user } = qoreContext.useCurrentUser();
@@ -96,7 +97,6 @@ const TestSubmision = () => {
                   <h1>Pengajuan Tes</h1>
                   <p>Harap isi data dengan baik dan valid</p>
                 </div>
-
                 <label>
                   <h5>Kontributor</h5>
                 </label>
@@ -165,7 +165,15 @@ const TestSubmision = () => {
                     download
                     style={{ textDecoration: "none" }}
                   >
-                    <b style={{ cursor: "pointer", marginLeft: "2px" }}>
+                    <b
+                      style={{
+                        cursor: "pointer",
+                        marginLeft: "2px",
+                        color: "#007BA2",
+                        textDecoration: "underline",
+                        fontWeight: "bolder",
+                      }}
+                    >
                       download disini
                     </b>
                   </a>
@@ -184,6 +192,7 @@ const TestSubmision = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

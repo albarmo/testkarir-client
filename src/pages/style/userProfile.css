@@ -172,7 +172,6 @@
   top: 0;
   left: 0;
   background-color: black;
-  opacity: 90;
 }
 
 .artikel-card h2 {
@@ -191,21 +190,34 @@
 }
 
 .userSubmision table {
-  width: 50%;
+  margin-top: auto;
+  width: 20%;
   background-color: blue;
   border-top: 2px;
 }
 
-.userSubmision th {
+.submision-table {
+  margin-top: 100px;
+  width: 90%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.userSubmision-sub th {
+  margin-top: auto;
   background-color: #0188c5;
   border: 2px;
   padding: 5px;
   text-align: center;
 }
-.userSubmision td {
+.userSubmision-sub td {
   background-color: #ececec;
   padding-left: 10px;
   border: 2px;
+  padding: 10px;
 }
 
 .submision h1 {
@@ -474,7 +486,6 @@
     top: 0;
     left: 0;
     background-color: black;
-    opacity: 90;
   }
 
   .artikel-card h2 {
@@ -506,6 +517,30 @@
     width: 80%;
     font-weight: bold;
     color: #017ca3;
+  }
+
+  .submision-table {
+    width: 90%;
+    overflow: scroll;
+  }
+
+  .userSubmision-sub table {
+    width: 100%;
+    margin-top: auto;
+    border-top: 2px;
+  }
+
+  .userSubmision-sub th {
+    background-color: #0188c5;
+    border: 2px;
+    padding: 5px;
+    text-align: center;
+    width: 0px;
+  }
+  .userSubmision-sub td {
+    background-color: #ececec;
+    padding-left: 10px;
+    border: 2px;
   }
 
   .process-submision {

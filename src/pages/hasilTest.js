@@ -6,6 +6,7 @@ import "./style/hasilTes.css";
 import { jsPDF } from "jspdf";
 import GenerateHistory from "../helpers/generateHistory";
 import imgData from "../materials/login.png";
+import Footer from "../components/footer";
 
 import Pdf from "react-to-pdf";
 const ref = React.createRef();
@@ -133,6 +134,7 @@ const TestResult = (props) => {
           </Pdf>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

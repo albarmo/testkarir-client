@@ -98,9 +98,6 @@ const UserProfile = () => {
   }
 
   function goTotestHandler(date, test) {
-    console.log(test);
-    console.log(date);
-    console.log(today);
     if (date < today) {
       Swal.fire("Any fool can use a computer");
     } else {
@@ -265,57 +262,61 @@ const UserProfile = () => {
           </div>
         ) : null}
 
-        {role === "contributor" ? (
-          <>
-            <h2>Tabel Submision</h2>
-            <table
-              className="userSubmision"
-              style={{
-                backgroundColor: "white",
-                width: "50%",
-                height: "300px",
-                justifyContent: "space-around",
-                textAlign: "left",
-              }}
-            >
-              <tr>
-                <th>NO</th>
-                <th>Tes</th>
-                <th>Tanggal</th>
-                <th>Count</th>
-                <th>contributor</th>
-                <th>Status</th>
-              </tr>
-              {filteredSubmisions
-                ? filteredSubmisions.map((val, id) => {
-                    return (
-                      <tr key={id}>
-                        <td>{id + 1}</td>
-                        <td>{val.test ? val.test.displayField : "loading"}</td>
-                        <td>
-                          <Moment parse="YYYY-MM-DD HH:mm">
-                            {val.date ? val.date : "loading"}
-                          </Moment>
-                        </td>
-                        <td>
-                          <Moment fromNow ago>
-                            {val.date ? val.date : "loading"}
-                          </Moment>
-                          {val.date < today ? " again" : " ago"}
-                        </td>
-                        <td>
-                          {val.contributor
-                            ? val.contributor.displayField
-                            : "loading"}
-                        </td>
-                        <td> {val.status ? val.status : "loading"}</td>
-                      </tr>
-                    );
-                  })
-                : "loading data"}
-            </table>
-          </>
-        ) : null}
+        <div className="submision-table">
+          {role === "contributor" && filteredSubmisions.length > 0 ? (
+            <>
+              <h2>Tabel Submision</h2>
+              <table
+                className="userSubmision-sub"
+                // style={{
+                //   backgroundColor: "white",
+                //   width: "30%",
+                //   height: "300px",
+                //   justifyContent: "space-around",
+                //   textAlign: "left",
+                // }}
+              >
+                <tr>
+                  <th>NO</th>
+                  <th>Tes</th>
+                  <th>Tanggal</th>
+                  <th>Count</th>
+                  <th>contributor</th>
+                  <th>Status</th>
+                </tr>
+                {filteredSubmisions
+                  ? filteredSubmisions.map((val, id) => {
+                      return (
+                        <tr key={id}>
+                          <td>{id + 1}</td>
+                          <td>
+                            {val.test ? val.test.displayField : "loading"}
+                          </td>
+                          <td>
+                            <Moment parse="YYYY-MM-DD HH:mm">
+                              {val.date ? val.date : "loading"}
+                            </Moment>
+                          </td>
+                          <td>
+                            <Moment fromNow ago>
+                              {val.date ? val.date : "loading"}
+                            </Moment>
+                            {val.date < today ? " again" : " ago"}
+                          </td>
+                          <td>
+                            {val.contributor
+                              ? val.contributor.displayField
+                              : "loading"}
+                          </td>
+                          <td> {val.status ? val.status : "loading"}</td>
+                        </tr>
+                      );
+                    })
+                  : "loading data"}
+              </table>
+            </>
+          ) : null}
+        </div>
 
         {role === "participants" ? (
           <>

@@ -60,9 +60,7 @@
   width: 10rem;
   height: 10rem;
   padding: 5%;
-  opacity: 80%;
   background-color: #abe9e9;
-  opacity: 40%;
   text-decoration: none;
 }
 
@@ -77,9 +75,7 @@
   width: 10rem;
   height: 10rem;
   padding: 5%;
-  opacity: 80%;
   background-color: #016d6d;
-  opacity: 40%;
   text-decoration: none;
 }
 
@@ -91,7 +87,6 @@
 .col:hover {
   /* margin-left: 3%; */
   background-color: #0a6969;
-  opacity: 100%;
   color: rgb(255, 255, 255);
 }
 
@@ -121,7 +116,6 @@
   .col:hover {
     /* margin-left: 3%; */
     background-color: #0a6969;
-    opacity: 100%;
     color: rgb(255, 255, 255);
   }
 

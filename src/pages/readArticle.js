@@ -4,9 +4,7 @@ import qoreContext from "../qoreContext";
 import NavbarTransparent from "../components/navbarTransparent";
 import "./style/readArticle.css";
 import parse from "html-react-parser";
-
-import CardArticle from "../components/cardArticle";
-import ArticleContent from "../components/articleContent";
+import Footer from "../components/footer";
 
 const ReadArticle = () => {
   let { id } = useParams();
@@ -53,6 +51,7 @@ const ReadArticle = () => {
           </div>
         </>
       ) : null}
+      <Footer />
     </>
   );
 };

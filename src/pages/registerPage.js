@@ -20,6 +20,7 @@ const RegisterPage = () => {
   const [instance, setInstance] = useState("");
   const [educational, setEducational] = useState("");
   const [gender, setGender] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [dataValdiator, updateDataValidator] = useState({ email: false });
 
   // clear all data state on component did mount
@@ -76,6 +77,7 @@ const RegisterPage = () => {
         instansi: instance,
         educational: educational,
         gender: gender,
+        phoneNumber: phoneNumber,
       })
         .then((data) => {
           console.log(data);
@@ -323,6 +325,30 @@ const RegisterPage = () => {
               name="confrimPassword"
               onChange={(e) => setConfrimPassword(e.target.value)}
             />
+
+            <label htmlFor="confirmPassword" className="label-register">
+              Nomor Telepon
+            </label>
+            {phoneNumber.length > 15 ? (
+              <p
+                style={{
+                  color: "red",
+                  fontSize: "small",
+                  marginLeft: "10px",
+                  marginTop: "10px",
+                }}
+              >
+                {phoneNumber ? "nomor telephone invalid" : null}
+              </p>
+            ) : null}
+            <input
+              className="input-register"
+              placeholder="(+62) ... ... ..."
+              type="number"
+              name="phone"
+              onChange={(e) => setPhoneNumber(e.target.value)}
+            />
+
             <div className="button-submit-register" onClick={() => register()}>
               SUBMIT
             </div>

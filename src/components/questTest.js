@@ -124,7 +124,7 @@ const QuestTest = () => {
       indexQuestion++;
       mainAnswer.push(listItem);
       mainAnswerAlpha.push(listItemByType);
-      updateOption(dataQuest[indexQuestion]);
+      updateOption(statementLoop[indexQuestion]);
     } else {
       console.log("selesai");
       setQuestStatus(true);

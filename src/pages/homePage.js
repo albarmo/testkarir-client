@@ -4,6 +4,8 @@ import Navbar from "../components/navbar";
 import qoreContext from "../qoreContext";
 import "./style/homepage.css";
 
+import Footer from "../components/footer";
+
 // graphic images
 import jumbotronImage from "../materials/jumbotron.png";
 import cardImage1 from "../materials/card-image-1.png";
@@ -335,6 +337,7 @@ const HomePage = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

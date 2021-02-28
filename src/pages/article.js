@@ -9,6 +9,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 import CardArticle from "../components/cardArticle";
 import ArticleContent from "../components/articleContent";
+import Footer from "../components/footer";
 
 const Article = () => {
   const { data: sliderContent, status, error } = qoreContext
@@ -80,6 +81,7 @@ const Article = () => {
         <CardArticle />
         <ArticleContent />
       </section>
+      <Footer />
     </>
   );
 };

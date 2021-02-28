@@ -10,7 +10,7 @@ import "./style/testPage.css";
 const TestPage = () => {
   const { user } = qoreContext.useCurrentUser();
 
-  const [isValid, setIsValid] = useState(true);
+  const [isValid, setIsValid] = useState(false);
   const [fullname, setFullname] = useState("");
   const [email, setEmail] = useState("");
   const [numberIdentfy, setNumberIdentify] = useState("");
@@ -35,9 +35,15 @@ const TestPage = () => {
   console.log(userData);
 
   useEffect(() => {
+    console.log(user);
+    if (user) {
+      setIsValid(true);
+    }
+  }, [user]);
+
+  useEffect(() => {
     console.log(`checking user isLogin`);
     if (userData) {
-      setIsValid(true);
       if (user) {
         dataUser = {
           fullname: user.data.username,

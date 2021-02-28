@@ -52,9 +52,19 @@ const FreeTestResult = (props) => {
 
   const testId = props.location.state.test[0].testId.id;
   const typeId = "c587e204-d1b4-4fff-bbd0-df84fd4004de";
-  const userId = props.location.state
-    ? props.location.state.userdata.data.id
-    : null;
+
+  let userId = "";
+  if (props.location.state.userData === null) {
+    userId = props.location.state
+      ? props.location.user.data.id
+      : props.location.state.userdata.data.id;
+  } else if (props.location.state.userData === null) {
+    userId = props.location.state
+      ? props.location.state.userdata.data.id
+      : props.location.user.data.id;
+  }
+
+  console.log(props.location.state);
 
   const generateHistory = () => {
     setTimeout(() => {
